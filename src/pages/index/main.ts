@@ -12,8 +12,9 @@ type PageState = {
 let state: PageState = {
   test: 'Hello World'
 }
+
 Alpine.store('page-index', state)
 
-//业务逻辑？？？(用起来跟 VUE 差不多？)
+//业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
 
 Alpine.start()

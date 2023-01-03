@@ -27,18 +27,21 @@ module.exports = defineConfig({
           filename: 'login.html',
           entry: '/src/pages/login/main.ts',
           template: 'src/pages/login/index.html',
-        },
-        {
-          name: 'register',
-          filename: 'register.html',
-          entry: '/src/pages/register/main.ts',
-          template: 'src/pages/register/index.html',
-        },
+        }
       ]
     })
   ],
   server: {
-    hmr: true
+    hmr: true,
+    proxy: {
+      // with options
+      '/api': {
+        target: 'https://app.dev.cloud.wshop.info/api/v1/capi',
+        xfwd: true,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     minify: true,
