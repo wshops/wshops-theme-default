@@ -36,7 +36,7 @@ module.exports = defineConfig({
     proxy: {
       // with options
       '/api': {
-        target: 'https://app.dev.cloud.wshop.info/api/v1/capi',
+        target: 'https://app.dev.cloud.wshop.info/api',
         xfwd: true,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),

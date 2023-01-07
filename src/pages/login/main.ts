@@ -56,7 +56,6 @@ const wshop: WshopUtils = new WshopUtils({
 // n.closable().info('hello world')
 
 /************ UI交互及动效逻辑 ************/
-
 //页面交互业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
 
 Alpine.start()
@@ -71,7 +70,7 @@ let c = wshop.vd(true).init([
       {
         validatorName: 'required',
         invalidMessage: '用户名不能为空'
-      }
+      },
     ]
   },
   {
@@ -99,11 +98,10 @@ document.getElementById('login-form')!.addEventListener('submit', (e) => {
   }
   const formData = wshop.formDataToObject('login-form')
   formData['password'] = wshop.md5(formData['password'] as string)
-  wshop.api().post('/api/auth/login', formData).then((res) => {
+  wshop.api().post('/api/v1/capi/auth/login', formData).then((res) => {
     if (res !== null && res !== undefined) {
       console.log(res)
       //has valid response
-      window.location.assign('/')
     }
   }).catch((err) => {
     window.$notify.error(err)
