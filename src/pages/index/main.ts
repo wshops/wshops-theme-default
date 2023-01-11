@@ -4,7 +4,7 @@ import "./style.less";
 import Alpine from "alpinejs";
 
 window.Alpine = Alpine;
-declare const window: Window & { topNav: any };
+declare const window: Window & { topNav: Function };
 type PageState = {
   test: string;
 };
@@ -17,9 +17,21 @@ window.topNav = function () {
   return {
     droDownshow: false,
     mobileShow: false,
+    show: false,
+    // 商品类别下拉列表
+    open() {
+      this.show = true;
+    },
+    close() {
+      this.show = false;
+    },
+    isOpen() {
+      return this.show === true;
+    },
     back() {
       history.back();
     },
+    // 个人中心下拉列表
     droDownOpen() {
       if (this.droDownshow) {
         this.droDownshow = false;
@@ -36,7 +48,11 @@ window.topNav = function () {
     // 购物车展示弹窗
     shopingCartshow: false,
     openShopingCart() {
-      this.shopingCartshow = !this.shopingCartshow;
+      if (this.shopingCartshow) {
+        this.shopingCartshow = false;
+      } else {
+        this.shopingCartshow = true;
+      }
     },
     closeShopingCart() {
       this.shopingCartshow = false;
@@ -44,6 +60,7 @@ window.topNav = function () {
     isOpenShopingCart() {
       return this.shopingCartshow === true;
     },
+    // 手机端控制
     mobileOpen() {
       this.mobileShow = true;
     },
