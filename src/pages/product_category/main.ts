@@ -18,6 +18,9 @@ window.topNav = function () {
     droDownshow: false,
     mobileShow: false,
     show: false,
+    toSearch() {
+      location.assign("search");
+    },
     // 商品类别下拉列表
     open() {
       this.show = true;

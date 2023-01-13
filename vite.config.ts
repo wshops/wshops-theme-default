@@ -43,6 +43,12 @@ module.exports = defineConfig({
           template: "src/pages/search/index.html",
         },
         {
+          name: "product_category",
+          filename: "product_category.html",
+          entry: "/src/pages/product_category/main.ts",
+          template: "src/pages/product_category/index.html",
+        },
+        {
           name: "product_detail",
           filename: "product_detail.html",
           entry: "/src/pages/product_detail/main.ts",
