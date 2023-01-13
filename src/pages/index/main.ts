@@ -70,6 +70,9 @@ window.topNav = function () {
     mobileIsOpen() {
       return this.mobileShow === true;
     },
+    toSearch() {
+      location.assign("search");
+    },
   };
 };
 Alpine.store("page-index", state);

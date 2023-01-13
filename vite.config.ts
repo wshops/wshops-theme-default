@@ -19,12 +19,6 @@ module.exports = defineConfig({
     createMpaPlugin({
       pages: [
         {
-          name: "index",
-          filename: "index.html",
-          entry: "/src/pages/index/main.ts",
-          template: "src/pages/index/index.html",
-        },
-        {
           name: "login",
           filename: "login.html",
           entry: "/src/pages/login/main.ts",
@@ -35,6 +29,24 @@ module.exports = defineConfig({
           filename: "register.html",
           entry: "/src/pages/register/main.ts",
           template: "src/pages/register/index.html",
+        },
+        {
+          name: "index",
+          filename: "index.html",
+          entry: "/src/pages/index/main.ts",
+          template: "src/pages/index/index.html",
+        },
+        {
+          name: "search",
+          filename: "search.html",
+          entry: "/src/pages/search/main.ts",
+          template: "src/pages/search/index.html",
+        },
+        {
+          name: "product_detail",
+          filename: "product_detail.html",
+          entry: "/src/pages/product_detail/main.ts",
+          template: "src/pages/product_detail/index.html",
         },
       ],
     }),
