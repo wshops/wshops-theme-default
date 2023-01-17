@@ -801,9 +801,9 @@
                             <div class="md:flex md:items-center md:justify-between pb-10">
                                 <a x-on:click="back" class="cursor-pointer text-2xl font-bold tracking-tight text-gray-900">返回</a>
                             </div>
-                            <div class="relative sectionSidebar__wrap dark:bg-slate-800">
+                            <div class="relative sectionSidebar__wrap bg-primary-50 dark:bg-neutral-800/20">
                                 <div class="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-6">
-                                    <div class="relative rounded-md sm:rounded-xl overflow-hidden">
+                                    <div class="relative overflow-hidden">
                                         <div class="nc-NcImage aspect-w-10 aspect-h-8 lg:aspect-h-4"
                                             data-nc-id="NcImage">                            
                                                 <div @resetting="clearInterval($flag);$flag=setInterval('$next.click()',3000);"
