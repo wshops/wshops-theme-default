@@ -15,8 +15,63 @@ let state: PageState = {
 
 window.topNav = function () {
   return {
+    droDownshow: false,
+    mobileShow: false,
+    show: false,
+    toSearch() {
+      location.assign("search");
+    },
+    // 商品类别下拉列表
+    open() {
+      this.show = true;
+    },
+    close() {
+      this.show = false;
+    },
+    isOpen() {
+      return this.show === true;
+    },
     back() {
       history.back();
+    },
+    // 个人中心下拉列表
+    droDownOpen() {
+      if (this.droDownshow) {
+        this.droDownshow = false;
+      } else {
+        this.droDownshow = true;
+      }
+    },
+    droDownClose() {
+      this.droDownshow = false;
+    },
+    isDroDownOpen() {
+      return this.droDownshow === true;
+    },
+    // 购物车展示弹窗
+    shopingCartshow: false,
+    openShopingCart() {
+      if (this.shopingCartshow) {
+        this.shopingCartshow = false;
+      } else {
+        this.shopingCartshow = true;
+      }
+    },
+    closeShopingCart() {
+      this.shopingCartshow = false;
+    },
+    isOpenShopingCart() {
+      return this.shopingCartshow === true;
+    },
+    // 手机端控制
+    mobileOpen() {
+      this.mobileShow = true;
+    },
+    mobileClose() {
+      this.mobileShow = false;
+    },
+    mobileIsOpen() {
+      return this.mobileShow === true;
     },
   };
 };
