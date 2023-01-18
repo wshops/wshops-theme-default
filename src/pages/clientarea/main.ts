@@ -2,6 +2,8 @@
 import "./style.less";
 
 import Alpine from "alpinejs";
+import { Tabs } from "flowbite";
+import type { TabsOptions, TabsInterface, TabItem } from "flowbite";
 
 window.Alpine = Alpine;
 declare const window: Window & { topNav: Function };
@@ -13,6 +15,49 @@ let state: PageState = {
   test: "Hello World",
 };
 
+const tabElements: TabItem[] = [
+  {
+    id: "settings",
+    triggerEl: document.querySelector("#settings-tab"),
+    targetEl: document.querySelector("#settings"),
+  },
+  {
+    id: "collect",
+    triggerEl: document.querySelector("#collect-tab"),
+    targetEl: document.querySelector("#collect"),
+  },
+  {
+    id: "myOrder",
+    triggerEl: document.querySelector("#myOrder-tab"),
+    targetEl: document.querySelector("#myOrder"),
+  },
+  {
+    id: "changePw",
+    triggerEl: document.querySelector("#changePw-tab"),
+    targetEl: document.querySelector("#changePw"),
+  },
+];
+
+// options with default values
+const options: TabsOptions = {
+  defaultTabId: "settings",
+  activeClasses:
+    "text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500",
+  inactiveClasses:
+    "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
+  onShow: () => {
+    console.log("tab is shown");
+  },
+};
+
+/*
+ * tabElements: array of tab objects
+ * options: optional
+ */
+const tabs: TabsInterface = new Tabs(tabElements, options);
+
+// open tab item based on id
+tabs.show("settings");
 window.topNav = function () {
   return {
     droDownshow: false,
@@ -72,6 +117,15 @@ window.topNav = function () {
     },
     toSearch() {
       location.assign("search");
+    },
+    toCollect() {
+      tabs.show("collect");
+    },
+    toMyOrder() {
+      tabs.show("myOrder");
+    },
+    toChangePw() {
+      tabs.show("changePw");
     },
   };
 };
