@@ -18,12 +18,6 @@ window.topNav = function () {
     droDownshow: false,
     mobileShow: false,
     show: false,
-    toSearch() {
-      location.assign("search");
-    },
-    toCart() {
-      location.assign("cart");
-    },
     // 商品类别下拉列表
     open() {
       this.show = true;
@@ -75,6 +69,9 @@ window.topNav = function () {
     },
     mobileIsOpen() {
       return this.mobileShow === true;
+    },
+    toSearch() {
+      location.assign("search");
     },
   };
 };

@@ -24,6 +24,9 @@ window.topNav = function () {
     toCart() {
       location.assign("cart");
     },
+    toCheckout() {
+      location.assign("checkout");
+    },
     // 商品类别下拉列表
     open() {
       this.show = true;
