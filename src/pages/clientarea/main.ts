@@ -18,23 +18,23 @@ let state: PageState = {
 const tabElements: TabItem[] = [
   {
     id: "settings",
-    triggerEl: document.querySelector("#settings-tab"),
-    targetEl: document.querySelector("#settings"),
+    triggerEl: document.querySelector("#settings-tab") as HTMLElement,
+    targetEl: document.querySelector("#settings") as HTMLElement,
   },
   {
     id: "collect",
-    triggerEl: document.querySelector("#collect-tab"),
-    targetEl: document.querySelector("#collect"),
+    triggerEl: document.querySelector("#collect-tab") as HTMLElement,
+    targetEl: document.querySelector("#collect") as HTMLElement,
   },
   {
     id: "myOrder",
-    triggerEl: document.querySelector("#myOrder-tab"),
-    targetEl: document.querySelector("#myOrder"),
+    triggerEl: document.querySelector("#myOrder-tab") as HTMLElement,
+    targetEl: document.querySelector("#myOrder") as HTMLElement,
   },
   {
     id: "changePw",
-    triggerEl: document.querySelector("#changePw-tab"),
-    targetEl: document.querySelector("#changePw"),
+    triggerEl: document.querySelector("#changePw-tab") as HTMLElement,
+    targetEl: document.querySelector("#changePw") as HTMLElement,
   },
 ];
 
