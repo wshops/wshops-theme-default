@@ -1595,6 +1595,23 @@
                           修改密码
                         </button>
                       </li>
+                      <li
+                        x-on:click="toAddress"
+                        id="address-tab"
+                        role="presentation"
+                      >
+                        <button
+                          class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                          id="address-tab"
+                          data-tabs-target="#address"
+                          type="button"
+                          role="tab"
+                          aria-controls="address"
+                          aria-selected="false"
+                        >
+                          地址管理
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -1615,7 +1632,7 @@
                           class="w-32 h-32 rounded-full object-cover z-0"
                         />
                         <div
-                          class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-neutral-50 cursor-pointer"
+                          class="display-none absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center text-neutral-50 cursor-pointer"
                         >
                           <svg
                             width="30"
@@ -3495,6 +3512,424 @@
                       >
                         Update password
                       </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="address"
+                class="max-w-4xl mx-auto pt-14 sm:pt-26 pb-24 lg:pb-32"
+              >
+                <div class="space-y-10 sm:space-y-12">
+                  <h2 class="text-2xl sm:text-3xl font-semibold">地址列表</h2>
+                  <div
+                    class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden z-0"
+                  >
+                    <div
+                      class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 sm:p-8 bg-slate-50 dark:bg-slate-500/5"
+                    >
+                      <div>
+                        <p class="text-lg font-semibold">#WU3746HGG12</p>
+                        <p
+                          class="text-slate-500 dark:text-slate-400 text-sm mt-1.5 sm:mt-2"
+                        >
+                          <span>Aug 8, 2023</span><span class="mx-2">·</span
+                          ><span class="text-primary-500">Delivered</span>
+                        </p>
+                      </div>
+                      <div class="mt-3 sm:mt-0">
+                        <button
+                          class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm font-medium py-2.5 px-4 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                        >
+                          View Order
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="border-t border-slate-200 dark:border-slate-700 p-2 sm:p-8 divide-y divide-y-slate-200 dark:divide-slate-700"
+                    >
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/17.7701cf9446a6b588de67.png"
+                            alt="Rey Nylon Backpack"
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Rey Nylon Backpack
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/2.0fda32f45e4cd5e368ea.png"
+                            alt='Round Buckle 1" Belt'
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Round Buckle 1" Belt
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/16.5ed8bd8a65af67fd6c5c.png"
+                            alt="Waffle Knit Beanie"
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Waffle Knit Beanie
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden z-0"
+                  >
+                    <div
+                      class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 sm:p-8 bg-slate-50 dark:bg-slate-500/5"
+                    >
+                      <div>
+                        <p class="text-lg font-semibold">#WU3746HGG12</p>
+                        <p
+                          class="text-slate-500 dark:text-slate-400 text-sm mt-1.5 sm:mt-2"
+                        >
+                          <span>Aug 8, 2023</span><span class="mx-2">·</span
+                          ><span class="text-primary-500">Delivered</span>
+                        </p>
+                      </div>
+                      <div class="mt-3 sm:mt-0">
+                        <button
+                          class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm font-medium py-2.5 px-4 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                        >
+                          View Order
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="border-t border-slate-200 dark:border-slate-700 p-2 sm:p-8 divide-y divide-y-slate-200 dark:divide-slate-700"
+                    >
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/17.7701cf9446a6b588de67.png"
+                            alt="Rey Nylon Backpack"
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Rey Nylon Backpack
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/2.0fda32f45e4cd5e368ea.png"
+                            alt='Round Buckle 1" Belt'
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Round Buckle 1" Belt
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex py-4 sm:py-7 last:pb-0 first:pt-0">
+                        <div
+                          class="h-24 w-16 sm:w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                        >
+                          <img
+                            src="./static/media/16.5ed8bd8a65af67fd6c5c.png"
+                            alt="Waffle Knit Beanie"
+                            class="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div class="ml-4 flex flex-1 flex-col">
+                          <div>
+                            <div class="flex justify-between">
+                              <div>
+                                <h3 class="text-base font-medium line-clamp-1">
+                                  Waffle Knit Beanie
+                                </h3>
+                                <p
+                                  class="mt-1 text-sm text-slate-500 dark:text-slate-400"
+                                >
+                                  <span>Natural</span
+                                  ><span
+                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                  ></span
+                                  ><span>XL</span>
+                                </p>
+                              </div>
+                              <div class="mt-0.5 ml-2">
+                                <div
+                                  class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
+                                >
+                                  <span class="text-green-500 !leading-none"
+                                    >$33.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="flex flex-1 items-end justify-between text-sm"
+                          >
+                            <p
+                              class="text-gray-500 dark:text-slate-400 flex items-center"
+                            >
+                              <span class="hidden sm:inline-block">Qty</span
+                              ><span class="inline-block sm:hidden">x</span
+                              ><span class="ml-2">1</span>
+                            </p>
+                            <div class="flex">
+                              <button
+                                type="button"
+                                class="font-medium text-indigo-600 dark:text-primary-500"
+                              >
+                                Leave review
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -36,6 +36,11 @@ const tabElements: TabItem[] = [
     triggerEl: document.querySelector("#changePw-tab") as HTMLElement,
     targetEl: document.querySelector("#changePw") as HTMLElement,
   },
+  {
+    id: "address",
+    triggerEl: document.querySelector("#address-tab") as HTMLElement,
+    targetEl: document.querySelector("#address") as HTMLElement,
+  },
 ];
 
 // options with default values
@@ -126,6 +131,9 @@ window.topNav = function () {
     },
     toChangePw() {
       tabs.show("changePw");
+    },
+    toAddress() {
+      tabs.show("address");
     },
   };
 };
