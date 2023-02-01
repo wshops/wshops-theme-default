@@ -135,6 +135,16 @@ window.topNav = function () {
     toAddress() {
       tabs.show("address");
     },
+    imgUploadShow: false,
+    isShowImgUpload() {
+      return this.imgUploadShow === true;
+    },
+    showImgUpload() {
+      this.imgUploadShow = true;
+    },
+    hideImgUpload() {
+      this.imgUploadShow = false;
+    },
   };
 };
 Alpine.store("page-index", state);
