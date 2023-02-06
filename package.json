@@ -33,7 +33,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",
     "@types/alpinejs": "^3.7.1",
-    "@types/jsdom": "^20.0.1",
+    "@types/jsdom": "^21.1.0",
     "@types/node": "^18.11.18",
     "@wshops/utils": "1.0.8",
     "alpinejs": "^3.10.5",
