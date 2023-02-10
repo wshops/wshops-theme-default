@@ -76,6 +76,7 @@ module.exports = defineConfig({
     }),
   ],
   server: {
+    host:"app.dev.local.wshop.info",
     hmr: true,
     proxy: {
       // with options
