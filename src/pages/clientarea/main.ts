@@ -2,10 +2,141 @@
 import "./style.less";
 
 import Alpine from "alpinejs";
-import { Tabs } from "flowbite";
+import { Tabs, Modal } from "flowbite";
 import type { TabsOptions, TabsInterface, TabItem } from "flowbite";
+import WshopUtils, { FormValidationResult } from "@wshops/utils";
+import { useNotify } from "../../utils/notify";
+useNotify({
+  position: "top-right",
+});
 
 window.Alpine = Alpine;
+/****** 初始化 ******/
+const wshop: WshopUtils = new WshopUtils({
+  feedbacks: {
+    formValidationFeedbacks: {
+      onValid: (result: FormValidationResult): void => {
+        if (
+          (result.inputElement as HTMLInputElement).labels !== null &&
+          (result.inputElement as HTMLInputElement).labels!.length > 0
+        ) {
+          (result.inputElement as HTMLInputElement).labels![0].className =
+            "block mb-2 text-sm font-medium text-green-700 dark:text-green-500";
+        }
+        result.inputElement.className =
+          "bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500";
+        if (document.getElementById(result.inputElement.id + "-error") !== null)
+          document.getElementById(result.inputElement.id + "-error")!.remove();
+      },
+      onInvalid: (result: FormValidationResult): void => {
+        if (
+          (result.inputElement as HTMLInputElement).labels !== null &&
+          (result.inputElement as HTMLInputElement).labels!.length > 0
+        ) {
+          (result.inputElement as HTMLInputElement).labels![0].className =
+            "block mb-2 text-sm font-medium text-red-700 dark:text-red-500";
+        }
+        result.inputElement.className =
+          "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500";
+        if (result.message !== null) {
+          if (
+            document.getElementById(result.inputElement.id + "-error") ===
+              null ||
+            document.getElementById(result.inputElement.id + "-error") ===
+              undefined
+          ) {
+            result.inputElement.insertAdjacentHTML(
+              "afterend",
+              `<p class="mt-2 text-sm text-red-600 dark:text-red-500" id="${result.inputElement.id}-error">${result.message}</p>`
+            );
+          } else {
+            document.getElementById(
+              result.inputElement.id + "-error"
+            )!.innerHTML = <string>result.message;
+          }
+        }
+      },
+    },
+    apiFeedbacks: {
+      onError: (message: string): void => {
+        window.$notify.closable().error(message);
+      },
+      onInfo: (message: string): void => {
+        window.$notify.closable().info(message);
+      },
+      onWarning: (message: string): void => {
+        window.$notify.closable().warn(message);
+      },
+      onUnAuthorized: (): void => {
+        window.location.assign("/auth/register");
+      },
+      onSuccess: (message: string): void => {
+        window.$notify.closable().success(message);
+      },
+    },
+  },
+});
+
+// n.closable().info('hello world')
+
+/************ UI交互及动效逻辑 ************/
+//页面交互业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
+
+/***************** 结束 *****************/
+
+/************ 表单验证配置 ************/
+// 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
+let c = wshop.vd(true).init([
+  {
+    element: document.getElementById("mobilePhone")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "手机号不能为空",
+      },
+    ],
+  },
+]);
+
+/*************** 结束 ****************/
+
+// set the modal menu element
+const $targetEl = document.getElementById("modalEl");
+
+// options with default values
+const optionsModal: any = {
+  placement: "center-center",
+  backdrop: "dynamic",
+  backdropClasses:
+    "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
+  closable: false,
+  onHide: () => {
+    console.log("modal is hidden");
+    c = wshop.vd(true).init([
+      {
+        element: document.getElementById("mobilePhone")!,
+        rules: [
+          {
+            validatorName: "required",
+            invalidMessage: "手机号不能为空",
+          },
+        ],
+      },
+    ]);
+    codeCheck = {};
+    (document.getElementById("code") as HTMLInputElement).value = "";
+    (document.getElementById("mobilePhone") as HTMLInputElement).value = "";
+  },
+  onShow: () => {
+    console.log("modal is shown");
+  },
+  onToggle: () => {
+    console.log("modal has been toggled");
+  },
+};
+
+const modalMobile = new Modal($targetEl, optionsModal);
+
 declare const window: Window & { topNav: Function };
 type PageState = {
   test: string;
@@ -63,6 +194,7 @@ const tabs: TabsInterface = new Tabs(tabElements, options);
 
 // open tab item based on id
 tabs.show("settings");
+
 window.topNav = function () {
   return {
     droDownshow: false,
@@ -145,8 +277,91 @@ window.topNav = function () {
     hideImgUpload() {
       this.imgUploadShow = false;
     },
+    // 打开修改手机号弹窗
+    openMobileModal() {
+      document.getElementById("mobileContent")!.style.display = "block";
+      document.getElementById("codeContent")!.style.display = "none";
+      modalMobile.show();
+    },
+    hideMobileModal() {
+      document.getElementById("mobileContent")!.style.display = "block";
+      document.getElementById("codeContent")!.style.display = "none";
+      modalMobile.hide();
+    },
   };
 };
+let codeCheck: any;
+document.getElementById("mobile-form")!.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!c.validate().getResult()) {
+    return;
+  }
+
+  const formData = wshop.formDataToObject("mobile-form");
+  if (
+    formData["h-captcha-response"] !== undefined &&
+    formData["h-captcha-response"] !== null &&
+    formData["h-captcha-response"] !== ""
+  ) {
+    formData["captcha_token"] = formData["h-captcha-response"];
+    delete formData["h-captcha-response"];
+    delete formData["g-recaptcha-response"];
+  }
+  // wshop
+  //   .api()
+  //   .post("/api/v1/capi/auth/login", formData)
+  //   .then((res) => {
+  //     if (res !== null && res !== undefined) {
+  //       console.log(res);
+  //       //has valid response
+  //       location.assign("login");
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     window.$notify.error(err).then(() => {
+  //      hcaptcha.reset('hcaptcha-block')
+  //   })
+  //   });
+  console.log(formData);
+  document.getElementById("mobileContent")!.style.display = "none";
+  document.getElementById("codeContent")!.style.display = "block";
+  (document.getElementById("code") as HTMLInputElement)
+    ? (codeCheck = wshop.vd(true).init([
+        {
+          element: document.getElementById("code")!,
+          rules: [
+            {
+              validatorName: "required",
+              invalidMessage: "验证码不能为空",
+            },
+          ],
+        },
+      ]))
+    : "";
+});
+
+document.getElementById("code-form")!.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!codeCheck.validate().getResult()) {
+    return;
+  }
+  const formData = wshop.formDataToObject("code-form");
+  wshop
+    .api()
+    .post("/api/v1/capi/auth/login", formData)
+    .then((res) => {
+      if (res !== null && res !== undefined) {
+        console.log(formData);
+        document.getElementById("mobileContent")!.style.display = "block";
+        document.getElementById("codeContent")!.style.display = "none";
+        modalMobile.hide();
+      }
+    })
+    .catch((err) => {
+      window.$notify.error(err);
+    });
+});
+
 Alpine.store("page-index", state);
 
 //业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
