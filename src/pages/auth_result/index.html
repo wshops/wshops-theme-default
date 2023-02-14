@@ -11,6 +11,7 @@
     <section class="bg-gray-50 dark:bg-gray-900">
       <div
         class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+        x-data="topNav()"
       >
         <a
           class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -24,19 +25,87 @@
         <div
           class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
         >
-          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1
-              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+          <div
+            class="relative p-6 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+          >
+            <div
+              class="w-16 h-16 mt-5 rounded-full bg-green-100 dark:bg-green-900 p-2 flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-10 h-10 text-green-500 dark:text-green-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="sr-only">Success</span>
+            </div>
+            <p
+              class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white"
             >
               注册成功
-            </h1>
+            </p>
+            <p class="mb-8 text-sm text-gray-500 dark:text-white">
+              你好，注册成功了，有啥想法？
+            </p>
             <button
-              class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              type="button"
+              x-on:click="toLogin"
+              class="w-1/2 mb-5 py-2 px-3 text-sm font-medium text-center text-white rounded-lg bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-900"
             >
               立即登录？
             </button>
           </div>
         </div>
+        <!-- <div
+          class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div
+            class="relative p-6 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+          >
+            <div
+              class="w-16 h-16 mt-5 rounded-full bg-red-100 dark:bg-red-900 p-2 flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                fill="none"
+                class="w-10 h-10 text-red-500 dark:text-red-400"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+              <span class="sr-only">fail</span>
+            </div>
+            <p
+              class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white"
+            >
+              注册失败
+            </p>
+            <p class="mb-8 text-sm text-gray-500 dark:text-white">
+              你好，注册失败了，有啥想法？
+            </p>
+            <button
+              type="button"
+              x-on:click="toRegister"
+              class="w-1/2 mb-5 py-2 px-3 text-sm font-medium text-center text-white rounded-lg bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-900"
+            >
+              重新注册？
+            </button>
+          </div>
+        </div> -->
       </div>
     </section>
     <script src="/src/pages/register_success/main.ts" type="module"></script>
