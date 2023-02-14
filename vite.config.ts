@@ -31,6 +31,12 @@ module.exports = defineConfig({
           template: "src/pages/register/index.html",
         },
         {
+          name: "register_success",
+          filename: "register_success.html",
+          entry: "/src/pages/register_success/main.ts",
+          template: "src/pages/register_success/index.html",
+        },
+        {
           name: "index",
           filename: "index.html",
           entry: "/src/pages/index/main.ts",
@@ -76,7 +82,7 @@ module.exports = defineConfig({
     }),
   ],
   server: {
-    host:"app.dev.local.wshop.info",
+    host: "app.dev.local.wshop.info",
     hmr: true,
     proxy: {
       // with options

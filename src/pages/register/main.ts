@@ -139,6 +139,15 @@ document.getElementById("register-form")!.addEventListener("submit", (e) => {
     return;
   }
   const formData = wshop.formDataToObject("register-form");
+  if (
+    formData["h-captcha-response"] !== undefined &&
+    formData["h-captcha-response"] !== null &&
+    formData["h-captcha-response"] !== ""
+  ) {
+    formData["captcha_token"] = formData["h-captcha-response"];
+    delete formData["h-captcha-response"];
+    delete formData["g-recaptcha-response"];
+  }
   formData["password"] = wshop.md5(formData["password"] as string);
   wshop
     .api()
@@ -151,6 +160,8 @@ document.getElementById("register-form")!.addEventListener("submit", (e) => {
       }
     })
     .catch((err) => {
-      window.$notify.error(err);
+      window.$notify.error(err).then(() => {
+        hcaptcha.reset("hcaptcha-block");
+      });
     });
 });
