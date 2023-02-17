@@ -1,8 +1,32 @@
 // 所有样式都在这个文件，包括引入 tailwindcss
 import "./style.less";
-
+import WshopUtils from "@wshops/utils";
+import { useNotify } from "../../utils/notify";
 import Alpine from "alpinejs";
-
+useNotify({
+  position: "top-right",
+});
+const wshop: WshopUtils = new WshopUtils({
+  feedbacks: {
+    apiFeedbacks: {
+      onError: (message: string): void => {
+        window.$notify.closable().error(message);
+      },
+      onInfo: (message: string): void => {
+        window.$notify.closable().info(message);
+      },
+      onWarning: (message: string): void => {
+        window.$notify.closable().warn(message);
+      },
+      onUnAuthorized: (): void => {
+        window.location.assign("/auth/register");
+      },
+      onSuccess: (message: string): void => {
+        window.$notify.closable().success(message);
+      },
+    },
+  },
+});
 window.Alpine = Alpine;
 declare const window: Window & { topNav: Function };
 type PageState = {
@@ -118,6 +142,27 @@ window.topNav = function () {
     isSortDropDownOpen() {
       return this.sortDropDownshow === true;
     },
+    productList: [],
+    getProductList() {
+      wshop
+        .api()
+        .get("/api/v1/capi/product/conditions", {
+          current_page: 1,
+          page_size: 5,
+          high_price: 120000,
+          low_price: 0,
+          word: "",
+        })
+        .then((res) => {
+          if (res !== null && res !== undefined) {
+            this.productList = res.data.data.data;
+            console.log(this.productList);
+          }
+        })
+        .catch((err) => {
+          window.$notify.error(err);
+        });
+    },
   };
 };
 Alpine.store("page-index", state);
@@ -125,3 +170,5 @@ Alpine.store("page-index", state);
 //业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
 
 Alpine.start();
+
+window.topNav().getProductList();
