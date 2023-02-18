@@ -96,9 +96,16 @@ module.exports = defineConfig({
   },
   build: {
     minify: true,
+    target: 'modules',
+    sourcemap: true,
+  },
+  define: {
+    '__VUE_OPTIONS_API__': true,
+    '__VUE_PROD_DEVTOOLS__': false
   },
   resolve: {
     alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js',
       '@': path.resolve(__dirname, './src'),
       '@pages': path.resolve(__dirname, './src/pages'),
     },

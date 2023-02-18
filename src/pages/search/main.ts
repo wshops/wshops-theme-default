@@ -1,174 +1,173 @@
 // 所有样式都在这个文件，包括引入 tailwindcss
-import "./style.less";
-import WshopUtils from "@wshops/utils";
-import { useNotify } from "../../utils/notify";
-import Alpine from "alpinejs";
+import './style.less'
+import WshopUtils from '@wshops/utils'
+import { useNotify } from '../../utils/notify'
+import Alpine from 'alpinejs'
+import { createApp } from 'vue'
+
 useNotify({
-  position: "top-right",
-});
+  position: 'top-right',
+})
 const wshop: WshopUtils = new WshopUtils({
   feedbacks: {
     apiFeedbacks: {
       onError: (message: string): void => {
-        window.$notify.closable().error(message);
+        window.$notify.closable().error(message)
       },
       onInfo: (message: string): void => {
-        window.$notify.closable().info(message);
+        window.$notify.closable().info(message)
       },
       onWarning: (message: string): void => {
-        window.$notify.closable().warn(message);
+        window.$notify.closable().warn(message)
       },
       onUnAuthorized: (): void => {
-        window.location.assign("/auth/register");
+        window.location.assign('/auth/register')
       },
       onSuccess: (message: string): void => {
-        window.$notify.closable().success(message);
+        window.$notify.closable().success(message)
       },
     },
   },
-});
-window.Alpine = Alpine;
-declare const window: Window & { topNav: Function };
-type PageState = {
-  test: string;
-};
-
-let state: PageState = {
-  test: "Hello World",
-};
-
+})
+window.Alpine = Alpine
+declare const window: Window & {
+  topNav: Function
+  product: Function
+}
 window.topNav = function () {
   return {
     droDownshow: false,
     mobileShow: false,
     show: false,
     // 商品类别下拉列表
-    open() {
-      this.show = true;
+    open () {
+      this.show = true
     },
-    close() {
-      this.show = false;
+    close () {
+      this.show = false
     },
-    isOpen() {
-      return this.show === true;
+    isOpen () {
+      return this.show === true
     },
-    back() {
-      history.back();
+    back () {
+      history.back()
     },
     // 个人中心下拉列表
-    droDownOpen() {
+    droDownOpen () {
       if (this.droDownshow) {
-        this.droDownshow = false;
+        this.droDownshow = false
       } else {
-        this.droDownshow = true;
+        this.droDownshow = true
       }
     },
-    droDownClose() {
-      this.droDownshow = false;
+    droDownClose () {
+      this.droDownshow = false
     },
-    isDroDownOpen() {
-      return this.droDownshow === true;
+    isDroDownOpen () {
+      return this.droDownshow === true
     },
     // 购物车展示弹窗
     shopingCartshow: false,
-    openShopingCart() {
+    openShopingCart () {
       if (this.shopingCartshow) {
-        this.shopingCartshow = false;
+        this.shopingCartshow = false
       } else {
-        this.shopingCartshow = true;
+        this.shopingCartshow = true
       }
     },
-    closeShopingCart() {
-      this.shopingCartshow = false;
+    closeShopingCart () {
+      this.shopingCartshow = false
     },
-    isOpenShopingCart() {
-      return this.shopingCartshow === true;
+    isOpenShopingCart () {
+      return this.shopingCartshow === true
     },
     // 手机端控制
-    mobileOpen() {
-      this.mobileShow = true;
+    mobileOpen () {
+      this.mobileShow = true
     },
-    mobileClose() {
-      this.mobileShow = false;
+    mobileClose () {
+      this.mobileShow = false
     },
-    mobileIsOpen() {
-      return this.mobileShow === true;
+    mobileIsOpen () {
+      return this.mobileShow === true
     },
     // 价格区间下拉列表
     priceShow: false,
-    priceOpen() {
-      this.priceShow = true;
+    priceOpen () {
+      this.priceShow = true
     },
-    priceClose() {
-      this.priceShow = false;
+    priceClose () {
+      this.priceShow = false
     },
-    priceIsOpen() {
-      return this.priceShow === true;
+    priceIsOpen () {
+      return this.priceShow === true
     },
     // 产品标签下拉列表
     tagShow: false,
-    tagOpen() {
-      this.tagShow = true;
+    tagOpen () {
+      this.tagShow = true
     },
-    tagClose() {
-      this.tagShow = false;
+    tagClose () {
+      this.tagShow = false
     },
-    tagIsOpen() {
-      return this.tagShow === true;
+    tagIsOpen () {
+      return this.tagShow === true
     },
     // 尺寸大小下拉列表
     sizeShow: false,
-    sizeOpen() {
-      this.sizeShow = true;
+    sizeOpen () {
+      this.sizeShow = true
     },
-    sizeClose() {
-      this.sizeShow = false;
+    sizeClose () {
+      this.sizeShow = false
     },
-    sizeIsOpen() {
-      return this.sizeShow === true;
+    sizeIsOpen () {
+      return this.sizeShow === true
     },
-    clearSizeSelect() {
-      var txts: any = document.getElementById("XL---");
-      txts.checked = false;
+    clearSizeSelect () {
+      var txts: any = document.getElementById('XL---')
+      txts.checked = false
     },
     // 排序下拉列表
     sortDropDownshow: false,
-    sortDropDownOpen() {
-      this.sortDropDownshow = true;
+    sortDropDownOpen () {
+      this.sortDropDownshow = true
     },
-    sortDropDownClose() {
-      this.sortDropDownshow = false;
+    sortDropDownClose () {
+      this.sortDropDownshow = false
     },
-    isSortDropDownOpen() {
-      return this.sortDropDownshow === true;
+    isSortDropDownOpen () {
+      return this.sortDropDownshow === true
     },
+  }
+}
+Alpine.start()
+
+createApp({
+  data: () => ({
     productList: [],
-    getProductList() {
+  }),
+  methods: {
+    queryShowProduct (): any {
       wshop
         .api()
-        .get("/api/v1/capi/product/conditions", {
+        .get('/api/v1/capi/product/conditions', {
           current_page: 1,
           page_size: 5,
           high_price: 120000,
           low_price: 0,
-          word: "",
+          word: '',
         })
         .then((res) => {
           if (res !== null && res !== undefined) {
-            this.productList = res.data.data.data;
-            console.log(this.productList);
+            this.productList = res.data.data.data
           }
-        })
-        .catch((err) => {
-          window.$notify.error(err);
-        });
-    },
-  };
-};
-Alpine.store("page-index", state);
-
-//业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
-
-Alpine.start();
-
-window.topNav().getProductList();
+        }).catch((err) => {
+        window.$notify.error(err)
+      })
+    }
+  },
+  mounted () {
+    this.queryShowProduct()
+  }
+}).mount('#product-list')

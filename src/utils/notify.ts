@@ -212,11 +212,11 @@ export class Notify {
 
   private _getPositionClass (): string {
     const map: { [key: string]: string } = {
-      'top-left': 'absolute top-5 left-5 ',
-      'top-right': 'absolute top-5 right-5',
-      'bottom-left': 'absolute bottom-5 left-5',
-      'bottom-right': 'absolute right-5 bottom-5',
-      'top-center': 'absolute top-5 left-1/2 transform -translate-x-1/2',
+      'top-left': 'fixed top-5 left-5 ',
+      'top-right': 'fixed top-5 right-5',
+      'bottom-left': 'fixed bottom-5 left-5',
+      'bottom-right': 'fixed right-5 bottom-5',
+      'top-center': 'fixed top-5 left-1/2 transform -translate-x-1/2',
     }
     return map[this._options.position!]
   }

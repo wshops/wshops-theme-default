@@ -1,13 +1,10 @@
 import './style.less'
-import Alpine from 'alpinejs'
 import WshopUtils, { FormValidationResult } from '@wshops/utils'
 import { useNotify } from '../../utils/notify'
 
 useNotify({
   position: 'top-right',
 })
-/****** 初始化 ******/
-window.Alpine = Alpine
 const wshop: WshopUtils = new WshopUtils({
   feedbacks: {
     formValidationFeedbacks: {
@@ -72,39 +69,6 @@ const wshop: WshopUtils = new WshopUtils({
     },
   },
 })
-
-// n.closable().info('hello world')
-
-/************ UI交互及动效逻辑 ************/
-//页面交互业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
-
-Alpine.start()
-/***************** 结束 *****************/
-
-/***************** hcaptcha *****************/
-// declare global {
-//   interface Window {
-//     hcaptchaCustomCallbackFunc: (token: string) => void
-//   }
-// }
-
-// window.hcaptchaCustomCallbackFunc = (token) => {
-//   if (document.getElementById('captcha_token_input') === undefined || document.getElementById('captcha_token_input') === null) {
-//     const inputElement = document.createElement('input')
-//     inputElement.setAttribute('type', 'hidden')
-//     inputElement.setAttribute('id', 'captcha_token_input')
-//     inputElement.setAttribute('name', 'captcha_token')
-//     inputElement.setAttribute('value', token)
-//     document.getElementById('hcaptcha-block')!.insertAdjacentElement('afterend', inputElement)
-//   } else {
-//     document.getElementById('captcha_token_input')!.removeAttribute('value')
-//     document.getElementById('captcha_token_input')!.setAttribute('value', token)
-//   }
-// }
-/***************** hcaptcha end *****************/
-
-/************ 表单验证配置 ************/
-// 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
 let c = wshop.vd(true).init([
   {
     element: document.getElementById('username')!,
@@ -131,10 +95,46 @@ let c = wshop.vd(true).init([
     ],
   },
 ])
-/*************** 结束 ****************/
 
+/****** 初始化 ******/
+
+// n.closable().info('hello world')
+
+/************ UI交互及动效逻辑 ************/
+//页面交互业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
+
+// Alpine.start()
+/***************** 结束 *****************/
+
+/***************** hcaptcha *****************/
+// declare global {
+//   interface Window {
+//     hcaptchaCustomCallbackFunc: (token: string) => void
+//   }
+// }
+
+// window.hcaptchaCustomCallbackFunc = (token) => {
+//   if (document.getElementById('captcha_token_input') === undefined || document.getElementById('captcha_token_input') === null) {
+//     const inputElement = document.createElement('input')
+//     inputElement.setAttribute('type', 'hidden')
+//     inputElement.setAttribute('id', 'captcha_token_input')
+//     inputElement.setAttribute('name', 'captcha_token')
+//     inputElement.setAttribute('value', token)
+//     document.getElementById('hcaptcha-block')!.insertAdjacentElement('afterend', inputElement)
+//   } else {
+//     document.getElementById('captcha_token_input')!.removeAttribute('value')
+//     document.getElementById('captcha_token_input')!.setAttribute('value', token)
+//   }
+// }
+/***************** hcaptcha end *****************/
+
+/************ 表单验证配置 ************/
+// 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
+
+/*************** 结束 ****************/
 document.getElementById('login-form')!.addEventListener('submit', (e) => {
   e.preventDefault()
+  console.log('login')
   if (!c.validate().getResult()) {
     return
   }
@@ -147,7 +147,7 @@ document.getElementById('login-form')!.addEventListener('submit', (e) => {
   formData['password'] = wshop.md5(formData['password'] as string)
   wshop
     .api()
-    .post('/api/v1/capi/auth/login', formData)
+    .post('/api/v1/capi/auth/login', {})
     .then((res) => {
       if (res !== null && res !== undefined) {
         console.log(res)
