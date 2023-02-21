@@ -114,20 +114,29 @@ window.topNav = function () {
     tagIsOpen() {
       return this.tagShow === true;
     },
-    // 尺寸大小下拉列表
-    sizeShow: false,
-    sizeOpen() {
-      this.sizeShow = true;
+    // 产品分类下拉列表
+    categoryShow: false,
+    categoryOpen() {
+      this.categoryShow = true;
     },
-    sizeClose() {
-      this.sizeShow = false;
+    categoryClose() {
+      this.categoryShow = false;
     },
-    sizeIsOpen() {
-      return this.sizeShow === true;
+    categoryIsOpen() {
+      return this.categoryShow === true;
     },
-    clearSizeSelect() {
-      var txts: any = document.getElementById("XL---");
-      txts.checked = false;
+    clearCategorySelect() {
+      let inputDom = document.getElementsByTagName("input");
+      for (let i = 0; i < inputDom.length; i++) {
+        let obj = inputDom[i];
+        if (
+          obj.type == "radio" &&
+          obj.checked &&
+          obj.id.includes("category_")
+        ) {
+          obj.checked = false;
+        }
+      }
     },
     // 排序下拉列表
     sortDropDownshow: false,
@@ -156,6 +165,33 @@ createApp({
       page: 1, // 当前页
     },
     categoryList: [], // 列表数据集合
+    price_List: [
+      {
+        id: 1,
+        price_name: "100以下",
+        checked: true,
+      },
+      {
+        id: 2,
+        price_name: "100-300",
+      },
+      {
+        id: 3,
+        price_name: "300-600",
+      },
+      {
+        id: 4,
+        price_name: "600-900",
+      },
+      {
+        id: 5,
+        price_name: "900-1200",
+      },
+      {
+        id: 6,
+        price_name: "1200-1500",
+      },
+    ],
     total: 0, // 一共有多少条数据
   }),
   components: {
@@ -163,7 +199,7 @@ createApp({
   },
   methods: {
     // 首次加载
-    loadData() {
+    loadCategaryData() {
       let param = {
         page_size: this.filter.count, // 页大小
         current_page: this.filter.page, // 当前页
@@ -173,9 +209,13 @@ createApp({
         .api()
         .get("/api/v1/capi/product_category", param)
         .then((res) => {
-          if (res !== null && res !== undefined && res.data.data.length > 0) {
-            this.categoryList = res.data.data;
-            this.total = res.data.total;
+          if (
+            res !== null &&
+            res !== undefined &&
+            res.data.data.data.length > 0
+          ) {
+            this.categoryList = res.data.data.data;
+            this.total = res.data.data.data_count;
           }
         })
         .catch((err) => {
@@ -183,7 +223,7 @@ createApp({
         });
     },
     // 下拉数据更新加载
-    updateData() {
+    updateCategaryData() {
       let param = {
         page_size: this.filter.count, // 页大小
         current_page: this.filter.page, // 当前页
@@ -193,16 +233,20 @@ createApp({
         .api()
         .get("/api/v1/capi/product_category", param)
         .then((res) => {
-          if (res !== null && res !== undefined && res.data.data.length > 0) {
+          if (
+            res !== null &&
+            res !== undefined &&
+            res.data.data.data.length > 0
+          ) {
             let list = this.categoryList;
-            res.data.data.forEach(function (item: any) {
+            res.data.data.data.forEach(function (item: any) {
               list.push(item);
             });
             this.categoryList = list;
-            this.total = res.data.total;
+            this.total = res.data.data.data_count;
           } else {
             this.filter.page -= 1;
-            if (res.data.data.length == 0) {
+            if (res.data.data.data.length == 0) {
               this.isUpdate = false;
             } else {
               window.$notify.error("加载失败");
@@ -223,9 +267,7 @@ createApp({
       ) {
         if (this.isUpdate) {
           this.filter.page += 1;
-          this.updateData();
-        } else {
-          console.log("到底了");
+          this.updateCategaryData();
         }
       }
     },
@@ -245,42 +287,81 @@ createApp({
       }
       let by_hits = 0;
       let by_deals = 0;
-      switch (check[0]) {
-        case "default":
-          by_hits = 0;
-          by_deals = 0;
-          break;
-        case "hitNum-low-high":
-          by_hits = 1;
-          break;
-        case "hitNum-high-low":
-          by_hits = -1;
-          break;
-        case "deals-low-hight":
-          by_deals = 1;
-          break;
-        case "deals-hight-low":
-          by_deals = -1;
-          break;
-        default:
-          break;
+      let low_price = 1;
+      let high_price = 100;
+      let category_id = "";
+      for (let i = 0; i < check.length; i++) {
+        if (check[i].includes("category_")) {
+          category_id = check[i].split("_")[1];
+        }
+        switch (check[i] as string) {
+          case "default":
+            by_hits = 0;
+            by_deals = 0;
+            break;
+          case "hitNum-low-high":
+            by_hits = 1;
+            break;
+          case "hitNum-high-low":
+            by_hits = -1;
+            break;
+          case "deals-low-hight":
+            by_deals = 1;
+            break;
+          case "deals-hight-low":
+            by_deals = -1;
+            break;
+          case "price_1":
+            low_price = 1;
+            high_price = 100;
+            break;
+          case "price_2":
+            low_price = 100;
+            high_price = 300;
+            break;
+          case "price_3":
+            low_price = 300;
+            high_price = 600;
+            break;
+          case "price_4":
+            low_price = 600;
+            high_price = 900;
+            break;
+          case "price_5":
+            low_price = 900;
+            high_price = 1200;
+            break;
+          case "price_6":
+            low_price = 1200;
+            high_price = 1500;
+            break;
+          default:
+            break;
+        }
       }
       wshop
         .api()
         .get("/api/v1/capi/product/conditions", {
           current_page: this.page,
           page_size: this.pageSize,
-          high_price: 120000,
+          high_price: high_price * 100,
           by_hits: by_hits,
           by_deals: by_deals,
-          low_price: 0,
+          category_id: category_id,
+          low_price: low_price * 100,
           word: (document.getElementById("search-input") as HTMLInputElement)
             .value,
         })
         .then((res) => {
-          if (res !== null && res !== undefined) {
+          if (
+            res !== null &&
+            res !== undefined &&
+            res.data.data.data.length > 0
+          ) {
             this.productList = res.data.data.data;
             this.totalNum = res.data.data.data_count;
+          } else {
+            this.productList = [];
           }
           this.loading = false;
         })
@@ -292,7 +373,7 @@ createApp({
   },
   mounted() {
     this.queryShowProduct();
-    this.loadData();
+    this.loadCategaryData();
   },
 }).mount("#product-list");
 Alpine.start();

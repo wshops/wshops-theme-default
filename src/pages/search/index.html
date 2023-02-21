@@ -795,7 +795,7 @@
                             <div class="relative w-full">
                                 <label class="text-neutral-500 dark:text-neutral-300" for="search-input"><span
                                         class="sr-only">Search all icons</span><input id="search-input"
-                                        @input="queryShowProduct" @keydown="queryShowProduct"
+                                        @input="queryShowProduct" @keydown.enter="queryShowProduct"
                                         class="block w-full border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-900 disabled:bg-neutral-200 dark:disabled:bg-neutral-800 rounded-full text-sm font-normal pl-14 py-5 pr-5 md:pl-16 shadow-lg border-0 dark:border"
                                         placeholder="关键字搜索" type="search" />
                                     <i class="las la-arrow-right text-xl"></i></button><span
@@ -852,79 +852,29 @@
                                                     <div
                                                         class="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
                                                         <div class="relative flex flex-col px-5 py-6 space-y-5">
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="XXS"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="XXS" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="XXS"><span
-                                                                            class="text-slate-900 dark:text-slate-100">XXS</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="XS"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="XS" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="XS"><span
-                                                                            class="text-slate-900 dark:text-slate-100">XS</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="S"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="S" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="S"><span
-                                                                            class="text-slate-900 dark:text-slate-100">S</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="M"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="M" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="M"><span
-                                                                            class="text-slate-900 dark:text-slate-100">M</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="L"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="L" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="L"><span
-                                                                            class="text-slate-900 dark:text-slate-100">L</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="XL"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="XL" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="XL"><span
-                                                                            class="text-slate-900 dark:text-slate-100">XL</span></label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="flex text-sm sm:text-base "><input id="2XL"
-                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="2XL" type="checkbox"><label
-                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
-                                                                        for="2XL"><span
-                                                                            class="text-slate-900 dark:text-slate-100">2XL</span></label>
+                                                            <div v-for="item in price_List">
+
+                                                                <div class="flex text-sm sm:text-base ">
+                                                                    <input :id="'price_'+item.id"
+                                                                        class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                        name="radioNamePrice" type="radio"
+                                                                        :checked="item.checked"
+                                                                        :value="'price_'+item.id"><label
+                                                                        class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                        :for="'price_'+item.id">{{item.price_name}}
+                                                                        （$）</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div
                                                             class="p-5 bg-slate-50 dark:bg-slate-900 dark:border-t dark:border-slate-800 flex items-center justify-between">
-                                                            <button
+                                                            <!-- <button
                                                                 class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonThird text-neutral-700 border border-neutral-200 dark:text-neutral-200 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                                                                Clear
-                                                            </button>
-                                                            <button
+                                                                清除
+                                                            </button> -->
+                                                            <button x-on:click="priceClose" @click="queryShowProduct"
                                                                 class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                                                                Apply
+                                                                确认
                                                             </button>
                                                         </div>
                                                     </div>
@@ -1089,7 +1039,7 @@
                                             <div class="relative">
                                                 <button id="headlessui-popover-button-:rj:" aria-expanded="false"
                                                     class="flex items-center justify-center px-4 py-2 text-sm rounded-lg border focus:outline-none select-none border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
-                                                    type="button" x-on:mousedown="sizeOpen">
+                                                    type="button" x-on:mousedown="categoryOpen">
                                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M21 9V3H15" stroke="currentColor"
@@ -1115,8 +1065,8 @@
                                                 </button>
                                                 <div id="headlessui-popover-panel-:r6h:"
                                                     class="absolute z-40 w-screen max-w-sm px-4 mt-3 left-0 sm:px-0 lg:max-w-sm opacity-100 translate-y-0"
-                                                    tabindex="-1" x-on:mousedown.away="sizeClose"
-                                                    x-show.transition="sizeIsOpen()">
+                                                    tabindex="-1" x-on:mousedown.away="categoryClose"
+                                                    x-show.transition="categoryIsOpen()">
                                                     <div
                                                         class="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
                                                         <div @scroll="scrollEvent"
@@ -1124,12 +1074,12 @@
                                                             <div v-for="item in categoryList">
 
                                                                 <div class="flex text-sm sm:text-base ">
-                                                                    <input :id="item.id"
+                                                                    <input :id="'category_'+item.id"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio"
-                                                                        :value="item.id"><label
+                                                                        name="radioNameCategory" type="radio"
+                                                                        :value="'category_'+item.id"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
-                                                                        :for="item.id">{{item.category_name}}</label>
+                                                                        :for="'category_'+item.id">{{item.category_name}}</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1137,11 +1087,12 @@
                                                             class="p-5 bg-slate-50 dark:bg-slate-900 dark:border-t dark:border-slate-800 flex items-center justify-between">
                                                             <button
                                                                 class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonThird text-neutral-700 border border-neutral-200 dark:text-neutral-200 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                                x-on:click="clearSizeSelect">清除
+                                                                x-on:click="clearCategorySelect"
+                                                                @click="queryShowProduct">清除
                                                             </button>
                                                             <button
                                                                 class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                                x-on:mousedown="sizeClose">确认
+                                                                x-on:click="categoryClose" @click="queryShowProduct">确认
                                                             </button>
                                                         </div>
                                                     </div>
@@ -1190,7 +1141,7 @@
                                                                 <div class="flex items-center text-sm sm:text-base ">
                                                                     <input id="default"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio" checked
+                                                                        name="radioName-Sort" type="radio" checked
                                                                         value="default"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         for="default">默认</label>
@@ -1198,7 +1149,7 @@
                                                                 <div class="flex items-center text-sm sm:text-base ">
                                                                     <input id="hitNum-low-high"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio"
+                                                                        name="radioName-Sort" type="radio"
                                                                         value="hitNum-low-high"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         for="hitNum-low-high">浏览量
@@ -1207,7 +1158,7 @@
                                                                 <div class="flex items-center text-sm sm:text-base ">
                                                                     <input id="hitNum-high-low"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio"
+                                                                        name="radioName-Sort" type="radio"
                                                                         value="hitNum-high-low"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         for="hitNum-high-low">浏览量
@@ -1216,7 +1167,7 @@
                                                                 <div class="flex items-center text-sm sm:text-base ">
                                                                     <input id="deals-low-hight"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio"
+                                                                        name="radioName-Sort" type="radio"
                                                                         value="deals-low-hight"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         for="deals-low-hight">交易量
@@ -1225,7 +1176,7 @@
                                                                 <div class="flex items-center text-sm sm:text-base ">
                                                                     <input id="deals-hight-low"
                                                                         class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
-                                                                        name="radioNameSort" type="radio"
+                                                                        name="radioName-Sort" type="radio"
                                                                         value="deals-hight-low"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         for="deals-hight-low">交易量
