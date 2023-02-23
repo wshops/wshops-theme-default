@@ -861,7 +861,7 @@
                                                                         :checked="item.checked"
                                                                         :value="'price_'+item.id"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
-                                                                        :for="'price_'+item.id">{{item.price_name}}
+                                                                        :for="'price_'+item.id">${item.price_name}
                                                                         （$）</label>
                                                                 </div>
                                                             </div>
@@ -926,7 +926,7 @@
                                                                         :name="'tag_'+item" type="checkbox"><label
                                                                         class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
                                                                         :for="'tag_'+item"><span
-                                                                            class="text-slate-900 dark:text-slate-100">{{item}}</span></label>
+                                                                            class="text-slate-900 dark:text-slate-100">${item}</span></label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -987,7 +987,7 @@
                                                                         name="radioNameCategory" type="radio"
                                                                         :value="'category_'+item.id"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
-                                                                        :for="'category_'+item.id">{{item.category_name}}</label>
+                                                                        :for="'category_'+item.id">${item.category_name}</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1170,9 +1170,9 @@
                                                 <img src="/public/assets/images/search-3.svg">
                                             </div>
                                         </div>
-                                        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">对不起！</h5>
+                                        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">列表为空！</h5>
                                         <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
-                                            暂无相关产品，请重新查询 ~</p>
+                                            您好，暂无相关产品，请重新查询 ~</p>
                                     </div>
 
                                 </div>
@@ -1202,7 +1202,7 @@
                                                         </path>
                                                     </svg><span class="ml-1 leading-none">Sold Out</span>
                                                 </div>
-                                                <button v-if="item.favorites>0"
+                                                <!-- <button v-if="item.favorites>0"
                                                     class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
                                                         class="w-5 h-5" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -1217,7 +1217,7 @@
                                                             d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
                                                             stroke="currentColor" fill="none" stroke-width="1.5"
                                                             stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg></button>
+                                                    </svg></button> -->
                                                 <!-- <div
                                                 class="absolute bottom-0 group-hover:bottom-4 inset-x-1 flex justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                                                 <button
@@ -1237,16 +1237,16 @@
                                                     <div>
                                                         <h2
                                                             class="nc-ProductCard__title text-base font-semibold transition-colors">
-                                                            {{ item['product_name'] }}
+                                                            ${ item['product_name'] }
                                                         </h2>
                                                         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                                                            {{item['seo_description']}}
+                                                            ${item['seo_description']}
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div class="flex justify-between items-end">
                                                     <span
-                                                        class="text-3xl font-bold text-gray-900 dark:text-white">￥{{(item['sell_price'])}}</span>
+                                                        class="text-3xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
                                                     <a v-if="item.inventory_amount>0"
                                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                         href="/src/pages/cart/index.html">加入购物车</a>

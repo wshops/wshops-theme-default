@@ -162,6 +162,11 @@ window.topNav = function () {
 };
 
 createApp({
+  // 修改模板字符串
+  compilerOptions: {
+    delimiters: ["${", "}"],
+    comments: true,
+  },
   data: () => ({
     productList: [],
     loading: false,
@@ -220,7 +225,6 @@ createApp({
         .then((res) => {
           if (res !== null && res !== undefined && res.data.data.length > 0) {
             this.productTagList = res.data.data;
-            // this.total = res.data.data.data_count;
           }
         })
         .catch((err) => {
