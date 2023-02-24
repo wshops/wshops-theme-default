@@ -4,8 +4,7 @@ import WshopUtils from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
 import Alpine from "alpinejs";
 import { createApp } from "vue";
-import PhPager from "ph-pager";
-
+import { getSimplePagination } from "ts-pagination";
 useNotify({
   position: "top-right",
 });
@@ -207,10 +206,47 @@ createApp({
         price_name: "1200-1500",
       },
     ],
-    total: 0, // 一共有多少条数据
+    pageIndex: 1,
+    goToPage: "",
+    dataListLength: 147,
+    pageSizeList: [20, 30, 50, 100],
+    showOption: false,
   }),
-  components: {
-    PhPager,
+  components: {},
+  computed: {
+    pageTotalNum: function () {
+      return this.dataListLength % this.pageSize == 0
+        ? this.dataListLength / this.pageSize
+        : Math.floor(this.dataListLength / this.pageSize) + 1;
+    },
+    pages: function () {
+      // 每次最多显示5个页码
+      var c = this.pageIndex;
+      var t = this.pageTotalNum;
+      var p = [];
+      for (var i = 1; i <= t; i++) {
+        p.push(i);
+      }
+      var l = p.length;
+      if (l <= 5) {
+        // 总页数<=5，显示全部页码
+        return p;
+      } else if (l > 5 && c <= 3) {
+        // 总页数>5 && 当前页面<=3
+        return [1, 2, 3, 4, "...", t];
+      } else if (l > 5 && c > 3 && c <= l - 2) {
+        // 总页数 > 5 && 当前页面 > 3 && 当前页 < 总页数 - 3
+        return [1, "...", c - 2, c - 1, c, "...", t];
+      } else {
+        // 总页数 > 5 && 当前页面 > 3 && 当前页 > 总页数 - 3
+        return [1, "...", t - 3, t - 2, t - 1, t];
+      }
+    },
+  },
+  watch: {
+    pageSize() {
+      this.pageIndex = 1;
+    },
   },
   methods: {
     init() {
@@ -305,6 +341,7 @@ createApp({
         }
       }
     },
+    pageClick() {},
     onPage(page: any) {
       this.page = page.page;
       this.queryShowProduct();
@@ -412,6 +449,28 @@ createApp({
           window.$notify.error(err);
           this.loading = false;
         });
+    },
+    prevOrNext(n: number) {
+      this.pageIndex += n;
+      this.pageIndex <= 1
+        ? (this.pageIndex = 1)
+        : this.pageIndex > this.pageTotalNum
+        ? (this.pageIndex = this.pageTotalNum)
+        : null;
+    },
+    selectPage(n: number) {
+      if (n === this.pageIndex) return;
+      if (typeof n === "string") return;
+      this.pageIndex = n;
+    },
+    handleGoToPage() {
+      this.pageIndex =
+        this.goToPage <= 1
+          ? 1
+          : this.goToPage - 0 >= this.pageTotalNum - 0
+          ? this.pageTotalNum
+          : this.goToPage;
+      this.goToPage = this.pageIndex;
     },
   },
   mounted() {

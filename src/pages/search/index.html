@@ -1261,14 +1261,33 @@
                                     </template>
                                 </div>
                             </div>
-                            <div v-if="productList.length>0"
+                            <div v-if="productList.length===0"
                                 class="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
 
-                                <ph-pager theme="primary" :page="page" :total="totalNum" @page="onPage"
+                                <!-- <ph-pager theme="primary" :page="page" :total="totalNum" @page="onPage"
                                     :pagesize="pageSize" :show-total="true" :show-pagesize="true"
                                     :pagesize-options="[8,16,24]">
-                                </ph-pager>
-                            </div>
+                                </ph-pager> -->
+                                <nav class="nc-Pagination inline-flex space-x-1 text-base font-medium">
+                                    <ul class="pagesInner">
+                                        <!-- <li class="inline-flex" @click="prevOrNext(-1)"><span
+                                                aria-hidden="true">&lt;</span>
+                                        </li> -->
+                                        <li class="cursor-pointer" v-for="(item, index) in pages" :key="index"
+                                            :class="item === pageIndex?'inline-flex ml-2 w-11 h-11 items-center justify-center rounded-full bg-primary-500 text-white focus:outline-none':'inline-flex ml-2 w-11 h-11 items-center justify-center rounded-full bg-white hover:bg-neutral-100 border border-neutral-200 text-neutral-6000 dark:text-neutral-400 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:border-neutral-700 focus:outline-none'"
+                                            @click="selectPage(item)">
+                                            ${item}
+                                        </li>
+                                        <span class="ml-2">共${dataListLength}条</span>
+                                        <!-- <li class="inline-flex" @click="prevOrNext(1)"><span class="fa fa-chevron-right"
+                                                aria-hidden="true">&gt;</span></li> -->
+                                        <!-- <span @click.stop="showOption=!showOption"> ${pageSize}条/页</span>
+                                        <ul class="size-option" v-show="showOption">
+                                            <li v-for="(item, index) in pageSizeList" :key="index"
+                                                @click="pageSize=item;showOption=false"> ${item}条/页</li>
+                                        </ul> -->
+                                    </ul>
+                                </nav>
                         </main>
                     </div>
                 </div>

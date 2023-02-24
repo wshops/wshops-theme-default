@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
-    "ph-pager": "0.1.1-beta.0",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "ts-pagination": "^3.0.1"
   }
 }
