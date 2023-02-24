@@ -4,7 +4,7 @@ import WshopUtils from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
 import Alpine from "alpinejs";
 import { createApp } from "vue";
-import { getSimplePagination } from "ts-pagination";
+
 useNotify({
   position: "top-right",
 });
