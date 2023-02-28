@@ -2,7 +2,6 @@
 import "./style.less";
 import WshopUtils from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
-import Alpine from "alpinejs";
 import { createApp } from "vue";
 
 useNotify({
@@ -29,136 +28,6 @@ const wshop: WshopUtils = new WshopUtils({
     },
   },
 });
-window.Alpine = Alpine;
-declare const window: Window & {
-  topNav: Function;
-  product: Function;
-};
-window.topNav = function () {
-  return {
-    droDownshow: false,
-    mobileShow: false,
-    show: false,
-    // 商品类别下拉列表
-    open() {
-      this.show = true;
-    },
-    close() {
-      this.show = false;
-    },
-    isOpen() {
-      return this.show === true;
-    },
-    back() {
-      history.back();
-    },
-    // 个人中心下拉列表
-    droDownOpen() {
-      if (this.droDownshow) {
-        this.droDownshow = false;
-      } else {
-        this.droDownshow = true;
-      }
-    },
-    droDownClose() {
-      this.droDownshow = false;
-    },
-    isDroDownOpen() {
-      return this.droDownshow === true;
-    },
-    // 购物车展示弹窗
-    shopingCartshow: false,
-    openShopingCart() {
-      if (this.shopingCartshow) {
-        this.shopingCartshow = false;
-      } else {
-        this.shopingCartshow = true;
-      }
-    },
-    closeShopingCart() {
-      this.shopingCartshow = false;
-    },
-    isOpenShopingCart() {
-      return this.shopingCartshow === true;
-    },
-    // 手机端控制
-    mobileOpen() {
-      this.mobileShow = true;
-    },
-    mobileClose() {
-      this.mobileShow = false;
-    },
-    mobileIsOpen() {
-      return this.mobileShow === true;
-    },
-    // 价格区间下拉列表
-    priceShow: false,
-    priceOpen() {
-      this.priceShow = true;
-    },
-    priceClose() {
-      this.priceShow = false;
-    },
-    priceIsOpen() {
-      return this.priceShow === true;
-    },
-    // 产品标签下拉列表
-    tagShow: false,
-    tagOpen() {
-      this.tagShow = true;
-    },
-    tagClose() {
-      this.tagShow = false;
-    },
-    tagIsOpen() {
-      return this.tagShow === true;
-    },
-    clearTagSelect() {
-      let inputDom = document.getElementsByTagName("input");
-      for (let i = 0; i < inputDom.length; i++) {
-        let obj = inputDom[i];
-        if (obj.type == "checkbox" && obj.checked && obj.id.includes("tag_")) {
-          obj.checked = false;
-        }
-      }
-    },
-    // 产品分类下拉列表
-    categoryShow: false,
-    categoryOpen() {
-      this.categoryShow = true;
-    },
-    categoryClose() {
-      this.categoryShow = false;
-    },
-    categoryIsOpen() {
-      return this.categoryShow === true;
-    },
-    clearCategorySelect() {
-      let inputDom = document.getElementsByTagName("input");
-      for (let i = 0; i < inputDom.length; i++) {
-        let obj = inputDom[i];
-        if (
-          obj.type == "radio" &&
-          obj.checked &&
-          obj.id.includes("category_")
-        ) {
-          obj.checked = false;
-        }
-      }
-    },
-    // 排序下拉列表
-    sortDropDownshow: false,
-    sortDropDownOpen() {
-      this.sortDropDownshow = true;
-    },
-    sortDropDownClose() {
-      this.sortDropDownshow = false;
-    },
-    isSortDropDownOpen() {
-      return this.sortDropDownshow === true;
-    },
-  };
-};
 
 createApp({
   // 修改模板字符串
@@ -167,6 +36,15 @@ createApp({
     comments: true,
   },
   data: () => ({
+    mobileShow: false,
+    show: false,
+    droDownshow: false,
+    // 购物车展示弹窗
+    shopingCartshow: false,
+    priceShow: false,
+    sortDropDownshow: false,
+    categoryShow: false,
+    tagShow: false,
     productList: [],
     loading: false,
     page: 1,
@@ -206,22 +84,20 @@ createApp({
         price_name: "1200-1500",
       },
     ],
-    pageIndex: 1,
     goToPage: "",
-    dataListLength: 147,
     pageSizeList: [20, 30, 50, 100],
     showOption: false,
   }),
   components: {},
   computed: {
     pageTotalNum: function () {
-      return this.dataListLength % this.pageSize == 0
-        ? this.dataListLength / this.pageSize
-        : Math.floor(this.dataListLength / this.pageSize) + 1;
+      return this.totalNum % this.pageSize == 0
+        ? this.totalNum / this.pageSize
+        : Math.floor(this.totalNum / this.pageSize) + 1;
     },
     pages: function () {
       // 每次最多显示5个页码
-      var c = this.pageIndex;
+      var c = this.page;
       var t = this.pageTotalNum;
       var p = [];
       for (var i = 1; i <= t; i++) {
@@ -245,13 +121,38 @@ createApp({
   },
   watch: {
     pageSize() {
-      this.pageIndex = 1;
+      this.page = 1;
     },
   },
   methods: {
     init() {
       this.loadCategaryData();
       this.loadProductTagData();
+    },
+    toSearch() {
+      location.assign("search");
+    },
+    clearTagSelect() {
+      let inputDom = document.getElementsByTagName("input");
+      for (let i = 0; i < inputDom.length; i++) {
+        let obj = inputDom[i];
+        if (obj.type == "checkbox" && obj.checked && obj.id.includes("tag_")) {
+          obj.checked = false;
+        }
+      }
+    },
+    clearCategorySelect() {
+      let inputDom = document.getElementsByTagName("input");
+      for (let i = 0; i < inputDom.length; i++) {
+        let obj = inputDom[i];
+        if (
+          obj.type == "radio" &&
+          obj.checked &&
+          obj.id.includes("category_")
+        ) {
+          obj.checked = false;
+        }
+      }
     },
     // 加载标签
     loadProductTagData() {
@@ -451,31 +352,43 @@ createApp({
         });
     },
     prevOrNext(n: number) {
-      this.pageIndex += n;
-      this.pageIndex <= 1
-        ? (this.pageIndex = 1)
-        : this.pageIndex > this.pageTotalNum
-        ? (this.pageIndex = this.pageTotalNum)
+      this.page += n;
+      this.page <= 1
+        ? (this.page = 1)
+        : this.page > this.pageTotalNum
+        ? (this.page = this.pageTotalNum)
         : null;
     },
     selectPage(n: number) {
-      if (n === this.pageIndex) return;
+      if (n === this.page) return;
       if (typeof n === "string") return;
-      this.pageIndex = n;
+      this.page = n;
+      this.queryShowProduct();
     },
     handleGoToPage() {
-      this.pageIndex =
+      this.page =
         this.goToPage <= 1
           ? 1
           : this.goToPage - 0 >= this.pageTotalNum - 0
           ? this.pageTotalNum
           : this.goToPage;
-      this.goToPage = this.pageIndex;
+      this.goToPage = this.page;
+    },
+    hiddenclick() {
+      this.sortDropDownshow = false;
+      this.tagShow = false;
+      this.categoryShow = false;
+      this.priceShow = false;
+      this.droDownshow = false;
+      this.shopingCartshow = false;
     },
   },
   mounted() {
     this.init();
     this.queryShowProduct();
+    document.addEventListener("click", this.hiddenclick);
   },
-}).mount("#product-list");
-Alpine.start();
+  destroyed() {
+    document.removeEventListener("click", this.hiddenclick);
+  },
+}).mount("#searchPage");
