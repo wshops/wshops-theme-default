@@ -252,7 +252,8 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div class="sub-menu absolute top-full inset-x-0 transform z-50" v-show="show">
+                                    <div class="animate-in zoom-in-95 duration-300 sub-menu absolute top-full inset-x-0 transform z-50"
+                                        v-show="show">
                                         <div class="bg-white dark:bg-neutral-900 shadow-lg">
                                             <div class="container">
                                                 <div
@@ -771,7 +772,7 @@
                 </div>
             </div>
         </div>
-        <div id="product-list" class="py-0 lg:pt-0 space-y-16 lg:space-y-28">
+        <div class="py-0 lg:pt-0 space-y-16 lg:space-y-28">
             <main>
                 <div class="nc-HeadBackgroundCommon h-24 2xl:h-28 top-0 left-0 right-0 w-full bg-primary-50 dark:bg-neutral-800/20 "
                     data-nc-id="HeadBackgroundCommon"></div>
@@ -847,7 +848,7 @@
                                                                         :value="'price_'+item.id"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         :for="'price_'+item.id">${item.price_name}
-                                                                        （$）</label>
+                                                                        （元）</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1090,10 +1091,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex overflow-x-auto lg:hidden space-x-4">
+                                        <div class="flex overflow-x-auto lg:hidden space-x-4"
+                                            @click="mobileSearchShow = !mobileSearchShow">
                                             <div class="flex-shrink-0">
                                                 <div
-                                                    class="flex flex-shrink-0 items-center justify-center px-4 py-2 text-sm rounded-full border border-primary-500 bg-primary-50 text-primary-900 focus:outline-none cursor-pointer select-none">
+                                                    class="flex flex-shrink-0 items-center justify-center px-4 py-2 text-sm rounded-full border border-primary-400 bg-primary-50 text-primary-900 focus:outline-none cursor-pointer select-none">
                                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M22 6.5H16" stroke="currentColor"
@@ -1119,21 +1121,173 @@
                                                             stroke-linejoin="round" stroke-miterlimit="10"
                                                             stroke-width="1.5"></path>
                                                     </svg>
-                                                    <span class="ml-2">Products filters (3)</span><span
-                                                        class="flex-shrink-0 w-4 h-4 rounded-full bg-primary-500 text-white flex items-center justify-center ml-3 cursor-pointer"><svg
-                                                            class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path clip-rule="evenodd"
-                                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                                fill-rule="evenodd"></path>
-                                                        </svg></span>
+                                                    <span class="ml-2">更多条件</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-show="mobileSearchShow" @click.stop=""
+                                            class="fixed inset-0 z-50 overflow-y-auto">
+                                            <div
+                                                class="inline-flex flex-col w-full text-left align-middle transition-all transform bg-white dark:bg-neutral-900 dark:border dark:border-neutral-700 dark:text-neutral-100 h-full">
+                                                <div
+                                                    class="relative flex-shrink-0 px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 text-center">
+                                                    <h3 class="text-lg font-medium leading-6 text-gray-900"
+                                                        id="headlessui-dialog-title-:r4u:">
+                                                        条件筛选</h3>
+                                                    <span class="absolute left-3 top-3"><button
+                                                            @click="mobileSearchShow = false"
+                                                            class="w-8 h-8 flex items-center justify-center rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700  focus:outline-none"
+                                                            tabindex="0"><span class="sr-only">Close</span><svg
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                                fill="currentColor" aria-hidden="true" class="w-5 h-5">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg></button></span>
+                                                </div>
+                                                <div class="flex-grow overflow-y-auto">
+                                                    <div
+                                                        class="px-6 sm:px-8 md:px-10 divide-y divide-neutral-200 dark:divide-neutral-800">
+                                                        <div class="py-7">
+                                                            <h3 class="text-xl font-medium">产品标签</h3>
+                                                            <div class="mt-6 relative ">
+                                                                <div class="grid grid-cols-1 gap-x-4 sm:gap-x-8 gap-8">
+                                                                    <div class="flex flex-col space-y-5">
+                                                                        <div
+                                                                            class="relative flex flex-col  py-6 space-y-5">
+                                                                            <div v-for="item in productTagList">
+                                                                                <div class="flex text-sm sm:text-base ">
+                                                                                    <input :id="'tag_'+item"
+                                                                                        class="focus:ring-action-primary text-primary-500 rounded border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                                        :name="'tag_'+item"
+                                                                                        type="checkbox"><label
+                                                                                        class="pl-2.5 sm:pl-3.5 flex flex-col flex-1 justify-center select-none"
+                                                                                        :for="'tag_'+item"><span
+                                                                                            class="text-slate-900 dark:text-slate-100">${item}</span></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="py-7">
+                                                            <h3 class="text-xl font-medium">产品分类</h3>
+                                                            <div class="mt-6 relative ">
+                                                                <div class="grid grid-cols-1 gap-x-4 sm:gap-x-8 gap-8">
+                                                                    <div class="flex flex-col space-y-5">
+                                                                        <div @scroll="scrollEvent"
+                                                                            class="max-h-96 overflow-y-auto relative flex flex-col py-6 pl-1 space-y-5">
+                                                                            <div v-for="item in categoryList">
+
+                                                                                <div
+                                                                                    class="flex items-center text-sm sm:text-base ">
+                                                                                    <input :id="'category_'+item.id"
+                                                                                        class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                                        name="radioNameCategory"
+                                                                                        type="radio"
+                                                                                        :value="'category_'+item.id"><label
+                                                                                        class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                                        :for="'category_'+item.id">${item.category_name}</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="py-7">
+                                                            <h3 class="text-xl font-medium">价格范围</h3>
+                                                            <div class="mt-6 relative ">
+                                                                <div class="grid grid-cols-1 gap-x-4 sm:gap-x-8 gap-8">
+                                                                    <div class="flex flex-col space-y-5">
+                                                                        <div v-for="item in price_List">
+                                                                            <div class="flex text-sm sm:text-base">
+                                                                                <input :id="'price_'+item.id"
+                                                                                    class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                                    name="radioNamePrice" type="radio"
+                                                                                    :checked="item.checked"
+                                                                                    :value="'price_'+item.id"><label
+                                                                                    class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                                    :for="'price_'+item.id">${item.price_name}
+                                                                                    （元）</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="py-7">
+                                                            <h3 class="text-xl font-medium">排序</h3>
+                                                            <div class="mt-6 relative ">
+                                                                <div class="relative flex flex-col space-y-5">
+                                                                    <!-- <div class="flex items-center text-sm sm:text-base">
+                                                                        <input id="default"
+                                                                            class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                            name="radioName-Sort" type="radio" checked
+                                                                            value="default"><label
+                                                                            class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                            for="default">默认</label>
+                                                                    </div> -->
+                                                                    <div
+                                                                        class="flex items-center text-sm sm:text-base ">
+                                                                        <input id="hitNum-low-high"
+                                                                            class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                            name="radioName-Sort" type="radio"
+                                                                            value="hitNum-low-high"><label
+                                                                            class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                            for="hitNum-low-high">浏览量
+                                                                            低 - 高</label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="flex items-center text-sm sm:text-base ">
+                                                                        <input id="hitNum-high-low"
+                                                                            class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                            name="radioName-Sort" type="radio"
+                                                                            value="hitNum-high-low"><label
+                                                                            class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                            for="hitNum-high-low">浏览量
+                                                                            高 - 低</label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="flex items-center text-sm sm:text-base ">
+                                                                        <input id="deals-low-hight"
+                                                                            class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                            name="radioName-Sort" type="radio"
+                                                                            value="deals-low-hight"><label
+                                                                            class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                            for="deals-low-hight">交易量
+                                                                            低 - 高</label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="flex items-center text-sm sm:text-base ">
+                                                                        <input id="deals-hight-low"
+                                                                            class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                            name="radioName-Sort" type="radio"
+                                                                            value="deals-hight-low"><label
+                                                                            class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                            for="deals-hight-low">交易量
+                                                                            高 - 低</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="p-6 flex-shrink-0 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
+                                                    <button @click="mobileClear"
+                                                        class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonThird text-neutral-700 border border-neutral-200 dark:text-neutral-200 dark:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">清除</button><button
+                                                        class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                                                        @click="queryShowProduct();mobileSearchShow = !mobileSearchShow">确定</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="loading" class="flex items-center justify-center " role="status">
+
+                            <div v-if=" loading" class="flex items-center justify-center " role="status">
                                 <svg aria-hidden="true"
                                     class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1156,7 +1310,8 @@
                                                 <img src="/public/assets/images/search-3.svg">
                                             </div>
                                         </div>
-                                        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">列表为空！</h5>
+                                        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+                                            列表为空！</h5>
                                         <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
                                             您好，暂无相关产品，请重新查询 ~</p>
                                     </div>
@@ -1186,7 +1341,8 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636">
                                                         </path>
-                                                    </svg><span class="ml-1 leading-none">Sold Out</span>
+                                                    </svg><span class="ml-1 leading-none">Sold
+                                                        Out</span>
                                                 </div>
                                                 <!-- <button v-if="item.favorites>0"
                                                     class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg

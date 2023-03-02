@@ -37,6 +37,7 @@ createApp({
   },
   data: () => ({
     mobileShow: false,
+    mobileSearchShow: false,
     show: false,
     droDownshow: false,
     // 购物车展示弹窗
@@ -97,13 +98,13 @@ createApp({
     },
     pages: function () {
       // 每次最多显示5个页码
-      var c = this.page;
-      var t = this.pageTotalNum;
-      var p = [];
-      for (var i = 1; i <= t; i++) {
+      let c = this.page;
+      let t = this.pageTotalNum;
+      let p = [];
+      for (let i = 1; i <= t; i++) {
         p.push(i);
       }
-      var l = p.length;
+      let l = p.length;
       if (l <= 5) {
         // 总页数<=5，显示全部页码
         return p;
@@ -131,6 +132,23 @@ createApp({
     },
     toSearch() {
       location.assign("search");
+    },
+    mobileClear() {
+      let inputDom = document.getElementsByTagName("input");
+      for (let i = 0; i < inputDom.length; i++) {
+        let obj = inputDom[i];
+        if (obj.type == "checkbox" && obj.checked && obj.id.includes("tag_")) {
+          obj.checked = false;
+        }
+        if (
+          (obj.type == "radio" &&
+            obj.checked &&
+            obj.id.includes("category_")) ||
+          obj.id.includes("low")
+        ) {
+          obj.checked = false;
+        }
+      }
     },
     clearTagSelect() {
       let inputDom = document.getElementsByTagName("input");
