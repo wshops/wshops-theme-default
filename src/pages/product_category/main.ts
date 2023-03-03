@@ -62,7 +62,6 @@ createApp({
       {
         id: 1,
         price_name: "100以下",
-        checked: true,
       },
       {
         id: 2,
@@ -280,8 +279,8 @@ createApp({
       }
       let by_hits = 0;
       let by_deals = 0;
-      let low_price = 1;
-      let high_price = 100;
+      let low_price = -1;
+      let high_price = -1;
       let category_id = "";
       let tags = "";
       for (let i = 0; i < check.length; i++) {
@@ -307,6 +306,10 @@ createApp({
             break;
           case "deals-hight-low":
             by_deals = -1;
+            break;
+          case "price_0":
+            low_price = -1;
+            high_price = -1;
             break;
           case "price_1":
             low_price = 1;
@@ -404,7 +407,7 @@ createApp({
     this.queryShowProduct();
     document.addEventListener("click", this.hiddenclick);
   },
-  destroyed() {
+  unmounted() {
     document.removeEventListener("click", this.hiddenclick);
   },
 }).mount("#categoryPage");

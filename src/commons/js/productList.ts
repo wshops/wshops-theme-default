@@ -36,12 +36,6 @@ createApp({
     comments: true,
   },
   data: () => ({
-    mobileShow: false,
-    mobileSearchShow: false,
-    show: false,
-    droDownshow: false,
-    // 购物车展示弹窗
-    shopingCartshow: false,
     priceShow: false,
     sortDropDownshow: false,
     categoryShow: false,
@@ -131,23 +125,6 @@ createApp({
     },
     toSearch() {
       location.assign("search");
-    },
-    mobileClear() {
-      let inputDom = document.getElementsByTagName("input");
-      for (let i = 0; i < inputDom.length; i++) {
-        let obj = inputDom[i];
-        if (obj.type == "checkbox" && obj.checked && obj.id.includes("tag_")) {
-          obj.checked = false;
-        }
-        if (
-          (obj.type == "radio" &&
-            obj.checked &&
-            obj.id.includes("category_")) ||
-          obj.id.includes("low")
-        ) {
-          obj.checked = false;
-        }
-      }
     },
     clearTagSelect() {
       let inputDom = document.getElementsByTagName("input");
@@ -348,11 +325,17 @@ createApp({
           high_price: high_price,
           by_hits: by_hits,
           by_deals: by_deals,
-          category_id: category_id,
+          category_id: (document.getElementById(
+            "search-input"
+          ) as HTMLInputElement)
+            ? localStorage.getItem("category_id")
+            : category_id,
           low_price: low_price,
           tags: tags,
           word: (document.getElementById("search-input") as HTMLInputElement)
-            .value,
+            ? (document.getElementById("search-input") as HTMLInputElement)
+                .value
+            : "",
         })
         .then((res) => {
           if (
@@ -398,10 +381,8 @@ createApp({
     hiddenclick() {
       this.sortDropDownshow = false;
       this.tagShow = false;
-      this.categoryShow = false;
       this.priceShow = false;
-      this.droDownshow = false;
-      this.shopingCartshow = false;
+      this.categoryShow = false;
     },
   },
   mounted() {
@@ -412,4 +393,4 @@ createApp({
   unmounted() {
     document.removeEventListener("click", this.hiddenclick);
   },
-}).mount("#searchPage");
+}).mount("#productList");

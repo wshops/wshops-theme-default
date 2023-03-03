@@ -838,6 +838,15 @@
                                                     <div
                                                         class="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
                                                         <div class="relative flex flex-col px-5 py-6 space-y-5">
+                                                            <div class="flex text-sm sm:text-base ">
+                                                                <input id="price_0"
+                                                                    class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                    name="radioNamePrice" type="radio" checked
+                                                                    value="price_0"><label
+                                                                    class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                    for="price_0">不限制
+                                                                </label>
+                                                            </div>
                                                             <div v-for="item in price_List">
 
                                                                 <div class="flex text-sm sm:text-base ">
@@ -1125,7 +1134,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-show="mobileSearchShow" @click.stop=""
+                                        <div v-if="mobileSearchShow" @click.stop=""
                                             class="fixed inset-0 z-50 overflow-y-auto">
                                             <div
                                                 class="inline-flex flex-col w-full text-left align-middle transition-all transform bg-white dark:bg-neutral-900 dark:border dark:border-neutral-700 dark:text-neutral-100 h-full">
@@ -1201,6 +1210,15 @@
                                                             <div class="mt-6 relative ">
                                                                 <div class="grid grid-cols-1 gap-x-4 sm:gap-x-8 gap-8">
                                                                     <div class="flex flex-col space-y-5">
+                                                                        <div class="flex text-sm sm:text-base ">
+                                                                            <input id="price_0"
+                                                                                class="focus:ring-action-primary text-primary-500 rounded-full border-slate-400 hover:border-slate-700 bg-transparent dark:border-slate-700 dark:hover:border-slate-500 dark:checked:bg-primary-500 focus:ring-primary-500 w-6 h-6"
+                                                                                name="radioNamePrice" type="radio"
+                                                                                checked value="price_0"><label
+                                                                                class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
+                                                                                for="price_0">不限制
+                                                                            </label>
+                                                                        </div>
                                                                         <div v-for="item in price_List">
                                                                             <div class="flex text-sm sm:text-base">
                                                                                 <input :id="'price_'+item.id"
