@@ -5,7 +5,14 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flowbite/**/*.js",
   ],
-  plugins: [require("flowbite/plugin")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
+    require("flowbite/plugin"),
+    require("tailwindcss-animate"),
+  ],
   safelist: [
     "w-64",
     "w-1/2",
@@ -77,14 +84,6 @@ module.exports = {
     "animate-a-fade-out",
   ],
   darkMode: "class",
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/aspect-ratio"),
-    require("flowbite/plugin"),
-    require("tailwindcss-animate"),
-  ],
   theme: {
     extend: {
       colors: {
