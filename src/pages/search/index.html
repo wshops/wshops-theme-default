@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <div id="searchPage" class="bg-white text-base dark:bg-slate-900 text-slate-900 dark:text-slate-200">
-        <div class="nc-HeaderLogged sticky top-0 w-full z-40">
+    <div class="bg-white text-base dark:bg-slate-900 text-slate-900 dark:text-slate-200">
+        <div id="wshop-nav-menu" class="nc-HeaderLogged sticky top-0 w-full z-40">
             <div
                 class="nc-MainNav2Logged relative z-10 bg-white dark:bg-neutral-900 border-b border-slate-100 dark:border-slate-700">
                 <div class="container">
@@ -238,9 +238,9 @@
                         <div class="flex-[2] hidden lg:flex justify-center mx-4">
                             <ul class="nc-Navigation flex items-center">
                                 <li class="menu-item flex-shrink-0 menu-megamenu menu-megamenu--large"
-                                    @mouseleave="show=!show">
+                                    @mouseleave="navCategaryshow=!navCategaryshow">
                                     <div class="h-20 flex-shrink-0 flex items-center cursor-pointer"
-                                        @mouseenter="show=true">
+                                        @mouseenter="navCategaryshow=true">
                                         <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                                             rel="noopener noreferrer">商品分类
                                             <svg aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400"
@@ -252,200 +252,26 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div class="animate-in zoom-in-95 duration-300 sub-menu absolute top-full inset-x-0 transform z-50"
-                                        v-show="show">
-                                        <div class="bg-white dark:bg-neutral-900 shadow-lg">
+                                    <div class="animate-in zoom-in-95 duration-300 sub-menu
+                                        absolute top-full inset-x-0 transform z-50" v-show="navCategaryshow">
+                                        <div class="max-h-72 overflow-y-auto  bg-white dark:bg-neutral-900 shadow-lg"
+                                            @scroll="scrollEvent">
                                             <div class="container">
-                                                <div
-                                                    class="flex text-sm border-t border-slate-200 dark:border-slate-700 py-14">
-                                                    <div class="flex-1 grid grid-cols-4 gap-6 xl:gap-8 pr-6 xl:pr-8">
+                                                <div class="flex border-t border-slate-200 dark:border-slate-700 py-14">
+                                                    <div class="flex-1 grid grid-cols-1 gap-6 xl:gap-8 pr-6 xl:pr-8">
                                                         <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
+                                                            <!-- <p class="font-medium text-slate-900 dark:text-neutral-200">
                                                                 Clothing
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Activewear</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#" rel="noopener noreferrer">Coats
-                                                                        &amp; Jackets</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#" rel="noopener noreferrer">Sleep
-                                                                        &amp; Lounge</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Sweatshirts</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Hoodies</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Underwear</a>
+                                                            </p> -->
+                                                            <ul
+                                                                class="flex flex-wrap items-center  mb-6 text-gray-900 dark:text-white">
+                                                                <li class="pb-8 text-slate-900 dark:text-neutral-200"
+                                                                    v-for="item in categoryList">
+                                                                    <a href="#"
+                                                                        class="mr-4 hover:underline md:mr-6 ">${item.category_name}</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Accessories
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Sunglasses</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Gloves</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Scarves</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Wallets</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Watches</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Belts</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Shoes
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Boots</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#" rel="noopener noreferrer">Loafers
-                                                                    </a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Slip-Ons</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Slippers</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Sneakers</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Counterfeit</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Brands
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#" rel="noopener noreferrer">Full
-                                                                        Nelson</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Backpacks</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#" rel="noopener noreferrer">My
-                                                                        Way</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Significant Other</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Re-Arranged</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        href="/index#"
-                                                                        rel="noopener noreferrer">Counterfeit</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-[40%] xl:w-[35%]">
-                                                        <a class="nc-CardCategory3 block" data-nc-id="CardCategory3"
-                                                            href="/index/page-collection">
-                                                            <div
-                                                                class="relative w-full aspect-w-16 aspect-h-11 sm:aspect-h-9 h-0 rounded-2xl overflow-hidden group bg-blue-50">
-                                                                <div>
-                                                                    <div class="nc-NcImage absolute inset-5 sm:inset-8"
-                                                                        data-nc-id="NcImage">
-                                                                        <img alt="nc-imgs"
-                                                                            class="absolute right-0 w-1/2 max-w-[260px] h-full object-contain drop-shadow-xl"
-                                                                            src="../../../assets/images/wshops-logo-icon.svg" />
-                                                                    </div>
-                                                                </div>
-                                                                <span
-                                                                    class="opacity-0 group-hover:opacity-40 absolute inset-0 bg-black/10 transition-opacity"></span>
-                                                                <div>
-                                                                    <div
-                                                                        class="absolute inset-5 sm:inset-8 flex flex-col">
-                                                                        <div class="max-w-xs">
-                                                                            <span
-                                                                                class="block mb-2 text-sm text-slate-700">Sale
-                                                                                collection</span>
-                                                                            <h2
-                                                                                class="text-xl md:text-2xl text-slate-900 font-semibold">
-                                                                                Up to <br />
-                                                                                80% off retail
-                                                                            </h2>
-                                                                        </div>
-                                                                        <div class="mt-auto">
-                                                                            <button
-                                                                                class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 nc-shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                                                                                Show me all
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -467,11 +293,23 @@
                             </ul>
                         </div>
                         <div class="flex-1 flex items-center justify-end text-slate-700 dark:text-slate-100">
+                            <button @click="toSearch"
+                                class="hidden lg:flex w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none items-center justify-center">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M22 22L20 20" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
                             <div class="AvatarDropdown">
                                 <div class="relative">
                                     <button id="headlessui-popover-button-:r3:" aria-expanded="false"
                                         class="w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
-                                        type="button" @click.stop="hiddenclick(),droDownshow = !droDownshow">
+                                        type="button" @click.stop="hiddenclick(),userDroDownshow = !userDroDownshow">
                                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -487,7 +325,7 @@
                                 </div>
                                 <div id="headlessui-popover-panel-:r4:"
                                     class="absolute z-10 w-screen max-w-[260px] px-4 mt-3.5 right-10 sm:px-0 opacity-100 translate-y-0"
-                                    tabindex="-1" v-show="droDownshow" @click.stop="">
+                                    tabindex="-1" v-show="userDroDownshow" @click.stop="">
                                     <div class="overflow-hidden rounded-3xl shadow-lg ring-1 ring-black ring-opacity-5">
                                         <div
                                             class="relative grid grid-cols-1 gap-6 bg-white dark:bg-neutral-800 py-7 px-6">
@@ -776,7 +614,7 @@
             <main>
                 <div class="nc-HeadBackgroundCommon h-24 2xl:h-28 top-0 left-0 right-0 w-full bg-primary-50 dark:bg-neutral-800/20 "
                     data-nc-id="HeadBackgroundCommon"></div>
-                <div class="nc-PageSearch" data-nc-id="PageSearch">
+                <div id="productList" class="nc-PageSearch" data-nc-id="PageSearch">
                     <div class="container">
                         <header class="max-w-2xl mx-auto mt-10 flex flex-col lg:-mt-7">
                             <div class="relative w-full">
@@ -1305,7 +1143,7 @@
                                 </div>
                             </div>
 
-                            <div v-if=" loading" class="flex items-center justify-center " role="status">
+                            <div v-if="loading" class="flex items-center justify-center " role="status">
                                 <svg aria-hidden="true"
                                     class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1406,14 +1244,58 @@
                                                 </div>
                                                 <div class="flex justify-between items-end">
                                                     <span
-                                                        class="text-3xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
+                                                        class="text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
                                                     <a v-if="item.inventory_amount>0"
-                                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                        href="/src/pages/cart/index.html">加入购物车</a>
+                                                        class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                        href="/src/pages/cart/index.html"> <svg class="w-6 h-6 pr-1"
+                                                            fill="none" viewBox="0 0 24 24"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path
+                                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path
+                                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path d="M9 8H21" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-miterlimit="10" stroke-width="1.5">
+                                                            </path>
+                                                        </svg>加入购物车
+                                                    </a>
 
                                                     <button v-else type="button"
-                                                        class="text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                                        disabled>加入购物车</button>
+                                                        class="flex items-center mt-2  text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                                        disabled> <svg class="w-6 h-6 pr-1" fill="none"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path
+                                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path
+                                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                                stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-miterlimit="10"
+                                                                stroke-width="1.5"></path>
+                                                            <path d="M9 8H21" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-miterlimit="10" stroke-width="1.5">
+                                                            </path>
+                                                        </svg>加入购物车</button>
 
                                                 </div>
                                             </div>
@@ -1423,11 +1305,6 @@
                             </div>
                             <div v-if="productList.length>0"
                                 class="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-
-                                <!-- <ph-pager theme="primary" :page="page" :total="totalNum" @page="onPage"
-                                    :pagesize="pageSize" :show-total="true" :show-pagesize="true"
-                                    :pagesize-options="[8,16,24]">
-                                </ph-pager> -->
                                 <nav class="nc-Pagination inline-flex space-x-1 text-base font-medium">
                                     <ul class="pagesInner">
                                         <!-- <li class="inline-flex" @click="prevOrNext(-1)"><span
