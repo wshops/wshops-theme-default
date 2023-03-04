@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-export function UseNavMenu(){
+export function useNavMenu(){
   createApp({
     compilerOptions: {
       delimiters: ['${', '}'],

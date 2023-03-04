@@ -3,7 +3,7 @@ import "./style.less";
 import WshopUtils from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
 import { createApp } from "vue";
-import { UseNavMenu } from '../../commons/nav_menu'
+import { useNavMenu } from '../../commons/navmenu'
 
 useNotify({
   position: "top-right",
@@ -30,7 +30,7 @@ const wshop: WshopUtils = new WshopUtils({
   },
 });
 
-UseNavMenu()
+useNavMenu()
 
 createApp({
   // 修改模板字符串
