@@ -238,9 +238,9 @@
                         <div class="flex-[2] hidden lg:flex justify-center mx-4">
                             <ul class="nc-Navigation flex items-center">
                                 <li class="menu-item flex-shrink-0 menu-megamenu menu-megamenu--large"
-                                    @mouseleave="navCategaryshow=!navCategaryshow">
+                                    @mouseleave="categoryListShow=!categoryListShow">
                                     <div class="h-20 flex-shrink-0 flex items-center cursor-pointer"
-                                        @mouseenter="navCategaryshow=true">
+                                        @mouseenter="categoryListShow=true">
                                         <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                                             rel="noopener noreferrer">商品分类
                                             <svg aria-hidden="true" class="ml-1 -mr-1 h-4 w-4 text-slate-400"
@@ -253,7 +253,7 @@
                                         </a>
                                     </div>
                                     <div class="animate-in zoom-in-95 duration-300 sub-menu
-                                        absolute top-full inset-x-0 transform z-50" v-show="navCategaryshow">
+                                        absolute top-full inset-x-0 transform z-50" v-show="categoryListShow">
                                         <div class="max-h-72 overflow-y-auto  bg-white dark:bg-neutral-900 shadow-lg"
                                             @scroll="scrollEvent">
                                             <div class="container">
@@ -315,7 +315,7 @@
                                 <div class="relative">
                                     <button id="headlessui-popover-button-:r3:" aria-expanded="false"
                                         class="w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
-                                        type="button" @click.stop="hiddenclick(),userDroDownshow = !userDroDownshow">
+                                        type="button" @click.stop="hiddenClick(),userDroDownShow = !userDroDownShow">
                                         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -331,7 +331,7 @@
                                 </div>
                                 <div id="headlessui-popover-panel-:r4:"
                                     class="absolute z-10 w-screen max-w-[260px] px-4 mt-3.5 right-10 sm:px-0 opacity-100 translate-y-0"
-                                    tabindex="-1" v-show="userDroDownshow" @click.stop="">
+                                    tabindex="-1" v-show="userDroDownShow" @click.stop="">
                                     <div class="overflow-hidden rounded-3xl shadow-lg ring-1 ring-black ring-opacity-5">
                                         <div
                                             class="relative grid grid-cols-1 gap-6 bg-white dark:bg-neutral-800 py-7 px-6">
@@ -516,7 +516,7 @@
                             <div class="relative">
                                 <button id="headlessui-popover-button-:r6:" aria-expanded="false"
                                     class="text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
-                                    type="button" @click.stop="hiddenclick(),shopingCartshow = !shopingCartshow">
+                                    type="button" @click.stop="hiddenClick(),cartShow = !cartShow">
                                     <div
                                         class="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
                                         <span class="mt-[1px]">1</span>
@@ -546,7 +546,7 @@
                                 </button>
                                 <div id="headlessui-popover-panel-:r7:"
                                     class="md:block absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0 opacity-100 translate-y-0"
-                                    tabindex="-1" v-show="shopingCartshow" @click.stop="">
+                                    tabindex="-1" v-show="cartShow" @click.stop="">
                                     <div
                                         class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10">
                                         <div class="relative bg-white dark:bg-neutral-800">
@@ -668,7 +668,7 @@
                                             <div class="relative">
                                                 <button id="headlessui-popover-button-:rd:" aria-expanded="false"
                                                     class="flex items-center justify-center px-4 py-2 text-sm rounded-lg border focus:outline-none select-none border-neutral-300 dark:border-neutral-700 border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
-                                                    type="button" @click.stop="hiddenclick(),priceShow = !priceShow">
+                                                    type="button" @click.stop="hiddenClick(),priceShow = !priceShow">
                                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path
@@ -716,7 +716,7 @@
                                                                         :value="'price_'+item.id"><label
                                                                         class="pl-2.5 sm:pl-3 block text-slate-900 dark:text-slate-100 select-none"
                                                                         :for="'price_'+item.id">${item.price_name}
-                                                                        （元）</label>
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -737,7 +737,7 @@
                                             <div class="relative">
                                                 <button id="headlessui-popover-button-:rd:" aria-expanded="false"
                                                     class="flex items-center justify-center px-4 py-2 text-sm rounded-lg border focus:outline-none select-none border-neutral-300 dark:border-neutral-700 border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
-                                                    type="button" @click.stop="hiddenclick(),tagShow = !tagShow">
+                                                    type="button" @click.stop="hiddenClick(),tagShow = !tagShow">
                                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M8 2V5" stroke="currentColor" stroke-linecap="round"
@@ -802,7 +802,7 @@
                                                 <button id="headlessui-popover-button-:rj:" aria-expanded="false"
                                                     class="flex items-center justify-center px-4 py-2 text-sm rounded-lg border focus:outline-none select-none border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
                                                     type="button"
-                                                    @click.stop="hiddenclick(),categoryShow = !categoryShow">
+                                                    @click.stop="hiddenClick(),categoryShow = !categoryShow">
                                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M21 9V3H15" stroke="currentColor"
@@ -863,7 +863,7 @@
                                             <div class="!ml-auto">
                                                 <div class="relative">
                                                     <button
-                                                        @click.stop="hiddenclick(),sortDropDownshow = !sortDropDownshow"
+                                                        @click.stop="hiddenClick(),sortDropDownShow = !sortDropDownShow"
                                                         id="headlessui-popover-button-:rm:" aria-expanded="false"
                                                         class="flex items-center justify-center px-4 py-2 text-sm border rounded-lg focus:outline-none select-none border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500"
                                                         type="button">
@@ -901,7 +901,7 @@
                                                             </path>
                                                         </svg>
                                                     </button>
-                                                    <div id="headlessui-popover-panel-:rbk:" v-show="sortDropDownshow"
+                                                    <div id="headlessui-popover-panel-:rbk:" v-show="sortDropDownShow"
                                                         @click.stop=""
                                                         class="absolute z-40 w-screen max-w-sm px-4 mt-3 right-0 sm:px-0 lg:max-w-sm opacity-100 translate-y-0"
                                                         tabindex="-1">
@@ -957,7 +957,7 @@
                                                                 class="p-5 bg-neutral-50 dark:bg-neutral-900 dark:border-t dark:border-neutral-800 flex items-center justify-between">
 
                                                                 <button
-                                                                    @click="queryShowProduct();sortDropDownshow = !sortDropDownshow"
+                                                                    @click="queryShowProduct();sortDropDownShow = !sortDropDownShow"
                                                                     class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-2 sm:px-5  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
                                                                     确认
                                                                 </button>
@@ -1270,11 +1270,11 @@
                                             </div>
                                             <div class="space-y-4 px-2.5 pt-5 pb-2.5 m-2">
                                                 <div class="flex justify-between">
-                                                    <div>
-                                                        <h2
-                                                            class="nc-ProductCard__title text-base font-semibold transition-colors">
+                                                    <div class="h-12">
+                                                        <span @click="toProductDetail(item)"
+                                                            class="text-2xl font-bold cursor-pointer">
                                                             ${ item['product_name'] }
-                                                        </h2>
+                                                        </span>
                                                         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
                                                             ${item['seo_description']}
                                                         </p>
@@ -1283,8 +1283,8 @@
                                                 <div class="flex justify-between items-end">
                                                     <span
                                                         class="text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
-                                                    <a v-if="item.inventory_amount>0"
-                                                        class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                    <button v-if="item.inventory_amount>0"
+                                                        class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-600 hover:shadow-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                         href="/src/pages/cart/index.html">
                                                         <svg class="w-6 h-6 pr-1" fill="none" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -1311,7 +1311,7 @@
                                                                 stroke-miterlimit="10" stroke-width="1.5">
                                                             </path>
                                                         </svg>加入购物车
-                                                    </a>
+                                                    </button>
 
                                                     <button v-else type="button"
                                                         class="flex items-center mt-2  text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -1369,6 +1369,7 @@
                                         </ul> -->
                                     </ul>
                                 </nav>
+                            </div>
                         </main>
                     </div>
                 </div>

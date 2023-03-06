@@ -1,4 +1,3 @@
-// 所有样式都在这个文件，包括引入 tailwindcss
 import { createApp } from "vue";
 
 export function useProductList() {
@@ -11,7 +10,7 @@ export function useProductList() {
     data: () => ({
       mobileSearchShow: false,
       priceShow: false,
-      sortDropDownshow: false,
+      sortDropDownShow: false,
       categoryShow: false,
       tagShow: false,
       productList: [],
@@ -29,27 +28,31 @@ export function useProductList() {
       price_List: [
         {
           id: 1,
-          price_name: "100以下",
+          price_name: "￥50 以内",
         },
         {
           id: 2,
-          price_name: "100-300",
+          price_name: "￥50 - ￥100",
         },
         {
           id: 3,
-          price_name: "300-600",
+          price_name: "￥100 - ￥150",
         },
         {
           id: 4,
-          price_name: "600-900",
+          price_name: "￥150 - ￥250",
         },
         {
           id: 5,
-          price_name: "900-1200",
+          price_name: "￥250 - ￥400",
         },
         {
           id: 6,
-          price_name: "1200-1500",
+          price_name: "￥400 - ￥600",
+        },
+        {
+          id: 7,
+          price_name: "￥600 及以上",
         },
       ],
       goToPage: "",
@@ -97,7 +100,7 @@ export function useProductList() {
     },
     methods: {
       init() {
-        this.loadCategaryData();
+        this.loadCategoryData();
         this.loadProductTagData();
       },
       mobileClear() {
@@ -162,7 +165,7 @@ export function useProductList() {
           });
       },
       // 首次加载分类
-      loadCategaryData() {
+      loadCategoryData() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
@@ -186,7 +189,7 @@ export function useProductList() {
           });
       },
       // 下拉分类数据更新加载
-      updateCategaryData() {
+      updateCategoryData() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
@@ -229,7 +232,7 @@ export function useProductList() {
         ) {
           if (this.isUpdate) {
             this.filter.page += 1;
-            this.updateCategaryData();
+            this.updateCategoryData();
           }
         }
       },
@@ -286,28 +289,32 @@ export function useProductList() {
               high_price = -1;
               break;
             case "price_1":
-              low_price = 1;
-              high_price = 100;
+              low_price = 0;
+              high_price = 50;
               break;
             case "price_2":
-              low_price = 100;
-              high_price = 300;
+              low_price = 50;
+              high_price = 100;
               break;
             case "price_3":
-              low_price = 300;
-              high_price = 600;
+              low_price = 100;
+              high_price = 150;
               break;
             case "price_4":
-              low_price = 600;
-              high_price = 900;
+              low_price = 150;
+              high_price = 250;
               break;
             case "price_5":
-              low_price = 900;
-              high_price = 1200;
+              low_price = 250;
+              high_price = 400;
               break;
             case "price_6":
-              low_price = 1200;
-              high_price = 1500;
+              low_price = 400;
+              high_price = 600;
+              break;
+            case "price_7":
+              low_price = 600;
+              high_price = -1;
               break;
             default:
               break;
@@ -375,8 +382,8 @@ export function useProductList() {
             : this.goToPage;
         this.goToPage = this.page;
       },
-      hiddenclick() {
-        this.sortDropDownshow = false;
+      hiddenClick() {
+        this.sortDropDownShow = false;
         this.tagShow = false;
         this.priceShow = false;
         this.categoryShow = false;
@@ -389,10 +396,10 @@ export function useProductList() {
     mounted() {
       this.init();
       this.queryShowProduct();
-      document.addEventListener("click", this.hiddenclick);
+      document.addEventListener("click", this.hiddenClick);
     },
     unmounted() {
-      document.removeEventListener("click", this.hiddenclick);
+      document.removeEventListener("click", this.hiddenClick);
     },
   }).mount("#productList");
 }

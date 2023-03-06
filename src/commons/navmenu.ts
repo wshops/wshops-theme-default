@@ -8,10 +8,10 @@ export function useNavMenu() {
     },
     data: () => ({
       mobileShow: false,
-      navCategaryshow: false,
-      userDroDownshow: false,
+      categoryListShow: false,
+      userDroDownShow: false,
       // 购物车展示弹窗
-      shopingCartshow: false,
+      cartShow: false,
       filter: {
         count: 50, // 页大小
         page: 1, // 当前页
@@ -24,7 +24,7 @@ export function useNavMenu() {
     watch: {},
     methods: {
       init() {
-        this.loadCategaryData();
+        this.loadCategoryData();
       },
       toProductCategory(item: any) {
         localStorage.setItem("categoryId", item.id);
@@ -35,7 +35,7 @@ export function useNavMenu() {
         location.assign("search");
       },
       // 首次加载分类
-      loadCategaryData() {
+      loadCategoryData() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
@@ -59,7 +59,7 @@ export function useNavMenu() {
           });
       },
       // 下拉分类数据更新加载
-      updateCategaryData() {
+      updateCategoryData() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
@@ -102,21 +102,21 @@ export function useNavMenu() {
         ) {
           if (this.isUpdate) {
             this.filter.page += 1;
-            this.updateCategaryData();
+            this.updateCategoryData();
           }
         }
       },
-      hiddenclick() {
-        this.userDroDownshow = false;
-        this.shopingCartshow = false;
+      hiddenClick() {
+        this.userDroDownShow = false;
+        this.cartShow = false;
       },
     },
     mounted() {
       this.init();
-      document.addEventListener("click", this.hiddenclick);
+      document.addEventListener("click", this.hiddenClick);
     },
     unmounted() {
-      document.removeEventListener("click", this.hiddenclick);
+      document.removeEventListener("click", this.hiddenClick);
     },
   }).mount("#wshop-nav-menu");
 }
