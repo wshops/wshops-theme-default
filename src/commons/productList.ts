@@ -55,6 +55,9 @@ export function useProductList() {
       goToPage: "",
       pageSizeList: [20, 30, 50, 100],
       // showOption: false,
+      categoryName: !document.getElementById("search-input")
+        ? localStorage.getItem("categoryName")
+        : "",
     }),
     components: {},
     computed: {
@@ -321,10 +324,8 @@ export function useProductList() {
             high_price: high_price,
             by_hits: by_hits,
             by_deals: by_deals,
-            category_id: (document.getElementById(
-              "search-input"
-            ) as HTMLInputElement)
-              ? localStorage.getItem("category_id")
+            category_id: !document.getElementById("search-input")
+              ? localStorage.getItem("categoryId")
               : category_id,
             low_price: low_price,
             tags: tags,
@@ -379,6 +380,10 @@ export function useProductList() {
         this.tagShow = false;
         this.priceShow = false;
         this.categoryShow = false;
+      },
+      toProductDetail(item: any) {
+        localStorage.setItem("productId", item.id);
+        location.assign("product_detail");
       },
     },
     mounted() {

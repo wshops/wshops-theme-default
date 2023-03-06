@@ -26,6 +26,11 @@ export function useNavMenu() {
       init() {
         this.loadCategaryData();
       },
+      toProductCategory(item: any) {
+        localStorage.setItem("categoryId", item.id);
+        localStorage.setItem("categoryName", item.category_name);
+        location.assign("product_category");
+      },
       toSearch() {
         location.assign("search");
       },
