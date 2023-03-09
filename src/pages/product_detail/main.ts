@@ -40,38 +40,49 @@ createApp({
     imgArr: [
       "/public/assets/images/banner4.jpg",
       "/public/assets/images/login-background.jpg",
-      "/public/assets/images/pic.png",
+      "/public/assets/images/banner4.jpg",
     ],
     index: 0,
     timer: null,
+    productDetail: {},
   }),
   components: {},
   computed: {},
   watch: {},
   methods: {
     prev() {
+      clearInterval(this.timer);
       if (this.index === 0) {
         this.index = this.imgArr.length - 1;
       } else {
         this.index--;
       }
+      this.timer = setInterval(() => {
+        this.next();
+      }, 3000);
     },
     next() {
+      clearInterval(this.timer);
       if (this.index === this.imgArr.length - 1) {
         this.index = 0;
       } else {
         this.index++;
       }
+      this.timer = setInterval(() => {
+        this.next();
+      }, 3000);
     },
-    // 获取购物车
-    getShopCarts() {
+    // 获取产品详情
+    getProductDetail() {
+      let params = {
+        word: localStorage.getItem("productId"),
+      };
       window.$wshop
         .api()
-        .get("/api/v1/capi/cart/item")
+        .get("/api/v1/capi/product/detail", params)
         .then((res: any) => {
           if (res !== null && res !== undefined) {
-            this.cartsNumber = res.data.data.length;
-            localStorage.setItem("cartNum", res.data.data.length);
+            this.productDetail = res.data.data;
           }
         })
         .catch((err: string) => {
@@ -90,8 +101,8 @@ createApp({
         .post("/api/v1/capi/cart/item", params)
         .then((res: any) => {
           if (res !== null && res !== undefined) {
-            window.$notify.success(res.message);
-            localStorage.setItem("cartNum", "3");
+            window.$notify.success("添加购物车成功");
+            localStorage.setItem("cartNum", res.data.data);
             variant_id ? this.closeVariantsModel() : "";
           }
         })
@@ -101,10 +112,10 @@ createApp({
     },
   },
   mounted() {
-    this.getShopCarts();
+    this.getProductDetail();
     this.timer = setInterval(() => {
       this.next();
-    }, 4000);
+    }, 3000);
   },
   unmounted() {
     clearInterval(this.timer);

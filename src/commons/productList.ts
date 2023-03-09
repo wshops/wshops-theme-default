@@ -438,8 +438,8 @@ export function useProductList() {
           .post("/api/v1/capi/cart/item", params)
           .then((res: any) => {
             if (res !== null && res !== undefined) {
-              window.$notify.success(res.message);
-              localStorage.setItem("cartNum", "3");
+              window.$notify.success('添加购物车成功');
+              localStorage.setItem("cartNum", res.data.data);
               variant_id ? this.closeVariantsModel() : "";
             }
           })

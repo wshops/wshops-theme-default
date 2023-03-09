@@ -1,3 +1,4 @@
+import { debug } from "console";
 import { createApp } from "vue";
 
 // 监听内部存储
@@ -59,6 +60,8 @@ export function useNavMenu() {
       isUpdate: true, // 是否到底-最后一页
       categoryList: [],
       cartsNumber: 0,
+      cartsList: [],
+      loading: false,
     }),
     components: {},
     computed: {},
@@ -152,24 +155,82 @@ export function useNavMenu() {
         this.cartShow = false;
       },
       // 获取购物车
-      getShopCarts() {
+      getShopCarts(loading: boolean) {
+        this.loading = loading;
         window.$wshop
           .api()
           .get("/api/v1/capi/cart/item")
           .then((res: any) => {
             if (res !== null && res !== undefined) {
               this.cartsNumber = res.data.data.length;
+              this.cartsList = res.data.data.length > 0 ? res.data.data : [];
               localStorage.setItem("cartNum", res.data.data.length);
+            }
+            this.loading = false;
+          })
+          .catch((err: string) => {
+            this.loading = false;
+            window.$notify.error(err);
+          });
+      },
+      toProductDetail(item: any) {
+        localStorage.setItem("productId", item.product_id);
+        location.assign("product_detail");
+      },
+      // 删除购物车
+      delShopCarts(item: any) {
+        let params = [
+          {
+            product_id: item.product_id,
+            variant_id: item.variant_id,
+          },
+        ];
+        window.$wshop
+          .api()
+          .del("/api/v1/capi/cart/item", params)
+          .then((res: any) => {
+            if (res !== null && res !== undefined) {
+              window.$notify.success("移除成功");
+              this.getShopCarts(true);
             }
           })
           .catch((err: string) => {
             window.$notify.error(err);
           });
       },
+      // 编辑购物车
+      editShopCarts(item: any) {
+        let params = {
+          product_id: item.product_id,
+          variant_id: item.variant_id ? item.variant_id : "",
+          quantity: item.quantity,
+          new_variant_id: item.variant_id ? item.variant_id : "",
+        };
+        window.$wshop
+          .api()
+          .patch("/api/v1/capi/cart/item", params)
+          .then((res: any) => {
+            if (res !== null && res !== undefined) {
+              window.$notify.success("更新购物车成功");
+              // this.getShopCarts();
+            }
+          })
+          .catch((err: string) => {
+            window.$notify.error(err);
+          });
+      },
+      cutCartCount(item: any) {
+        item.quantity = item.quantity - 1;
+        this.editShopCarts(item);
+      },
+      addCartCount(item: any) {
+        item.quantity = item.quantity + 1;
+        this.editShopCarts(item);
+      },
     },
     mounted() {
       this.init();
-      this.getShopCarts();
+      this.getShopCarts(true);
       document.addEventListener("click", this.hiddenClick);
       // window.addEventListener("storage", (e) => {
       //   console.log("别的浏览器页签storage发生变化啦:", e);
