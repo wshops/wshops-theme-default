@@ -1,16 +1,14 @@
-// 所有样式都在这个文件，包括引入 tailwindcss
 import "./style.less";
-
-import Alpine from "alpinejs";
 import { Tabs, Modal } from "flowbite";
 import type { TabsOptions, TabsInterface, TabItem } from "flowbite";
 import WshopUtils, { FormValidationResult } from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
+import { useNavMenu } from "../../commons/navmenu";
+import { useCollectList } from "../../commons/collectList";
 useNotify({
   position: "top-right",
 });
 
-window.Alpine = Alpine;
 /****** 初始化 ******/
 const wshop: WshopUtils = new WshopUtils({
   feedbacks: {
@@ -76,15 +74,8 @@ const wshop: WshopUtils = new WshopUtils({
     },
   },
 });
+useNavMenu();
 
-// n.closable().info('hello world')
-
-/************ UI交互及动效逻辑 ************/
-//页面交互业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
-
-/***************** 结束 *****************/
-
-/************ 表单验证配置 ************/
 // 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
 let c = wshop.vd(true).init([
   {
@@ -98,12 +89,9 @@ let c = wshop.vd(true).init([
   },
 ]);
 
-/*************** 结束 ****************/
 
-// set the modal menu element
 const $targetEl = document.getElementById("modalEl");
 
-// options with default values
 const optionsModal: any = {
   placement: "center-center",
   backdrop: "dynamic",
@@ -111,7 +99,6 @@ const optionsModal: any = {
     "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
   closable: false,
   onHide: () => {
-    console.log("modal is hidden");
     c = wshop.vd(true).init([
       {
         element: document.getElementById("mobilePhone")!,
@@ -127,24 +114,11 @@ const optionsModal: any = {
     (document.getElementById("code") as HTMLInputElement).value = "";
     (document.getElementById("mobilePhone") as HTMLInputElement).value = "";
   },
-  onShow: () => {
-    console.log("modal is shown");
-  },
-  onToggle: () => {
-    console.log("modal has been toggled");
-  },
+  onShow: () => {},
+  onToggle: () => {},
 };
 
 const modalMobile = new Modal($targetEl, optionsModal);
-
-declare const window: Window & { topNav: Function };
-type PageState = {
-  test: string;
-};
-
-let state: PageState = {
-  test: "Hello World",
-};
 
 const tabElements: TabItem[] = [
   {
@@ -174,122 +148,21 @@ const tabElements: TabItem[] = [
   },
 ];
 
-// options with default values
+
 const options: TabsOptions = {
   defaultTabId: "settings",
   activeClasses:
     "text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500",
   inactiveClasses:
     "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
-  onShow: () => {
-    console.log("tab is shown");
-  },
+  onShow: () => {},
 };
 
-/*
- * tabElements: array of tab objects
- * options: optional
- */
+
 const tabs: TabsInterface = new Tabs(tabElements, options);
 
-// open tab item based on id
 tabs.show("settings");
 
-window.topNav = function () {
-  return {
-    droDownshow: false,
-    mobileShow: false,
-    show: false,
-    // 商品类别下拉列表
-    open() {
-      this.show = true;
-    },
-    close() {
-      this.show = false;
-    },
-    isOpen() {
-      return this.show === true;
-    },
-    back() {
-      history.back();
-    },
-    // 个人中心下拉列表
-    droDownOpen() {
-      if (this.droDownshow) {
-        this.droDownshow = false;
-      } else {
-        this.droDownshow = true;
-      }
-    },
-    droDownClose() {
-      this.droDownshow = false;
-    },
-    isDroDownOpen() {
-      return this.droDownshow === true;
-    },
-    // 购物车展示弹窗
-    shopingCartshow: false,
-    openShopingCart() {
-      if (this.shopingCartshow) {
-        this.shopingCartshow = false;
-      } else {
-        this.shopingCartshow = true;
-      }
-    },
-    closeShopingCart() {
-      this.shopingCartshow = false;
-    },
-    isOpenShopingCart() {
-      return this.shopingCartshow === true;
-    },
-    // 手机端控制
-    mobileOpen() {
-      this.mobileShow = true;
-    },
-    mobileClose() {
-      this.mobileShow = false;
-    },
-    mobileIsOpen() {
-      return this.mobileShow === true;
-    },
-    toSearch() {
-      location.assign("search");
-    },
-    toCollect() {
-      tabs.show("collect");
-    },
-    toMyOrder() {
-      tabs.show("myOrder");
-    },
-    toChangePw() {
-      tabs.show("changePw");
-    },
-    toAddress() {
-      tabs.show("address");
-    },
-    imgUploadShow: false,
-    isShowImgUpload() {
-      return this.imgUploadShow === true;
-    },
-    showImgUpload() {
-      this.imgUploadShow = true;
-    },
-    hideImgUpload() {
-      this.imgUploadShow = false;
-    },
-    // 打开修改手机号弹窗
-    openMobileModal() {
-      document.getElementById("mobileContent")!.style.display = "block";
-      document.getElementById("codeContent")!.style.display = "none";
-      modalMobile.show();
-    },
-    hideMobileModal() {
-      document.getElementById("mobileContent")!.style.display = "block";
-      document.getElementById("codeContent")!.style.display = "none";
-      modalMobile.hide();
-    },
-  };
-};
 let codeCheck: any;
 document.getElementById("mobile-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -362,8 +235,37 @@ document.getElementById("code-form")!.addEventListener("submit", (e) => {
     });
 });
 
-Alpine.store("page-index", state);
+document.getElementById("mobile-bt")!.addEventListener("click", () => {
+  document.getElementById("mobileContent")!.style.display = "block";
+  document.getElementById("codeContent")!.style.display = "none";
+  modalMobile.show();
+});
 
-//业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
+document.getElementById("mobileModalCloseBt")!.addEventListener("click", () => {
+  document.getElementById("mobileContent")!.style.display = "block";
+  document.getElementById("codeContent")!.style.display = "none";
+  modalMobile.hide();
+});
 
-Alpine.start();
+document.getElementById("collect-tab")!.addEventListener("click", () => {
+  tabs.show("collect");
+});
+document.getElementById("myOrder-tab")!.addEventListener("click", () => {
+  tabs.show("myOrder");
+});
+document.getElementById("changePw-tab")!.addEventListener("click", () => {
+  tabs.show("changePw");
+});
+document.getElementById("address-tab")!.addEventListener("click", () => {
+  tabs.show("address");
+});
+
+document.getElementById("imgUpload")!.addEventListener("mouseover", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "block";
+});
+
+document.getElementById("imgUpload")!.addEventListener("mouseleave", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "none";
+});
+
+useCollectList();

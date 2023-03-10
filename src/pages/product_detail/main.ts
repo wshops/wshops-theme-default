@@ -90,10 +90,10 @@ createApp({
         });
     },
     // 加入购物车
-    addShopCart(item: any, variant_id: string) {
+    addShopCart(item: any, variant_no: string) {
       let params = {
         product_id: item.id,
-        variant_id: variant_id ? variant_id : "",
+        variant_no: variant_no ? variant_no : "",
         quantity: 1,
       };
       window.$wshop
@@ -103,7 +103,7 @@ createApp({
           if (res !== null && res !== undefined) {
             window.$notify.success("添加购物车成功");
             localStorage.setItem("cartNum", res.data.data);
-            variant_id ? this.closeVariantsModel() : "";
+            variant_no ? this.closeVariantsModel() : "";
           }
         })
         .catch((err: string) => {

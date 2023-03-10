@@ -1,4 +1,3 @@
-import { debug } from "console";
 import { createApp } from "vue";
 
 // 监听内部存储
@@ -182,7 +181,7 @@ export function useNavMenu() {
         let params = [
           {
             product_id: item.product_id,
-            variant_id: item.variant_id,
+            variant_no: item.variant_no,
           },
         ];
         window.$wshop
@@ -202,9 +201,9 @@ export function useNavMenu() {
       editShopCarts(item: any) {
         let params = {
           product_id: item.product_id,
-          variant_id: item.variant_id ? item.variant_id : "",
+          variant_no: item.variant_no ? item.variant_no : "",
           quantity: item.quantity,
-          new_variant_id: item.variant_id ? item.variant_id : "",
+          new_variant_no: item.variant_no ? item.variant_no : "",
         };
         window.$wshop
           .api()
