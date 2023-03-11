@@ -1,4 +1,18 @@
 import { createApp } from "vue";
+import { Modal } from "flowbite";
+
+const $modalElement = document.getElementById("crypto-modal");
+const modalOptions: any = {
+  placement: "center-center",
+  backdrop: "dynamic",
+  backdropClasses:
+    "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
+  closable: true,
+  onHide: () => {},
+  onShow: () => {},
+  onToggle: () => {},
+};
+const modal = new Modal($modalElement, modalOptions);
 
 export function useProductList() {
   createApp({
@@ -61,6 +75,8 @@ export function useProductList() {
       categoryName: !document.getElementById("search-input")
         ? localStorage.getItem("categoryName")
         : "",
+      variantsList: [],
+      variantsModel: false,
     }),
     components: {},
     computed: {
@@ -236,7 +252,6 @@ export function useProductList() {
           }
         }
       },
-      pageClick() {},
       onPage(page: any) {
         this.page = page.page;
         this.queryShowProduct();
@@ -359,29 +374,29 @@ export function useProductList() {
             this.loading = false;
           });
       },
-      prevOrNext(n: number) {
-        this.page += n;
-        this.page <= 1
-          ? (this.page = 1)
-          : this.page > this.pageTotalNum
-          ? (this.page = this.pageTotalNum)
-          : null;
-      },
+      // prevOrNext(n: number) {
+      //   this.page += n;
+      //   this.page <= 1
+      //     ? (this.page = 1)
+      //     : this.page > this.pageTotalNum
+      //     ? (this.page = this.pageTotalNum)
+      //     : null;
+      // },
       selectPage(n: number) {
         if (n === this.page) return;
         if (typeof n === "string") return;
         this.page = n;
         this.queryShowProduct();
       },
-      handleGoToPage() {
-        this.page =
-          this.goToPage <= 1
-            ? 1
-            : this.goToPage - 0 >= this.pageTotalNum - 0
-            ? this.pageTotalNum
-            : this.goToPage;
-        this.goToPage = this.page;
-      },
+      // handleGoToPage() {
+      //   this.page =
+      //     this.goToPage <= 1
+      //       ? 1
+      //       : this.goToPage - 0 >= this.pageTotalNum - 0
+      //       ? this.pageTotalNum
+      //       : this.goToPage;
+      //   this.goToPage = this.page;
+      // },
       hiddenClick() {
         this.sortDropDownShow = false;
         this.tagShow = false;
@@ -391,6 +406,46 @@ export function useProductList() {
       toProductDetail(item: any) {
         localStorage.setItem("productId", item.id);
         location.assign("product_detail");
+      },
+      // 判断有无款式，有则弹窗
+      isShowVariantModal(item: any) {
+        if (item.variants) {
+          this.showVariantModal(item);
+        } else {
+          this.addShopCart(item, "");
+        }
+      },
+      // 展示购物车弹窗
+      showVariantModal(item: any) {
+        this.variantsList = item;
+        modal.show();
+        this.variantsModel = true;
+      },
+      // 关闭购物车弹窗
+      closeVariantsModel() {
+        this.variantsModel = false;
+        modal.hide();
+      },
+      // 加入购物车
+      addShopCart(item: any, variant_no: string) {
+        let params = {
+          product_id: item.id,
+          variant_no: variant_no ? variant_no : "",
+          quantity: 1,
+        };
+        window.$wshop
+          .api()
+          .post("/api/v1/capi/cart/item", params)
+          .then((res: any) => {
+            if (res !== null && res !== undefined) {
+              window.$notify.success("添加购物车成功");
+              localStorage.setItem("cartNum", res.data.data);
+              variant_no ? this.closeVariantsModel() : "";
+            }
+          })
+          .catch((err: string) => {
+            window.$notify.error(err);
+          });
       },
     },
     mounted() {

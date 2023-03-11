@@ -1,88 +1,33 @@
 // 所有样式都在这个文件，包括引入 tailwindcss
 import "./style.less";
+import WshopUtils from "@wshops/utils";
+import { useNotify } from "../../utils/notify";
+import { useNavMenu } from "../../commons/navmenu";
 
-import Alpine from "alpinejs";
+useNotify({
+  position: "top-right",
+});
 
-window.Alpine = Alpine;
-declare const window: Window & { topNav: Function };
-type PageState = {
-  test: string;
-};
+const wshop: WshopUtils = new WshopUtils({
+  feedbacks: {
+    apiFeedbacks: {
+      onError: (message: string): void => {
+        window.$notify.closable().error(message);
+      },
+      onInfo: (message: string): void => {
+        window.$notify.closable().info(message);
+      },
+      onWarning: (message: string): void => {
+        window.$notify.closable().warn(message);
+      },
+      onUnAuthorized: (): void => {
+        window.location.assign("/auth/register");
+      },
+      onSuccess: (message: string): void => {
+        window.$notify.closable().success(message);
+      },
+    },
+  },
+});
 
-let state: PageState = {
-  test: "Hello World",
-};
-
-window.topNav = function () {
-  return {
-    droDownshow: false,
-    mobileShow: false,
-    show: false,
-    toSearch() {
-      location.assign("search");
-    },
-    toCart() {
-      location.assign("cart");
-    },
-    toCheckout() {
-      location.assign("checkout");
-    },
-    // 商品类别下拉列表
-    open() {
-      this.show = true;
-    },
-    close() {
-      this.show = false;
-    },
-    isOpen() {
-      return this.show === true;
-    },
-    back() {
-      history.back();
-    },
-    // 个人中心下拉列表
-    droDownOpen() {
-      if (this.droDownshow) {
-        this.droDownshow = false;
-      } else {
-        this.droDownshow = true;
-      }
-    },
-    droDownClose() {
-      this.droDownshow = false;
-    },
-    isDroDownOpen() {
-      return this.droDownshow === true;
-    },
-    // 购物车展示弹窗
-    shopingCartshow: false,
-    openShopingCart() {
-      if (this.shopingCartshow) {
-        this.shopingCartshow = false;
-      } else {
-        this.shopingCartshow = true;
-      }
-    },
-    closeShopingCart() {
-      this.shopingCartshow = false;
-    },
-    isOpenShopingCart() {
-      return this.shopingCartshow === true;
-    },
-    // 手机端控制
-    mobileOpen() {
-      this.mobileShow = true;
-    },
-    mobileClose() {
-      this.mobileShow = false;
-    },
-    mobileIsOpen() {
-      return this.mobileShow === true;
-    },
-  };
-};
-Alpine.store("page-index", state);
-
-//业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
-
-Alpine.start();
+useNavMenu();

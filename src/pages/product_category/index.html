@@ -516,11 +516,12 @@
                             </div>
                             <div class="relative">
                                 <button id="headlessui-popover-button-:r6:" aria-expanded="false"
-                                    class="text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
-                                    type="button" @click.stop="hiddenClick(),cartShow = !cartShow">
+                                    class="cursor-pointer text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
+                                    type="button" :disabled="cartsNumber===0"
+                                    @click.stop="hiddenClick(),cartShow = !cartShow,getShopCarts(false);">
                                     <div
                                         class="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
-                                        <span class="mt-[1px]">1</span>
+                                        <span class="mt-[1px]">${cartsNumber}</span>
                                     </div>
                                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -554,49 +555,50 @@
                                             <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
                                                 <h3 class="text-xl font-semibold">购物车
                                                 </h3>
-                                                <div class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                <div v-for="item in cartsList"
+                                                    class="divide-y divide-slate-100 dark:divide-slate-700">
                                                     <div class="flex py-5 last:pb-0">
                                                         <div
                                                             class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
                                                             <img alt="Rey Nylon Backpack"
                                                                 class="h-full w-full object-contain object-center"
-                                                                src="../../../assets/images/wshops-logo-icon.png" /><a
-                                                                class="absolute inset-0"
-                                                                href="/ciseco/product-detail"></a>
+                                                                :src="item.product_thumb_picture_url" />
+                                                            <div class="cursor-pointer absolute inset-0"
+                                                                @click="toProductDetail(item)"></div>
                                                         </div>
                                                         <div class="ml-4 flex flex-1 flex-col">
                                                             <div>
                                                                 <div class="flex justify-between">
                                                                     <div>
                                                                         <h3 class="text-base font-medium">
-                                                                            <a href="/ciseco/product-detail">Rey
-                                                                                Nylon
-                                                                                Backpack</a>
+                                                                            <div class="cursor-pointer"
+                                                                                @click="toProductDetail(item)">
+                                                                                ${item.product_name}</div>
                                                                         </h3>
-                                                                        <p
+                                                                        <!-- <p
                                                                             class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                            <span>Natural</span><span
+                                                                            <span>${item.name}</span><span
                                                                                 class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"></span><span>XL</span>
-                                                                        </p>
+                                                                        </p> -->
                                                                     </div>
                                                                     <div class="mt-0.5">
                                                                         <div
                                                                             class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
                                                                             <span
-                                                                                class="text-green-500 !leading-none">$74.00</span>
+                                                                                class="text-green-500 !leading-none">$${item.unit_price}</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="flex flex-1 items-end justify-between text-sm">
                                                                 <p class="text-gray-500 dark:text-slate-400">
-                                                                    Qty 1
+                                                                    ${item.variant_name}
                                                                 </p>
                                                                 <div class="flex">
-                                                                    <button
+                                                                    <button @click="delShopCarts(item)"
                                                                         class="font-medium text-primary-6000 dark:text-primary-500"
                                                                         type="button">
-                                                                        Remove
+                                                                        移除
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -607,18 +609,14 @@
                                             <div class="bg-neutral-50 dark:bg-slate-900 p-5">
                                                 <p
                                                     class="flex justify-between font-semibold text-slate-900 dark:text-slate-100">
-                                                    <span><span>Subtotal</span><span
-                                                            class="block text-sm text-slate-500 dark:text-slate-400 font-normal">Shipping
-                                                            and taxes calculated at
-                                                            checkout.</span></span><span class="">$299.00</span>
+                                                    <span><span>总价</span></span><span class="">$299.00</span>
                                                 </p>
                                                 <div class="flex space-x-2 mt-5">
                                                     <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 flex-1 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                        href="/cart" rel="noopener noreferrer">View
-                                                        cart</a><a
+                                                        href="/cart" rel="noopener noreferrer">前往购物车详情
+                                                    </a><a
                                                         class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                        href="/checkout" rel="noopener noreferrer">Check
-                                                        out</a>
+                                                        href="/checkout" rel="noopener noreferrer">前往支付</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -630,9 +628,9 @@
                 </div>
             </div>
         </div>
-        <div class="py-0 lg:pt-0 space-y-16 lg:space-y-28">
+        <div id="productList" class="py-0 lg:pt-0 space-y-16 lg:space-y-28">
             <main>
-                <div id="productList" class="nc-PageSearch" data-nc-id="PageSearch">
+                <div class="nc-PageSearch" data-nc-id="PageSearch">
                     <div class="container py-3 lg:pb-28 lg:pt-10 space-y-3 lg:space-y-3">
                         <div class="max-w-screen-sm">
                             <h2 class="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
@@ -1252,8 +1250,9 @@
                                                 </div>
                                                 <div class="flex justify-between items-end">
                                                     <span
-                                                        class="text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
+                                                        class="truncate w-32 text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
                                                     <button v-if="item.inventory_amount>0"
+                                                        @click="isShowVariantModal(item)"
                                                         class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-600 hover:shadow-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                         href="/src/pages/cart/index.html">
                                                         <svg class="w-6 h-6 pr-1" fill="none" viewBox="0 0 24 24"
@@ -1344,6 +1343,46 @@
                     </div>
                 </div>
             </main>
+            <div id="crypto-modal" tabindex="-1" aria-hidden="true" v-if="variantsModel"
+                class="flex items-center justify-center mx-auto my-auto fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto">
+                <div class="relative w-full h-full max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button" @click="closeVariantsModel"
+                            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <!-- Modal header -->
+                        <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                                产品款式
+                            </h3>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6">
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                请选择一个对应款式加入购物车
+                            </p>
+                            <ul class="my-4 space-y-3">
+                                <li v-for="item in variantsList.variants">
+                                    <div @click="addShopCart(variantsList,item.variant_no)"
+                                        class="cursor-pointer  flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                        <img :src="item.thumb_picture" aria-hidden="true" class="h-5" />
+                                        <span class="flex-1 ml-3 whitespace-nowrap">${item.name}</span>
+                                        <span
+                                            class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">${item.remark}</span>
+                                    </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="nc-Footer relative py-20 lg:pt-28 lg:pb-24 border-t border-neutral-200 dark:border-neutral-700">
