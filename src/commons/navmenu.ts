@@ -61,6 +61,8 @@ export function useNavMenu() {
       cartsNumber: 0,
       cartsList: [],
       loading: false,
+      carLoading: false,
+      total_price: 0, // 总价
     }),
     components: {},
     computed: {},
@@ -154,21 +156,33 @@ export function useNavMenu() {
         this.cartShow = false;
       },
       // 获取购物车
-      getShopCarts(loading: boolean) {
-        this.loading = loading;
+      getShopCarts(loading: any) {
+        if (loading === "top") {
+          this.carLoading = true;
+        } else {
+          this.loading = loading;
+        }
         window.$wshop
           .api()
           .get("/api/v1/capi/cart/item")
           .then((res: any) => {
-            if (res !== null && res !== undefined) {
-              this.cartsNumber = res.data.data.length;
-              this.cartsList = res.data.data.length > 0 ? res.data.data : [];
-              localStorage.setItem("cartNum", res.data.data.length);
+            if (res !== null && res !== undefined && res.data.data.items) {
+              this.cartsNumber = res.data.data.items.length;
+              this.cartsList =
+                res.data.data.items.length > 0 ? res.data.data.items : [];
+              this.total_price = res.data.data.total_price;
+              localStorage.setItem("cartNum", res.data.data.items.length);
+            } else {
+              this.cartsList = [];
+              this.total_price = 0;
+              localStorage.setItem("cartNum", this.cartsList.length);
             }
             this.loading = false;
+            this.carLoading = false;
           })
           .catch((err: string) => {
             this.loading = false;
+            this.carLoading = false;
             window.$notify.error(err);
           });
       },
@@ -210,8 +224,8 @@ export function useNavMenu() {
           .patch("/api/v1/capi/cart/item", params)
           .then((res: any) => {
             if (res !== null && res !== undefined) {
-              window.$notify.success("更新购物车成功");
-              // this.getShopCarts();
+              // window.$notify.success("更新购物车成功");
+              this.getShopCarts(true);
             }
           })
           .catch((err: string) => {

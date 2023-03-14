@@ -439,7 +439,7 @@ export function useProductList() {
           .then((res: any) => {
             if (res !== null && res !== undefined) {
               window.$notify.success("添加购物车成功");
-              localStorage.setItem("cartNum", res.data.data);
+              localStorage.setItem("cartNum", res.data.data.items.length);
               variant_no ? this.closeVariantsModel() : "";
             }
           })
