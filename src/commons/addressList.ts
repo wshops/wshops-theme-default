@@ -28,7 +28,7 @@ export function useAddressList() {
         this.loading = true;
         window.$wshop
           .api()
-          .get("/api/v1/capi//address", params)
+          .get("/api/v1/capi/address", params)
           .then((res: any) => {
             if (res !== null && res !== undefined) {
             }
