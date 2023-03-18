@@ -309,7 +309,7 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
     .patch("/api/v1/capi/user/password", formData)
     .then((res) => {
       if (res !== null && res !== undefined) {
-        console.log(res);
+        window.$notify.success("修改成功");
         //has valid response
         // location.assign('/')
       }
