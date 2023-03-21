@@ -1,4 +1,4 @@
-import './style.less'
+import '../../commons/tailwindbase.less'
 import WshopUtils, { FormValidationResult } from '@wshops/utils'
 import { useNotify } from '../../utils/notify'
 
@@ -118,9 +118,11 @@ document.getElementById('login-form')!.addEventListener('submit', (e) => {
     .post('/api/v1/capi/auth/login', formData)
     .then((res) => {
       if (res !== null && res !== undefined) {
-        console.log(res)
-        //has valid response
-        location.assign('/')
+        window.$notify.success('登录成功').then(() => {
+          setTimeout(() => {
+            window.location.assign(res.data.data.redirect)
+          }, 2000)
+        })
       }
     })
     .catch((err) => {

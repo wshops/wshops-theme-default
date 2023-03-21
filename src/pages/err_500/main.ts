@@ -1,1 +1,1 @@
-import './style.less'
+import '../../commons/tailwindbase.less'
