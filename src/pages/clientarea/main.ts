@@ -77,6 +77,7 @@ const wshop: WshopUtils = new WshopUtils({
 useNavMenu();
 
 // 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
+// 手机号弹窗校验
 let c = wshop.vd(true).init([
   {
     element: document.getElementById("mobilePhone")!,
@@ -88,10 +89,29 @@ let c = wshop.vd(true).init([
     ],
   },
 ]);
-
+// 修改密码表单校验
+let password_c = wshop.vd(false).init([
+  {
+    element: document.getElementById("old_password")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "旧密码不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("new_password")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "新密码不能为空",
+      },
+    ],
+  },
+]);
 
 const $targetEl = document.getElementById("modalEl");
-
 const optionsModal: any = {
   placement: "center-center",
   backdrop: "dynamic",
@@ -117,8 +137,7 @@ const optionsModal: any = {
   onShow: () => {},
   onToggle: () => {},
 };
-
-const modalMobile = new Modal($targetEl, optionsModal);
+const modalMobile = new Modal($targetEl, optionsModal); // 修改手机号弹窗
 
 const tabElements: TabItem[] = [
   {
@@ -147,8 +166,6 @@ const tabElements: TabItem[] = [
     targetEl: document.querySelector("#address") as HTMLElement,
   },
 ];
-
-
 const options: TabsOptions = {
   defaultTabId: "settings",
   activeClasses:
@@ -157,13 +174,11 @@ const options: TabsOptions = {
     "text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300",
   onShow: () => {},
 };
-
-
 const tabs: TabsInterface = new Tabs(tabElements, options);
-
 tabs.show("settings");
 
 let codeCheck: any;
+// 手机号验证
 document.getElementById("mobile-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!c.validate().getResult()) {
@@ -213,6 +228,7 @@ document.getElementById("mobile-form")!.addEventListener("submit", (e) => {
     : "";
 });
 
+// 获取验证码
 document.getElementById("code-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!codeCheck.validate().getResult()) {
@@ -235,12 +251,14 @@ document.getElementById("code-form")!.addEventListener("submit", (e) => {
     });
 });
 
+// 确认修改手机号
 document.getElementById("mobile-bt")!.addEventListener("click", () => {
   document.getElementById("mobileContent")!.style.display = "block";
   document.getElementById("codeContent")!.style.display = "none";
   modalMobile.show();
 });
 
+// 关闭手机号验证弹窗
 document.getElementById("mobileModalCloseBt")!.addEventListener("click", () => {
   document.getElementById("mobileContent")!.style.display = "block";
   document.getElementById("codeContent")!.style.display = "none";
@@ -260,6 +278,7 @@ document.getElementById("address-tab")!.addEventListener("click", () => {
   tabs.show("address");
 });
 
+// 展示头像
 document.getElementById("imgUpload")!.addEventListener("mouseover", () => {
   document.getElementById("isShowImgUpload")!.style.display = "block";
 });
@@ -268,4 +287,35 @@ document.getElementById("imgUpload")!.addEventListener("mouseleave", () => {
   document.getElementById("isShowImgUpload")!.style.display = "none";
 });
 
+// 修改密码
+document.getElementById("password-form")!.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!password_c.validate().getResult()) {
+    return;
+  }
+  const formData = wshop.formDataToObject("password-form");
+  // if (
+  //   formData["h-captcha-response"] !== undefined &&
+  //   formData["g-recaptcha-response"] !== undefined
+  // ) {
+  //   formData["captcha"] = formData["h-captcha-response"];
+  //   delete formData["h-captcha-response"];
+  //   delete formData["g-recaptcha-response"];
+  // }
+  formData["old_password"] = wshop.md5(formData["old_password"] as string);
+  formData["new_password"] = wshop.md5(formData["new_password"] as string);
+  wshop
+    .api()
+    .patch("/api/v1/capi/user/password", formData)
+    .then((res) => {
+      if (res !== null && res !== undefined) {
+        window.$notify.success("修改成功");
+        //has valid response
+        // location.assign('/')
+      }
+    })
+    .catch((err) => {
+      window.$notify.error(err);
+    });
+});
 useCollectList();

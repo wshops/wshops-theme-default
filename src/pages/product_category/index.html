@@ -517,8 +517,7 @@
                             <div class="relative">
                                 <button id="headlessui-popover-button-:r6:" aria-expanded="false"
                                     class="cursor-pointer text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
-                                    type="button" :disabled="cartsNumber===0"
-                                    @click.stop="hiddenClick(),cartShow = !cartShow,getShopCarts(false);">
+                                    type="button" @click.stop="hiddenClick(),cartShow = !cartShow,getShopCarts('top');">
                                     <div
                                         class="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
                                         <span class="mt-[1px]">${cartsNumber}</span>
@@ -555,68 +554,89 @@
                                             <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
                                                 <h3 class="text-xl font-semibold">购物车
                                                 </h3>
-                                                <div v-for="item in cartsList"
-                                                    class="divide-y divide-slate-100 dark:divide-slate-700">
-                                                    <div class="flex py-5 last:pb-0">
-                                                        <div
-                                                            class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                                            <img alt="Rey Nylon Backpack"
-                                                                class="h-full w-full object-contain object-center"
-                                                                :src="item.product_thumb_picture_url" />
-                                                            <div class="cursor-pointer absolute inset-0"
-                                                                @click="toProductDetail(item)"></div>
-                                                        </div>
-                                                        <div class="ml-4 flex flex-1 flex-col">
-                                                            <div>
-                                                                <div class="flex justify-between">
-                                                                    <div>
-                                                                        <h3 class="text-base font-medium">
-                                                                            <div class="cursor-pointer"
-                                                                                @click="toProductDetail(item)">
-                                                                                ${item.product_name}</div>
-                                                                        </h3>
-                                                                        <!-- <p
-                                                                            class="mt-1 text-sm text-slate-500 dark:text-slate-400">
-                                                                            <span>${item.name}</span><span
-                                                                                class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"></span><span>XL</span>
-                                                                        </p> -->
-                                                                    </div>
-                                                                    <div class="mt-0.5">
-                                                                        <div
-                                                                            class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
-                                                                            <span
-                                                                                class="text-green-500 !leading-none">$${item.unit_price}</span>
+                                                <div v-if="carLoading" class="flex items-center justify-center "
+                                                    role="status">
+                                                    <svg aria-hidden="true"
+                                                        class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                                                        viewBox="0 0 100 101" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                                            fill="currentColor" />
+                                                        <path
+                                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                                            fill="currentFill" />
+                                                    </svg>
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                                <div v-else>
+                                                    <div class="w-full mt-2 h-24 flex items-center justify-center rounded-xl bg-slate-100"
+                                                        v-if="cartsList.length===0">暂无购物车~~</div>
+                                                    <div v-else v-for="item in cartsList"
+                                                        class="divide-y divide-slate-100 dark:divide-slate-700">
+                                                        <div class="flex py-5 last:pb-0">
+                                                            <div
+                                                                class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                                                <img alt="Rey Nylon Backpack"
+                                                                    class="h-full w-full object-contain object-center"
+                                                                    :src="item.product_thumb_picture_url" />
+                                                                <div class="cursor-pointer absolute inset-0"
+                                                                    @click="toProductDetail(item)"></div>
+                                                            </div>
+                                                            <div class="ml-4 flex flex-1 flex-col">
+                                                                <div>
+                                                                    <div class="flex justify-between">
+                                                                        <div>
+                                                                            <h3 class="text-base font-medium">
+                                                                                <div class="cursor-pointer"
+                                                                                    @click="toProductDetail(item)">
+                                                                                    ${item.product_name}</div>
+                                                                            </h3>
+                                                                            <p
+                                                                                class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                                                                                <span>$${item.unit_price}</span><span
+                                                                                    class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"></span>
+                                                                                <span> x ${item.quantity}</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="mt-0.5">
+                                                                            <div
+                                                                                class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium">
+                                                                                <span
+                                                                                    class="text-green-500 !leading-none">$${item.sub_total}</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="flex flex-1 items-end justify-between text-sm">
-                                                                <p class="text-gray-500 dark:text-slate-400">
-                                                                    ${item.variant_name}
-                                                                </p>
-                                                                <div class="flex">
-                                                                    <button @click="delShopCarts(item)"
-                                                                        class="font-medium text-primary-6000 dark:text-primary-500"
-                                                                        type="button">
-                                                                        移除
-                                                                    </button>
+                                                                <div
+                                                                    class="flex flex-1 items-end justify-between text-sm">
+                                                                    <p class="text-gray-500 dark:text-slate-400">
+                                                                        ${item.variant_name}
+                                                                    </p>
+                                                                    <div class="flex">
+                                                                        <button @click="delShopCarts(item)"
+                                                                            class="font-medium text-primary-6000 dark:text-primary-500"
+                                                                            type="button">
+                                                                            移除
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="bg-neutral-50 dark:bg-slate-900 p-5">
+                                            <div v-if="cartsList.length>0" class="bg-neutral-50 dark:bg-slate-900 p-5">
                                                 <p
                                                     class="flex justify-between font-semibold text-slate-900 dark:text-slate-100">
-                                                    <span><span>总价</span></span><span class="">$299.00</span>
+                                                    <span><span>总价</span></span><span class="">$${total_price}</span>
                                                 </p>
                                                 <div class="flex space-x-2 mt-5">
                                                     <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 flex-1 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                        href="/cart" rel="noopener noreferrer">前往购物车详情
+                                                        href="/cart" rel="noopener noreferrer">进入购物车
                                                     </a><a
                                                         class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                        href="/checkout" rel="noopener noreferrer">前往支付</a>
+                                                        href="/checkout" rel="noopener noreferrer">立即支付</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -749,7 +769,8 @@
                                                 tabindex="-1" v-show="tagShow" @click.stop="">
                                                 <div
                                                     class="overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700">
-                                                    <div class="relative flex flex-col px-5 py-6 space-y-5">
+                                                    <div
+                                                        class="max-h-96 overflow-y-auto  relative flex flex-col px-5 py-6 space-y-5">
                                                         <div v-for="item in productTagList">
                                                             <div class="flex text-sm sm:text-base ">
                                                                 <input :id="'tag_'+item"
@@ -1005,7 +1026,8 @@
                                                         <div class="mt-6 relative ">
                                                             <div class="grid grid-cols-1 gap-x-4 sm:gap-x-8 gap-8">
                                                                 <div class="flex flex-col space-y-5">
-                                                                    <div class="relative flex flex-col  py-6 space-y-5">
+                                                                    <div
+                                                                        class="max-h-96 overflow-y-auto  relative flex flex-col  py-6 space-y-5">
                                                                         <div v-for="item in productTagList">
                                                                             <div class="flex text-sm sm:text-base ">
                                                                                 <input :id="'tag_'+item"
@@ -1207,54 +1229,25 @@
                                                         Out</span>
                                                 </div>
                                                 <!-- <button v-if="item.favorites>0"
-                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
-                                                        class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                            stroke="#ef4444" fill="#ef4444" stroke-width="1.5"
-                                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg></button>
-                                                <button v-else
-                                                    class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
-                                                        class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                            stroke="currentColor" fill="none" stroke-width="1.5"
-                                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg></button> -->
-                                                <!-- <div
-                                                class="absolute bottom-0 group-hover:bottom-4 inset-x-1 flex justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                                                <button
-                                                    class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-xs py-3 px-8 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                                                    <svg class="w-3.5 h-3.5 mb-0.5" viewBox="0 0 9 9" fill="none">
-                                                        <path
-                                                            d="M2.99997 4.125C3.20708 4.125 3.37497 4.29289 3.37497 4.5C3.37497 5.12132 3.87865 5.625 4.49997 5.625C5.12129 5.625 5.62497 5.12132 5.62497 4.5C5.62497 4.29289 5.79286 4.125 5.99997 4.125C6.20708 4.125 6.37497 4.29289 6.37497 4.5C6.37497 5.53553 5.5355 6.375 4.49997 6.375C3.46444 6.375 2.62497 5.53553 2.62497 4.5C2.62497 4.29289 2.79286 4.125 2.99997 4.125Z"
-                                                            fill="currentColor"></path>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                            d="M6.37497 2.625H7.17663C7.76685 2.625 8.25672 3.08113 8.29877 3.66985L8.50924 6.61641C8.58677 7.70179 7.72715 8.625 6.63901 8.625H2.36094C1.2728 8.625 0.413174 7.70179 0.490701 6.61641L0.70117 3.66985C0.743222 3.08113 1.23309 2.625 1.82331 2.625H2.62497L2.62497 2.25C2.62497 1.21447 3.46444 0.375 4.49997 0.375C5.5355 0.375 6.37497 1.21447 6.37497 2.25V2.625ZM3.37497 2.625H5.62497V2.25C5.62497 1.62868 5.12129 1.125 4.49997 1.125C3.87865 1.125 3.37497 1.62868 3.37497 2.25L3.37497 2.625ZM1.82331 3.375C1.62657 3.375 1.46328 3.52704 1.44926 3.72328L1.2388 6.66985C1.19228 7.32107 1.70805 7.875 2.36094 7.875H6.63901C7.29189 7.875 7.80766 7.32107 7.76115 6.66985L7.55068 3.72328C7.53666 3.52704 7.37337 3.375 7.17663 3.375H1.82331Z"
-                                                            fill="currentColor"></path>
-                                                    </svg><span class="ml-1">加入购车车</span></button>
-                                            </div> -->
-                                            </div>
-                                            <div class="space-y-4 px-2.5 pt-5 pb-2.5 m-2">
-                                                <div class="flex justify-between">
-                                                    <div class="h-12">
-                                                        <span @click="toProductDetail(item)"
-                                                            class="text-2xl font-bold cursor-pointer">
-                                                            ${ item['product_name'] }
-                                                        </span>
-                                                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                                                            ${item['seo_description']}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="flex justify-between items-end">
-                                                    <span
-                                                        class="truncate w-32 text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
-                                                    <button v-if="item.inventory_amount>0"
-                                                        @click="isShowVariantModal(item)"
-                                                        class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-600 hover:shadow-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                        href="/src/pages/cart/index.html">
+                                                class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
+                                                    class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
+                                                        stroke="#ef4444" fill="#ef4444" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg></button>
+                                            <button v-else
+                                                class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
+                                                    class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
+                                                        stroke="currentColor" fill="none" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </svg></button> -->
+                                                <div v-if="item.inventory_amount>0"
+                                                    class="absolute bottom-0 group-hover:bottom-4 inset-x-1 flex justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                                                    <button @click="isShowVariantModal(item)"
+                                                        class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-xs py-3 px-8 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
                                                         <svg class="w-6 h-6 pr-1" fill="none" viewBox="0 0 24 24"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <path
@@ -1279,36 +1272,81 @@
                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-miterlimit="10" stroke-width="1.5">
                                                             </path>
-                                                        </svg>加入购物车
-                                                    </button>
+                                                        </svg><span class="ml-1">加入购物车</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="space-y-4 px-2.5 pt-5 pb-2.5 m-2">
+                                                <div class="flex justify-between">
+                                                    <div class="h-12">
+                                                        <span @click="toProductDetail(item)"
+                                                            class="text-2xl font-bold cursor-pointer">
+                                                            ${ item['product_name'] }
+                                                        </span>
+                                                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                                                            ${item['seo_description']}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-between items-end">
+                                                    <span
+                                                        class="text-2xl font-bold text-gray-900 dark:text-white">￥${(item['sell_price'])}</span>
+                                                    <!-- <button v-if="item.inventory_amount>0"
+                                                    @click="isShowVariantModal(item)"
+                                                    class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-600 hover:shadow-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    <svg class="w-6 h-6 pr-1" fill="none" viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path
+                                                            d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path
+                                                            d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path d="M9 8H21" stroke="currentColor"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-miterlimit="10" stroke-width="1.5">
+                                                        </path>
+                                                    </svg>加入购物车
+                                                </button>
 
-                                                    <button v-else type="button"
-                                                        class="flex items-center mt-2  text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                                        disabled> <svg class="w-6 h-6 pr-1" fill="none"
-                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                                                stroke="currentColor" stroke-linecap="round"
-                                                                stroke-linejoin="round" stroke-miterlimit="10"
-                                                                stroke-width="1.5">
-                                                            </path>
-                                                            <path
-                                                                d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                                                stroke="currentColor" stroke-linecap="round"
-                                                                stroke-linejoin="round" stroke-miterlimit="10"
-                                                                stroke-width="1.5">
-                                                            </path>
-                                                            <path
-                                                                d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                                                stroke="currentColor" stroke-linecap="round"
-                                                                stroke-linejoin="round" stroke-miterlimit="10"
-                                                                stroke-width="1.5">
-                                                            </path>
-                                                            <path d="M9 8H21" stroke="currentColor"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-miterlimit="10" stroke-width="1.5">
-                                                            </path>
-                                                        </svg>加入购物车</button>
+                                                <button v-else type="button"
+                                                    class="flex items-center mt-2  text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                                    disabled> <svg class="w-6 h-6 pr-1" fill="none"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path
+                                                            d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path
+                                                            d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
+                                                            stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-miterlimit="10"
+                                                            stroke-width="1.5">
+                                                        </path>
+                                                        <path d="M9 8H21" stroke="currentColor"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-miterlimit="10" stroke-width="1.5">
+                                                        </path>
+                                                    </svg>加入购物车</button> -->
 
                                                 </div>
                                             </div>
