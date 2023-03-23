@@ -1,33 +1,33 @@
 // 所有样式都在这个文件，包括引入 tailwindcss
-import "./style.less";
-import WshopUtils from "@wshops/utils";
-import { useNotify } from "../../utils/notify";
-import { useNavMenu } from "../../commons/navmenu";
+import './style.less'
+import WshopUtils from '@wshops/utils'
+import { useNotify } from '../../utils/notify'
+import { useNavMenu } from '../../commons/navmenu'
 
 useNotify({
-  position: "top-right",
-});
+  position: 'top-right',
+})
 
-const wshop: WshopUtils = new WshopUtils({
+new WshopUtils({
   feedbacks: {
     apiFeedbacks: {
       onError: (message: string): void => {
-        window.$notify.closable().error(message);
+        window.$notify.closable().error(message)
       },
       onInfo: (message: string): void => {
-        window.$notify.closable().info(message);
+        window.$notify.closable().info(message)
       },
       onWarning: (message: string): void => {
-        window.$notify.closable().warn(message);
+        window.$notify.closable().warn(message)
       },
       onUnAuthorized: (): void => {
-        window.location.assign("/auth/register");
+        window.location.assign('/auth/register')
       },
       onSuccess: (message: string): void => {
-        window.$notify.closable().success(message);
+        window.$notify.closable().success(message)
       },
     },
   },
-});
+})
 
-useNavMenu();
+useNavMenu()
