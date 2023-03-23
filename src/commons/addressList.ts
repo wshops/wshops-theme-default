@@ -6,7 +6,7 @@ const modalOptions: any = {
   backdrop: "dynamic",
   backdropClasses:
     "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
-  closable: true,
+  closable: false,
   onHide: () => {},
   onShow: () => {},
   onToggle: () => {},
@@ -26,8 +26,7 @@ document
 const addressModel = new Modal($modalElement, modalOptions); // 款式弹窗
 addressModel.hide();
 
-
-export function useAddressList() {
+export function useAddressList(address_c: any) {
   createApp({
     compilerOptions: {
       delimiters: ["${", "}"],
@@ -102,7 +101,7 @@ export function useAddressList() {
       },
       // 获取收藏列表
       refreshAddressList() {
-        this.closeAddressModel()
+        this.closeAddressModel();
         let params = {
           current_page: 1,
           page_size: this.pageSize,
@@ -155,7 +154,7 @@ export function useAddressList() {
       showAddressModal(item: any) {
         if (item) {
           this.addressItemList = item;
-          window.addressId=this.addressItemList.id
+          window.addressId = this.addressItemList.id;
           addressModel.show();
           this.addressModel = true;
           setTimeout(() => {
@@ -177,6 +176,7 @@ export function useAddressList() {
             (
               document.getElementById("address-title") as HTMLBaseElement
             ).innerHTML = "编辑地址";
+            address_c.validate().getResult();
           }, 5);
         } else {
           this.addressItemList = {

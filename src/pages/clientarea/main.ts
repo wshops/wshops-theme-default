@@ -418,4 +418,4 @@ document.getElementById("address-form")!.addEventListener("submit", (e) => {
 useCollectList();
 
 // 地址列表
-useAddressList();
+useAddressList(address_c);
