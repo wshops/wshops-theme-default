@@ -5,6 +5,8 @@ import WshopUtils, { FormValidationResult } from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
 import { useNavMenu } from "../../commons/navmenu";
 import { useCollectList } from "../../commons/collectList";
+import { useAddressList } from "../../commons/addressList";
+
 useNotify({
   position: "top-right",
 });
@@ -78,7 +80,7 @@ useNavMenu();
 
 // 初始化验证器实例并定义表单验证规则（如果开启 async 模式则声明完规则自动开始校验每一次的输入）
 // 手机号弹窗校验
-let c = wshop.vd(true).init([
+let c = wshop.newFormValidation().init([
   {
     element: document.getElementById("mobilePhone")!,
     rules: [
@@ -90,7 +92,7 @@ let c = wshop.vd(true).init([
   },
 ]);
 // 修改密码表单校验
-let password_c = wshop.vd(false).init([
+let password_c = wshop.newFormValidation().init([
   {
     element: document.getElementById("old_password")!,
     rules: [
@@ -106,6 +108,56 @@ let password_c = wshop.vd(false).init([
       {
         validatorName: "required",
         invalidMessage: "新密码不能为空",
+      },
+    ],
+  },
+]);
+
+// 修改密码表单校验
+let address_c = wshop.newFormValidation().init([
+  {
+    element: document.getElementById("full_name")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "顾客名称不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("mobile_country_code")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "国家号不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("mobile_number")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "手机号码不能为空",
+      },
+    ],
+  },
+
+  {
+    element: document.getElementById("country")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "国家不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("full_address")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "收货不能为空",
       },
     ],
   },
@@ -265,6 +317,7 @@ document.getElementById("mobileModalCloseBt")!.addEventListener("click", () => {
   modalMobile.hide();
 });
 
+// tab页面切换
 document.getElementById("collect-tab")!.addEventListener("click", () => {
   tabs.show("collect");
 });
@@ -278,7 +331,7 @@ document.getElementById("address-tab")!.addEventListener("click", () => {
   tabs.show("address");
 });
 
-// 展示头像
+// 展示隐藏头像
 document.getElementById("imgUpload")!.addEventListener("mouseover", () => {
   document.getElementById("isShowImgUpload")!.style.display = "block";
 });
@@ -310,12 +363,59 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
     .then((res) => {
       if (res !== null && res !== undefined) {
         window.$notify.success("修改成功");
-        //has valid response
-        // location.assign('/')
+        (document.getElementById("old_password") as HTMLInputElement).value =
+          "";
+        (document.getElementById("new_password") as HTMLInputElement).value =
+          "";
       }
     })
     .catch((err) => {
       window.$notify.error(err);
     });
 });
+
+document.getElementById("address-form")!.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (!address_c.validate().getResult()) {
+    return;
+  }
+  const formData = wshop.formDataToObject("address-form");
+  console.log(formData);
+  if (
+    (document.getElementById("address-title") as HTMLBaseElement).innerHTML ===
+    "新增地址"
+  ) {
+    window.$wshop
+      .api()
+      .post("/api/v1/capi/address", formData)
+      .then((res: any) => {
+        if (res !== null && res !== undefined) {
+          window.$notify.success("新增地址成功");
+          window.refreshAddressList();
+        }
+      })
+      .catch((err: string) => {
+        window.$notify.error(err);
+      });
+  } else {
+    formData.id = window.addressId;
+    window.$wshop
+      .api()
+      .patch("/api/v1/capi/address/" + formData.id, formData)
+      .then((res: any) => {
+        if (res !== null && res !== undefined) {
+          window.$notify.success("修改地址成功");
+          window.refreshAddressList();
+        }
+      })
+      .catch((err: string) => {
+        window.$notify.error(err);
+      });
+  }
+});
+
+// 收藏列表
 useCollectList();
+
+// 地址列表
+useAddressList();

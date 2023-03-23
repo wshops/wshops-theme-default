@@ -10,5 +10,7 @@ declare global {
     $notify: Notify;
 
     $wshop: WshopUtils;
+    refreshAddressList: Function;
+    addressId: "";
   }
 }

@@ -225,7 +225,7 @@ export function useNavMenu() {
           .then((res: any) => {
             if (res !== null && res !== undefined) {
               // window.$notify.success("更新购物车成功");
-              this.getShopCarts(true);
+              this.getShopCarts(false);
             }
           })
           .catch((err: string) => {
