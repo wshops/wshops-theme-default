@@ -380,6 +380,7 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
 // 更新用户
 document.getElementById("userInfo-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
+  getUserInfo()
 });
 
 // 更新地址
@@ -413,34 +414,42 @@ document.getElementById("address-form")!.addEventListener("submit", (e) => {
 
 // 获取用户信息
 function getUserInfo() {
+  document.getElementById("user-loading")!.style.display = "block";
+  document.getElementById("user-info-content")!.style.display = "none";
   window.$wshop
     .api()
     .get("/api/v1/capi/user")
     .then((res: any) => {
       if (res !== null && res !== undefined) {
+        document.getElementById("user-loading")!.style.display = "none";
+        document.getElementById("user-info-content")!.style.display = "block";
         let userInfo = res.data.data;
+        (document.getElementById("mobilePhone") as HTMLInputElement).value =
+          userInfo.mobile ? userInfo.mobile : "暂无手机号";
         (document.getElementById("username") as HTMLInputElement).value =
           userInfo.username;
         (document.getElementById("avatar_url") as HTMLInputElement).src =
           userInfo.avatar_url;
         (document.getElementById("email") as HTMLInputElement).value =
-          userInfo.email;
-        (
-          document.getElementById("gender") as HTMLInputElement
-        ).value = userInfo.gender;
+          userInfo.email ? userInfo.email : "暂无邮箱";
+        (document.getElementById("gender") as HTMLInputElement).value =
+          userInfo.gender;
         (document.getElementById("birthday") as HTMLInputElement).value =
-          userInfo.birthday;
+          userInfo.birthday > 0 ? userInfo.birthday : "1990-01-01";
         (document.getElementById("billing_address") as HTMLInputElement).value =
           userInfo.billing_address;
       }
     })
     .catch((err: string) => {
+      document.getElementById("user-loading")!.style.display = "none";
+      document.getElementById("user-info-content")!.style.display = "block";
       window.$notify.error(err);
     });
 }
 
 // 获取用户信息
 getUserInfo();
+
 // 收藏列表
 useCollectList();
 
