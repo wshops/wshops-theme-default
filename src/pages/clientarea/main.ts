@@ -380,7 +380,7 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
 // 更新用户
 document.getElementById("userInfo-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
-  getUserInfo()
+  getUserInfo();
 });
 
 // 更新地址
@@ -444,6 +444,10 @@ function getUserInfo() {
       document.getElementById("user-loading")!.style.display = "none";
       document.getElementById("user-info-content")!.style.display = "block";
       window.$notify.error(err);
+    })
+    .finally(() => {
+      document.getElementById("user-loading")!.style.display = "none";
+      document.getElementById("user-info-content")!.style.display = "block";
     });
 }
 
