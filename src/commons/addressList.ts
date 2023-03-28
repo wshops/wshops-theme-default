@@ -24,9 +24,8 @@ document
     addressModel.hide();
   });
 const addressModel = new Modal($modalElement, modalOptions); // 款式弹窗
-addressModel.hide();
 
-export function useAddressList(address_c: any) {
+export function useAddressList(address_c:any) {
   createApp({
     compilerOptions: {
       delimiters: ["${", "}"],
@@ -102,6 +101,7 @@ export function useAddressList(address_c: any) {
       // 获取收藏列表
       refreshAddressList() {
         this.closeAddressModel();
+        this.page = 1;
         let params = {
           current_page: 1,
           page_size: this.pageSize,
@@ -176,8 +176,8 @@ export function useAddressList(address_c: any) {
             (
               document.getElementById("address-title") as HTMLBaseElement
             ).innerHTML = "编辑地址";
-            address_c.validate().getResult();
-          }, 5);
+            address_c.validate();
+          }, 10);
         } else {
           this.addressItemList = {
             full_name: "",

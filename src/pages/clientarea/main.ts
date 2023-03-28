@@ -113,7 +113,7 @@ let password_c = wshop.newFormValidation().init([
   },
 ]);
 
-// 修改地址表单校验
+// 修改地址信息表单校验
 let address_c = wshop.newFormValidation().init([
   {
     element: document.getElementById("full_name")!,
@@ -121,15 +121,6 @@ let address_c = wshop.newFormValidation().init([
       {
         validatorName: "required",
         invalidMessage: "顾客名称不能为空",
-      },
-    ],
-  },
-  {
-    element: document.getElementById("mobile_country_code")!,
-    rules: [
-      {
-        validatorName: "required",
-        invalidMessage: "国家号不能为空",
       },
     ],
   },
@@ -142,22 +133,61 @@ let address_c = wshop.newFormValidation().init([
       },
     ],
   },
-
-  {
-    element: document.getElementById("country")!,
-    rules: [
-      {
-        validatorName: "required",
-        invalidMessage: "国家不能为空",
-      },
-    ],
-  },
   {
     element: document.getElementById("full_address")!,
     rules: [
       {
         validatorName: "required",
-        invalidMessage: "收货不能为空",
+        invalidMessage: "收货地址不能为空",
+      },
+    ],
+  },
+  // {
+  //   element: document.getElementById("mobile_country_code")!,
+  //   rules: [
+  //     {
+  //       validatorName: "required",
+  //       invalidMessage: "国家号不能为空",
+  //     },
+  //   ],
+  // },
+  // {
+  //   element: document.getElementById("country")!,
+  //   rules: [
+  //     {
+  //       validatorName: "required",
+  //       invalidMessage: "国家不能为空",
+  //     },
+  //   ],
+  // },
+]);
+
+// 修改用户信息表单验证
+let userInfo_c = wshop.newFormValidation().init([
+  {
+    element: document.getElementById("username")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "用户名称不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("birthday")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "出生日期不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("billing_address")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "地址不能为空",
       },
     ],
   },
@@ -380,7 +410,27 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
 // 更新用户
 document.getElementById("userInfo-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
-  getUserInfo();
+  if (!userInfo_c.validate().getResult()) {
+    return;
+  }
+  const formData = wshop.formDataToObject("userInfo-form");
+  formData.birthday = dayjs(formData.birthday).valueOf();
+  formData.nick_name = "admin";
+  formData.real_name = "admin";
+  formData.avatar_url =
+    "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg";
+  wshop
+    .api()
+    .patch("/api/v1/capi/user", formData)
+    .then((res) => {
+      if (res !== null && res !== undefined) {
+        window.$notify.success("修改成功");
+        getUserInfo();
+      }
+    })
+    .catch((err) => {
+      window.$notify.error(err);
+    });
 });
 
 // 更新地址
@@ -395,6 +445,18 @@ document.getElementById("address-form")!.addEventListener("submit", (e) => {
     (document.getElementById("address-title") as HTMLBaseElement).innerHTML ===
     "新增地址"
   ) {
+    window.$wshop
+      .api()
+      .post("/api/v1/capi/address", formData)
+      .then((res: any) => {
+        if (res !== null && res !== undefined) {
+          window.$notify.success("新增地址成功");
+          window.refreshAddressList();
+        }
+      })
+      .catch((err: string) => {
+        window.$notify.error(err);
+      });
   } else {
     formData.id = window.addressId;
     window.$wshop
@@ -425,17 +487,19 @@ function getUserInfo() {
         document.getElementById("user-info-content")!.style.display = "block";
         let userInfo = res.data.data;
         (document.getElementById("mobilePhone") as HTMLInputElement).value =
-          userInfo.mobile ? userInfo.mobile : "暂无手机号";
+          userInfo.mobile ? userInfo.mobile : "";
         (document.getElementById("username") as HTMLInputElement).value =
           userInfo.username;
         (document.getElementById("avatar_url") as HTMLInputElement).src =
           userInfo.avatar_url;
         (document.getElementById("email") as HTMLInputElement).value =
-          userInfo.email ? userInfo.email : "暂无邮箱";
+          userInfo.email ? userInfo.email : "";
         (document.getElementById("gender") as HTMLInputElement).value =
           userInfo.gender;
         (document.getElementById("birthday") as HTMLInputElement).value =
-          userInfo.birthday > 0 ? userInfo.birthday : "1990-01-01";
+          userInfo.birthday && userInfo.birthday > 0
+            ? dayjs(userInfo.birthday).format("YYYY-MM-DD")
+            : "1990-01-01"; // todo
         (document.getElementById("billing_address") as HTMLInputElement).value =
           userInfo.billing_address;
       }
