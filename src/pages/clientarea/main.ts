@@ -133,15 +133,15 @@ let address_c = wshop.newFormValidation().init([
       },
     ],
   },
-  {
-    element: document.getElementById("full_address")!,
-    rules: [
-      {
-        validatorName: "required",
-        invalidMessage: "收货地址不能为空",
-      },
-    ],
-  },
+  // {
+  //   element: document.getElementById("full_address")!,
+  //   rules: [
+  //     {
+  //       validatorName: "required",
+  //       invalidMessage: "收货地址不能为空",
+  //     },
+  //   ],
+  // },
   // {
   //   element: document.getElementById("mobile_country_code")!,
   //   rules: [
