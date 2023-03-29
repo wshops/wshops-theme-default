@@ -165,11 +165,20 @@ let address_c = wshop.newFormValidation().init([
 // 修改用户信息表单验证
 let userInfo_c = wshop.newFormValidation().init([
   {
-    element: document.getElementById("username")!,
+    element: document.getElementById("nick_name")!,
     rules: [
       {
         validatorName: "required",
-        invalidMessage: "用户名称不能为空",
+        invalidMessage: "昵称不能为空",
+      },
+    ],
+  },
+  {
+    element: document.getElementById("real_name")!,
+    rules: [
+      {
+        validatorName: "required",
+        invalidMessage: "真实姓名不能为空",
       },
     ],
   },
@@ -365,8 +374,11 @@ document.getElementById("address-tab")!.addEventListener("click", () => {
 });
 
 // 展示隐藏头像
-document.getElementById("imgUpload")!.addEventListener("mouseover", () => {
-  document.getElementById("isShowImgUpload")!.style.display = "block";
+document.getElementById("imgUpload")!.addEventListener("mouseenter", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "flex";
+});
+document.getElementById("imgUpload")!.addEventListener("click", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "none";
 });
 
 document.getElementById("imgUpload")!.addEventListener("mouseleave", () => {
@@ -415,10 +427,9 @@ document.getElementById("userInfo-form")!.addEventListener("submit", (e) => {
   }
   const formData = wshop.formDataToObject("userInfo-form");
   formData.birthday = dayjs(formData.birthday).valueOf();
-  formData.nick_name = "admin";
-  formData.real_name = "admin";
-  formData.avatar_url =
-    "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg";
+  formData.avatar_url = (
+    document.getElementById("avatar_url") as HTMLInputElement
+  ).src;
   wshop
     .api()
     .patch("/api/v1/capi/user", formData)
@@ -488,8 +499,10 @@ function getUserInfo() {
         let userInfo = res.data.data;
         (document.getElementById("mobilePhone") as HTMLInputElement).value =
           userInfo.mobile ? userInfo.mobile : "";
-        (document.getElementById("username") as HTMLInputElement).value =
-          userInfo.username;
+        (document.getElementById("nick_name") as HTMLInputElement).value =
+          userInfo.nick_name;
+        (document.getElementById("real_name") as HTMLInputElement).value =
+          userInfo.real_name;
         (document.getElementById("avatar_url") as HTMLInputElement).src =
           userInfo.avatar_url;
         (document.getElementById("email") as HTMLInputElement).value =
@@ -523,3 +536,83 @@ useCollectList();
 
 // 地址列表
 useAddressList(address_c);
+
+/*
+ * 注册上传插件
+ */
+FilePond.registerPlugin(
+  FilePondPluginFileValidateSize, // 文件大小限制
+  FilePondPluginFileValidateType
+);
+
+FilePond.setOptions({
+  server: {
+    process: (
+      fieldName,
+      file: any,
+      metadata,
+      load,
+      error,
+      progress,
+      abort,
+      transfer,
+      options
+    ) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      const request = new XMLHttpRequest();
+      request.open("POST", "/api/v1/capi/file/upload/single");
+      request.upload.onprogress = () => {};
+      request.onload = function () {
+        if (request.status >= 200 && request.status < 300) {
+          (document.getElementById("avatar_url") as HTMLInputElement).src =
+            JSON.parse(request.response).data.url;
+        } else {
+          window.$notify.error("头像上传失败");
+        }
+        pond.removeFile();
+        document.getElementById("img-loading")!.style.display = "none";
+        document.getElementById("imgUpload")!.style.display = "flex";
+      };
+      request.send(formData);
+      return {
+        abort: () => {
+          request.abort();
+          abort();
+        },
+      };
+    },
+  },
+
+  // 自定义上传按钮的提示文字
+  labelIdle: '<span class="filepond--label-action">上传文件</span>',
+});
+
+const pond = FilePond.create(document.getElementById("ImgAvatar_url"), {
+  allowFileSizeValidation: true, // 启用文件大小限制
+  maxFileSize: "5MB", // 单个文件大小限制
+  maxTotalFileSize: "5MB", // 所有文件的总大小限制
+  labelMaxFileSize: "最大的文件大小为5MB",
+  imagePreviewHeight: 40,
+  imageCropAspectRatio: "1:1",
+  imageResizeTargetWidth: 100,
+  imageResizeTargetHeight: 100,
+  stylePanelLayout: "compact circle",
+  styleLoadIndicatorPosition: "center bottom",
+  styleProgressIndicatorPosition: "right bottom",
+  styleButtonRemoveItemPosition: "left bottom",
+  styleButtonProcessItemPosition: "right bottom",
+});
+
+const pondEvent = document.querySelector(".filepond--root")!;
+
+// listen for events
+pondEvent.addEventListener("FilePond:initfile", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "none";
+  document.getElementById("imgUpload")!.style.display = "none";
+  document.getElementById("img-loading")!.style.display = "flex";
+});
+
+pondEvent.addEventListener("FilePond:removefile", () => {
+  document.getElementById("isShowImgUpload")!.style.display = "none";
+});
