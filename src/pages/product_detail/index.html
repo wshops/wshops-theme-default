@@ -650,8 +650,7 @@
         </div>
         <div id="product_detail" class="py-0 lg:pt-0 space-y-16 lg:space-y-28">
             <div v-if="loading" class="flex h-96 items-center justify-center " role="status">
-                <svg aria-hidden="true"
-                    class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -669,25 +668,24 @@
                             <div class="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-6 bg-gray-200 rounded-lg">
                                 <div class="relative">
                                     <!-- Carousel wrapper -->
-                                    <div
-                                        class="relative h-56 overflow-hidden rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                                    <div class="relative h-56 overflow-hidden rounded-lg sm:h-64 xl:h-80 2xl:h-96">
                                         <!-- Item 1 -->
                                         <div id="carousel-item-1"
                                             class="duration-300 flex justify-center animate-out slide-in-from-right-500">
                                             <span
-                                                class="absolute flex justify-center items-center top-28 text-2xl font-semibold text-white sm:text-3xl dark:text-gray-800"><svg aria-hidden="true"
-                                                class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                                    fill="currentColor" />
-                                                <path
-                                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                                    fill="currentFill" />
-                                            </svg></span>
-                                            <img :src="imgArr[index]"
-                                                class="absolute block h-full"
-                                                alt="...">
+                                                class="absolute flex justify-center items-center top-28 text-2xl font-semibold text-white sm:text-3xl dark:text-gray-800"><svg
+                                                    aria-hidden="true"
+                                                    class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                                                    viewBox="0 0 100 101" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                                        fill="currentColor" />
+                                                    <path
+                                                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                                        fill="currentFill" />
+                                                </svg></span>
+                                            <img :src="imgArr[index]" class="absolute block h-full" alt="...">
                                         </div>
                                     </div>
                                     <!-- Slider indicators -->
@@ -706,8 +704,8 @@
                                         class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                                         <span
                                             class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white dark:bg-gray-800/30 group-hover:bg-primary-500 dark:group-hover:bg-gray-800/60  group-focus:bg-primary-500 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                            <svg class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24"
+                                            <svg class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M15 19l-7-7 7-7"></path>
@@ -719,8 +717,8 @@
                                         class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none">
                                         <span
                                             class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white dark:bg-gray-800/30 group-hover:bg-primary-500 dark:group-hover:bg-gray-800/60  group-focus:bg-primary-500 dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                            <svg class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24"
+                                            <svg class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M9 5l7 7-7 7"></path>
@@ -868,7 +866,8 @@
                                                                     <div v-for="item in productDetail.variants"
                                                                         class="relative h-10 sm:h-11 rounded-2xl border flex items-center justify-center 
                                                                         text-sm sm:text-base uppercase font-semibold select-none overflow-hidden z-0 cursor-pointer border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 hover:bg-neutral-50 dark:hover:bg-neutral-700">
-                                                                        <div class="mr-2"><img class="w-8 h-8" :src="item.thumb_picture">
+                                                                        <div class="mr-2"><img class="w-8 h-8"
+                                                                                :src="item.thumb_picture">
                                                                         </div>${item.name}
                                                                     </div>
                                                                 </div>
@@ -883,9 +882,9 @@
                                                             class="nc-NcInputNumber flex items-center justify-between space-x-5 w-full">
                                                             <div
                                                                 class="nc-NcInputNumber__content flex items-center justify-between w-[104px] sm:w-28">
-                                                                <button
+                                                                <button @click="itemNum=itemNum-1"
                                                                     class="w-8 h-8 rounded-full flex items-center justify-center border border-neutral-400 dark:border-neutral-500 bg-white dark:bg-neutral-900 focus:outline-none hover:border-neutral-700 dark:hover:border-neutral-400 disabled:hover:border-neutral-400 dark:disabled:hover:border-neutral-500 disabled:opacity-50 disabled:cursor-default"
-                                                                    type="button" disabled=""><svg
+                                                                    type="button" :disabled="itemNum===1"><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         viewBox="0 0 24 24" fill="currentColor"
                                                                         aria-hidden="true" class="w-4 h-4">
@@ -893,7 +892,8 @@
                                                                             d="M3.75 12a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75z"
                                                                             clip-rule="evenodd"></path>
                                                                     </svg></button><span
-                                                                    class="select-none block flex-1 text-center leading-none">1</span><button
+                                                                    class="select-none block flex-1 text-center leading-none">${itemNum}</span><button
+                                                                    @click="itemNum=itemNum+1"
                                                                     class="w-8 h-8 rounded-full flex items-center justify-center border border-neutral-400 dark:border-neutral-500 bg-white dark:bg-neutral-900 focus:outline-none hover:border-neutral-700 dark:hover:border-neutral-400 disabled:hover:border-neutral-400 dark:disabled:hover:border-neutral-500 disabled:opacity-50 disabled:cursor-default"
                                                                     type="button"><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
@@ -905,7 +905,8 @@
                                                                     </svg></button>
                                                             </div>
                                                         </div>
-                                                    </div><button @click="addShopCart"
+                                                    </div><button @click="isShowVariantModal(productDetail)"
+                                                        v-if="productDetail.inventory_amount>0"
                                                         class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"><svg
                                                             class="hidden sm:inline-block w-5 h-5 mb-0.5"
                                                             viewBox="0 0 9 9" fill="none">
@@ -916,6 +917,17 @@
                                                                 d="M6.37497 2.625H7.17663C7.76685 2.625 8.25672 3.08113 8.29877 3.66985L8.50924 6.61641C8.58677 7.70179 7.72715 8.625 6.63901 8.625H2.36094C1.2728 8.625 0.413174 7.70179 0.490701 6.61641L0.70117 3.66985C0.743222 3.08113 1.23309 2.625 1.82331 2.625H2.62497L2.62497 2.25C2.62497 1.21447 3.46444 0.375 4.49997 0.375C5.5355 0.375 6.37497 1.21447 6.37497 2.25V2.625ZM3.37497 2.625H5.62497V2.25C5.62497 1.62868 5.12129 1.125 4.49997 1.125C3.87865 1.125 3.37497 1.62868 3.37497 2.25L3.37497 2.625ZM1.82331 3.375C1.62657 3.375 1.46328 3.52704 1.44926 3.72328L1.2388 6.66985C1.19228 7.32107 1.70805 7.875 2.36094 7.875H6.63901C7.29189 7.875 7.80766 7.32107 7.76115 6.66985L7.55068 3.72328C7.53666 3.52704 7.37337 3.375 7.17663 3.375H1.82331Z"
                                                                 fill="currentColor"></path>
                                                         </svg><span class="ml-3">加入购车车</span></button>
+                                                    <button v-else type="button"
+                                                        class="text-white shadow-xl flex-1 flex-shrink-0 relative bg-blue-400 dark:bg-blue-500 cursor-not-allowed h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                                                        disabled><svg class="hidden sm:inline-block w-5 h-5 mb-0.5"
+                                                            viewBox="0 0 9 9" fill="none">
+                                                            <path
+                                                                d="M2.99997 4.125C3.20708 4.125 3.37497 4.29289 3.37497 4.5C3.37497 5.12132 3.87865 5.625 4.49997 5.625C5.12129 5.625 5.62497 5.12132 5.62497 4.5C5.62497 4.29289 5.79286 4.125 5.99997 4.125C6.20708 4.125 6.37497 4.29289 6.37497 4.5C6.37497 5.53553 5.5355 6.375 4.49997 6.375C3.46444 6.375 2.62497 5.53553 2.62497 4.5C2.62497 4.29289 2.79286 4.125 2.99997 4.125Z"
+                                                                fill="currentColor"></path>
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M6.37497 2.625H7.17663C7.76685 2.625 8.25672 3.08113 8.29877 3.66985L8.50924 6.61641C8.58677 7.70179 7.72715 8.625 6.63901 8.625H2.36094C1.2728 8.625 0.413174 7.70179 0.490701 6.61641L0.70117 3.66985C0.743222 3.08113 1.23309 2.625 1.82331 2.625H2.62497L2.62497 2.25C2.62497 1.21447 3.46444 0.375 4.49997 0.375C5.5355 0.375 6.37497 1.21447 6.37497 2.25V2.625ZM3.37497 2.625H5.62497V2.25C5.62497 1.62868 5.12129 1.125 4.49997 1.125C3.87865 1.125 3.37497 1.62868 3.37497 2.25L3.37497 2.625ZM1.82331 3.375C1.62657 3.375 1.46328 3.52704 1.44926 3.72328L1.2388 6.66985C1.19228 7.32107 1.70805 7.875 2.36094 7.875H6.63901C7.29189 7.875 7.80766 7.32107 7.76115 6.66985L7.55068 3.72328C7.53666 3.52704 7.37337 3.375 7.17663 3.375H1.82331Z"
+                                                                fill="currentColor"></path>
+                                                        </svg>加入购物车</button>
                                                 </div>
                                                 <div class="hidden sm:flex flex-col space-y-4 ">
                                                     <div class="space-y-2.5">
@@ -1064,7 +1076,7 @@
                                                 <div class="grid grid-cols-2 gap-2 mt-3">
                                                     <div v-for="item in productDetail.variants"
                                                         class="relative h-10 sm:h-11 rounded-2xl border flex items-center justify-center 
-                                                        text-sm sm:text-base uppercase font-semibold select-none overflow-hidden z-0 cursor-pointer border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 hover:bg-neutral-50 dark:hover:bg-neutral-700">
+                                                        text-sm sm:text-base uppercase font-semibold overflow-hidden z-0 cursor-pointer border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-200 hover:bg-neutral-50 dark:hover:bg-neutral-700">
                                                         <div class="mr-2">
                                                             <img class="w-8 h-8" :src="item.thumb_picture">
                                                         </div>${item.name}
@@ -1105,27 +1117,28 @@
                                             class="nc-NcInputNumber flex items-center justify-between space-x-5 w-full">
                                             <div
                                                 class="nc-NcInputNumber__content flex items-center justify-between w-[104px] sm:w-28">
-                                                <button
+                                                <button @click="itemNum=itemNum-1"
                                                     class="w-8 h-8 rounded-full flex items-center justify-center border border-neutral-400 dark:border-neutral-500 bg-white dark:bg-neutral-900 focus:outline-none hover:border-neutral-700 dark:hover:border-neutral-400 disabled:hover:border-neutral-400 dark:disabled:hover:border-neutral-500 disabled:opacity-50 disabled:cursor-default"
-                                                    type="button" disabled=""><svg xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                                                        class="w-4 h-4">
+                                                    type="button" :disabled="itemNum===1"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" aria-hidden="true" class="w-4 h-4">
                                                         <path fill-rule="evenodd"
                                                             d="M3.75 12a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75z"
                                                             clip-rule="evenodd"></path>
                                                     </svg></button><span
-                                                    class="select-none block flex-1 text-center leading-none">1</span><button
+                                                    class="select-none block flex-1 text-center leading-none">${itemNum}</span><button
                                                     class="w-8 h-8 rounded-full flex items-center justify-center border border-neutral-400 dark:border-neutral-500 bg-white dark:bg-neutral-900 focus:outline-none hover:border-neutral-700 dark:hover:border-neutral-400 disabled:hover:border-neutral-400 dark:disabled:hover:border-neutral-500 disabled:opacity-50 disabled:cursor-default"
-                                                    type="button"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                                                        class="w-4 h-4">
+                                                    type="button" @click="itemNum=itemNum+1"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" aria-hidden="true" class="w-4 h-4">
                                                         <path fill-rule="evenodd"
                                                             d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
                                                             clip-rule="evenodd"></path>
                                                     </svg></button>
                                             </div>
                                         </div>
-                                    </div><button @click="addShopCart"
+                                    </div><button @click="isShowVariantModal(productDetail)"
+                                    v-if="productDetail.inventory_amount>0"
                                         class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"><svg
                                             class="hidden sm:inline-block w-5 h-5 mb-0.5" viewBox="0 0 9 9" fill="none">
                                             <path
@@ -1135,9 +1148,19 @@
                                                 d="M6.37497 2.625H7.17663C7.76685 2.625 8.25672 3.08113 8.29877 3.66985L8.50924 6.61641C8.58677 7.70179 7.72715 8.625 6.63901 8.625H2.36094C1.2728 8.625 0.413174 7.70179 0.490701 6.61641L0.70117 3.66985C0.743222 3.08113 1.23309 2.625 1.82331 2.625H2.62497L2.62497 2.25C2.62497 1.21447 3.46444 0.375 4.49997 0.375C5.5355 0.375 6.37497 1.21447 6.37497 2.25V2.625ZM3.37497 2.625H5.62497V2.25C5.62497 1.62868 5.12129 1.125 4.49997 1.125C3.87865 1.125 3.37497 1.62868 3.37497 2.25L3.37497 2.625ZM1.82331 3.375C1.62657 3.375 1.46328 3.52704 1.44926 3.72328L1.2388 6.66985C1.19228 7.32107 1.70805 7.875 2.36094 7.875H6.63901C7.29189 7.875 7.80766 7.32107 7.76115 6.66985L7.55068 3.72328C7.53666 3.52704 7.37337 3.375 7.17663 3.375H1.82331Z"
                                                 fill="currentColor"></path>
                                         </svg><span class="ml-3">加入购车车</span></button>
+                                        <button v-else
+                                        class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full cursor-not-allowed transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6  ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"><svg
+                                            class="hidden sm:inline-block w-5 h-5 mb-0.5" viewBox="0 0 9 9" fill="none">
+                                            <path
+                                                d="M2.99997 4.125C3.20708 4.125 3.37497 4.29289 3.37497 4.5C3.37497 5.12132 3.87865 5.625 4.49997 5.625C5.12129 5.625 5.62497 5.12132 5.62497 4.5C5.62497 4.29289 5.79286 4.125 5.99997 4.125C6.20708 4.125 6.37497 4.29289 6.37497 4.5C6.37497 5.53553 5.5355 6.375 4.49997 6.375C3.46444 6.375 2.62497 5.53553 2.62497 4.5C2.62497 4.29289 2.79286 4.125 2.99997 4.125Z"
+                                                fill="currentColor"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M6.37497 2.625H7.17663C7.76685 2.625 8.25672 3.08113 8.29877 3.66985L8.50924 6.61641C8.58677 7.70179 7.72715 8.625 6.63901 8.625H2.36094C1.2728 8.625 0.413174 7.70179 0.490701 6.61641L0.70117 3.66985C0.743222 3.08113 1.23309 2.625 1.82331 2.625H2.62497L2.62497 2.25C2.62497 1.21447 3.46444 0.375 4.49997 0.375C5.5355 0.375 6.37497 1.21447 6.37497 2.25V2.625ZM3.37497 2.625H5.62497V2.25C5.62497 1.62868 5.12129 1.125 4.49997 1.125C3.87865 1.125 3.37497 1.62868 3.37497 2.25L3.37497 2.625ZM1.82331 3.375C1.62657 3.375 1.46328 3.52704 1.44926 3.72328L1.2388 6.66985C1.19228 7.32107 1.70805 7.875 2.36094 7.875H6.63901C7.29189 7.875 7.80766 7.32107 7.76115 6.66985L7.55068 3.72328C7.53666 3.52704 7.37337 3.375 7.17663 3.375H1.82331Z"
+                                                fill="currentColor"></path>
+                                        </svg><span class="ml-3">加入购车车</span></button>
                                 </div>
-                                <div class="hidden sm:flex flex-col space-y-4 ">
-                                    <!-- <div class="space-y-2.5">
+                                <!-- <div class="hidden sm:flex flex-col space-y-4 ">
+                                    <div class="space-y-2.5">
                                                     <div
                                                         class="flex justify-between text-slate-600 dark:text-slate-300">
                                                         <span class="flex"><span>$108.00 </span><span
@@ -1148,18 +1171,59 @@
                                                         class="flex justify-between text-slate-600 dark:text-slate-300">
                                                         <span>Tax estimate</span><span>$0</span>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                     <div class="border-b border-slate-200 dark:border-slate-700"></div>
                                     <div class="flex justify-between font-semibold">
-                                        <span>总共</span><span>$108.00</span>
+                                        <span>总共</span><span>$${productDetail.sell_price*itemNum}</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
+            <div id="crypto-modal" tabindex="-1" aria-hidden="true" v-if="variantsModel"
+                class="flex items-center justify-center mx-auto my-auto fixed top-0 bottom-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto">
+                <div class="relative w-full h-full max-w-md md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <button type="button" @click="closeVariantsModel"
+                            class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <!-- Modal header -->
+                        <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                                产品款式
+                            </h3>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6">
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                请选择一个对应款式加入购物车
+                            </p>
+                            <ul class="my-4 space-y-3">
+                                <li v-for="item in variantsList.variants">
+                                    <div @click="addShopCart(variantsList,item.variant_no)"
+                                        class="cursor-pointer  flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                        <img :src="item.thumb_picture" aria-hidden="true" class="h-5" />
+                                        <span class="flex-1 ml-3 whitespace-nowrap">${item.name}</span>
+                                        <span
+                                            class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">${item.remark}</span>
+                                    </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
     </main>
     </div>

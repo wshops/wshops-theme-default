@@ -3,10 +3,24 @@ import WshopUtils from "@wshops/utils";
 import { useNotify } from "../../utils/notify";
 import { useNavMenu } from "../../commons/navmenu";
 import { createApp } from "vue";
+import { Modal } from "flowbite";
 
 useNotify({
   position: "top-right",
 });
+
+const $modalElement = document.getElementById("crypto-modal");
+const modalOptions: any = {
+  placement: "center-center",
+  backdrop: "dynamic",
+  backdropClasses:
+    "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
+  closable: true,
+  onHide: () => {},
+  onShow: () => {},
+  onToggle: () => {},
+};
+const modal = new Modal($modalElement, modalOptions);
 
 new WshopUtils({
   feedbacks: {
@@ -46,6 +60,9 @@ createApp({
     timer: null,
     productDetail: {},
     loading: false,
+    variantsList: [],
+    variantsModel: false,
+    itemNum:1
   }),
   components: {},
   computed: {},
@@ -95,12 +112,31 @@ createApp({
           this.loading = false;
         });
     },
+    // 判断有无款式，有则弹窗
+    isShowVariantModal(item: any) {
+      if (item.variants) {
+        this.showVariantModal(item);
+      } else {
+        this.addShopCart(item, "");
+      }
+    },
+    // 展示购物车弹窗
+    showVariantModal(item: any) {
+      this.variantsList = item;
+      modal.show();
+      this.variantsModel = true;
+    },
+    // 关闭购物车弹窗
+    closeVariantsModel() {
+      this.variantsModel = false;
+      modal.hide();
+    },
     // 加入购物车
     addShopCart(item: any, variant_no: string) {
       let params = {
         product_id: item.id,
         variant_no: variant_no ? variant_no : "",
-        quantity: 1,
+        quantity: this.itemNum,
       };
       window.$wshop
         .api()
@@ -108,7 +144,7 @@ createApp({
         .then((res: any) => {
           if (res !== null && res !== undefined) {
             window.$notify.success("添加购物车成功");
-            localStorage.setItem("cartNum", res.data.data);
+            localStorage.setItem("cartNum", res.data.data.items.length);
             variant_no ? this.closeVariantsModel() : "";
           }
         })
