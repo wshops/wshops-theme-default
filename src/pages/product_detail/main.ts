@@ -62,7 +62,7 @@ createApp({
     loading: false,
     variantsList: [],
     variantsModel: false,
-    itemNum:1
+    itemNum: 1,
   }),
   components: {},
   computed: {},
@@ -98,7 +98,7 @@ createApp({
       };
       window.$wshop
         .api()
-        .get("/api/v1/capi/product/detail", params)
+        .get("/api/v1/capi/product/detail/" + params.word)
         .then((res: any) => {
           if (res !== null && res !== undefined) {
             this.productDetail = res.data.data;
