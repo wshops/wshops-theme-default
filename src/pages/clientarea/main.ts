@@ -548,15 +548,15 @@ FilePond.registerPlugin(
 FilePond.setOptions({
   server: {
     process: (
-      fieldName,
-      file: any,
-      metadata,
-      load,
-      error,
-      progress,
-      abort,
-      transfer,
-      options
+      fieldName: string,
+      file: File,
+      metadata: any,
+      load: Function,
+      error: Function,
+      progress: Function,
+      abort: Function,
+      transfer: Function,
+      options: any
     ) => {
       const formData = new FormData();
       formData.append("file", file);
