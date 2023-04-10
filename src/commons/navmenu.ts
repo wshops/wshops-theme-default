@@ -84,7 +84,7 @@ export function useNavMenu() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
-          level: 1,
+          // level: 1,
         };
         window.$wshop
           .api()
@@ -108,7 +108,7 @@ export function useNavMenu() {
         let param = {
           page_size: this.filter.count, // 页大小
           current_page: this.filter.page, // 当前页
-          level: 1,
+          // level: 1,
         };
         window.$wshop
           .api()
