@@ -52,9 +52,9 @@ createApp({
   },
   data: () => ({
     imgArr: [
-      // "/public/assets/images/banner4.jpg",
-      // "/public/assets/images/login-background.jpg",
-      // "/public/assets/images/banner4.jpg",
+      // "/assets/images/banner4.jpg",
+      // "/assets/images/login-background.jpg",
+      // "/assets/images/banner4.jpg",
     ],
     index: 0,
     timer: null,

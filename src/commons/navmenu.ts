@@ -166,12 +166,12 @@ export function useNavMenu() {
           .api()
           .get("/api/v1/capi/cart/item")
           .then((res: any) => {
-            if (res !== null && res !== undefined && res.data.data.items) {
-              this.cartsNumber = res.data.data.items.length;
+            if (res !== null && res !== undefined && res.data.data.product_items) {
+              this.cartsNumber = res.data.data.product_items.length;
               this.cartsList =
-                res.data.data.items.length > 0 ? res.data.data.items : [];
+                res.data.data.product_items.length > 0 ? res.data.data.product_items : [];
               this.total_price = res.data.data.total_price;
-              localStorage.setItem("cartNum", res.data.data.items.length);
+              localStorage.setItem("cartNum", res.data.data.product_items.length);
             } else {
               this.cartsList = [];
               this.total_price = 0;
