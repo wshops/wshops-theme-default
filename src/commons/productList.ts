@@ -340,7 +340,7 @@ export function useProductList() {
           : "";
         window.$wshop
           .api()
-          .get("/api/v1/capi/product/conditions", {
+          .get("/api/v1/capi/product", {
             current_page: this.page,
             page_size: this.pageSize,
             high_price: high_price,
@@ -357,11 +357,7 @@ export function useProductList() {
               : "",
           })
           .then((res) => {
-            if (
-              res !== null &&
-              res !== undefined &&
-              res.data.data.data.length > 0
-            ) {
+            if (res !== null && res !== undefined && res.data.data.data) {
               this.productList = res.data.data.data;
               this.totalNum = res.data.data.data_count;
             } else {
@@ -439,7 +435,10 @@ export function useProductList() {
           .then((res: any) => {
             if (res !== null && res !== undefined) {
               window.$notify.success("添加购物车成功");
-              localStorage.setItem("cartNum", res.data.data.product_items.length);
+              localStorage.setItem(
+                "cartNum",
+                res.data.data.product_items.length
+              );
               variant_no ? this.closeVariantsModel() : "";
             }
           })

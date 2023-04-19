@@ -7,14 +7,11 @@
     <title>W-Shops</title>
   </head>
 
-  <script src="/src/pages/index/main.ts" type="module"></script>
-
   <body>
     <div
       class="bg-white text-base dark:bg-slate-900 text-slate-900 dark:text-slate-200"
-      x-data="topNav()"
     >
-      <div class="nc-HeaderLogged sticky top-0 w-full z-40">
+      <div id="wshop-nav-menu" class="nc-HeaderLogged sticky top-0 w-full z-40">
         <div
           class="nc-MainNav2Logged relative z-10 bg-white dark:bg-neutral-900 border-b border-slate-100 dark:border-slate-700"
         >
@@ -22,34 +19,28 @@
             <div class="h-20 flex justify-between">
               <div class="flex items-center lg:hidden flex-1">
                 <button
-                  x-on:click="mobileOpen"
                   class="p-2.5 rounded-lg text-neutral-700 dark:text-neutral-300 focus:outline-none flex items-center justify-center"
+                  @click="mobileShow=!mobileShow"
                 >
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
                     class="h-7 w-7"
-                    viewBox="0 0 20 20"
                     fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                       clip-rule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      fill-rule="evenodd"
                     ></path>
                   </svg>
                 </button>
                 <div
-                  class="fixed inset-0 z-50 overflow-y-auto"
                   id="headlessui-dialog-:r7m:"
-                  role="dialog"
                   aria-modal="true"
-                  x-show.transition="mobileIsOpen()"
-                  x-transition:enter="transition ease-out duration-300"
-                  x-transition:enter-start="opacity-0 transform scale-90"
-                  x-transition:enter-end="opacity-100 transform scale-100"
-                  x-transition:leave="transition ease-in duration-300"
-                  x-transition:leave-start="opacity-100 transform scale-100"
-                  x-transition:leave-end="opacity-0 transform scale-90"
+                  class="fixed inset-0 z-50 overflow-y-auto"
+                  role="dialog"
+                  v-show="mobileShow"
                 >
                   <div
                     class="fixed left-0 top-0 bottom-0 w-full max-w-md md:w-auto z-max outline-none focus:outline-none"
@@ -64,12 +55,12 @@
                             href="/ciseco/"
                             tabindex="0"
                             ><img
+                              alt="Logo"
                               class="block max-h-8 sm:max-h-10 dark:hidden"
-                              src="/assets/images/wshops-logo-icon.png"
-                              alt="Logo" /><img
+                              src="/assets/images/wshops-logo-icon.png" /><img
+                              alt="Logo-Light"
                               class="hidden max-h-8 sm:max-h-10 dark:block"
                               src="/assets/images/wshops-logo-icon.png"
-                              alt="Logo-Light"
                           /></a>
                           <div
                             class="flex flex-col mt-5 text-slate-600 dark:text-slate-300 text-sm"
@@ -83,39 +74,39 @@
                                 <a
                                   class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl"
                                   href="#"
-                                  target="_blank"
                                   rel="noopener noreferrer"
+                                  target="_blank"
                                   title="Facebook"
                                   ><img
-                                    src="./static/media/facebook.8291c7f7c187e8f09292cced2ed0278d.svg"
-                                    alt="" /></a
+                                    alt=""
+                                    src="./static/media/facebook.8291c7f7c187e8f09292cced2ed0278d.svg" /></a
                                 ><a
                                   class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl"
                                   href="#"
-                                  target="_blank"
                                   rel="noopener noreferrer"
+                                  target="_blank"
                                   title="Twitter"
                                   ><img
-                                    src="./static/media/twitter.f56ce1bc9eb5120250ac80ed561cf82f.svg"
-                                    alt="" /></a
+                                    alt=""
+                                    src="./static/media/twitter.f56ce1bc9eb5120250ac80ed561cf82f.svg" /></a
                                 ><a
                                   class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl"
                                   href="#"
-                                  target="_blank"
                                   rel="noopener noreferrer"
+                                  target="_blank"
                                   title="Youtube"
                                   ><img
-                                    src="./static/media/youtube.bb2387598b5621f3a2e92ab928da4fe0.svg"
-                                    alt="" /></a
+                                    alt=""
+                                    src="./static/media/youtube.bb2387598b5621f3a2e92ab928da4fe0.svg" /></a
                                 ><a
                                   class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl"
                                   href="#"
-                                  target="_blank"
                                   rel="noopener noreferrer"
+                                  target="_blank"
                                   title="Telegram"
                                   ><img
-                                    src="./static/media/telegram.5acad1587076bc12320cadff0f4aa3f3.svg"
                                     alt=""
+                                    src="./static/media/telegram.5acad1587076bc12320cadff0f4aa3f3.svg"
                                 /></a>
                               </nav>
                               <span class="block"
@@ -124,25 +115,25 @@
                                 >
                                   <span class="sr-only">Enable dark mode</span
                                   ><svg
-                                    width="24"
+                                    fill="none"
                                     height="24"
                                     viewBox="0 0 24 24"
-                                    fill="none"
+                                    width="24"
                                     xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
                                       d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
                                       stroke="currentColor"
-                                      stroke-width="1.5"
                                       stroke-linecap="round"
                                       stroke-linejoin="round"
+                                      stroke-width="1.5"
                                     ></path>
                                     <path
                                       d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
                                       stroke="currentColor"
-                                      stroke-width="2"
                                       stroke-linecap="round"
                                       stroke-linejoin="round"
+                                      stroke-width="2"
                                     ></path>
                                   </svg></button
                               ></span>
@@ -150,61 +141,62 @@
                           </div>
                           <span class="absolute right-2 top-2 p-1"
                             ><button
-                              x-on:click="mobileClose"
                               class="w-8 h-8 flex items-center justify-center rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none"
+                              @click="mobileShow=false"
                             >
                               <span class="sr-only">Close</span
                               ><svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
                                 aria-hidden="true"
                                 class="w-5 h-5"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path
-                                  fill-rule="evenodd"
-                                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
                                   clip-rule="evenodd"
+                                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                                  fill-rule="evenodd"
                                 ></path>
                               </svg></button
                           ></span>
                           <div class="mt-5">
                             <form
                               action=""
-                              method="POST"
                               class="flex-1 text-slate-900 dark:text-slate-200"
+                              method="POST"
                             >
                               <div
                                 class="bg-slate-50 dark:bg-slate-800 flex items-center space-x-1 py-2 px-4 rounded-xl h-full"
                               >
                                 <svg
-                                  width="22"
+                                  fill="none"
                                   height="22"
                                   viewBox="0 0 24 24"
-                                  fill="none"
+                                  width="22"
                                   xmlns="http://www.w3.org/2000/svg"
                                 >
                                   <path
                                     d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
                                     stroke="currentColor"
-                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
+                                    stroke-width="1.5"
                                   ></path>
                                   <path
                                     d="M22 22L20 20"
                                     stroke="currentColor"
-                                    stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                  ></path></svg
-                                ><input
-                                  type="search"
-                                  placeholder="搜索产品"
+                                    stroke-width="1.5"
+                                  ></path>
+                                </svg>
+                                <input
                                   class="border-none bg-transparent focus:outline-none focus:ring-0 w-full text-sm"
+                                  placeholder="搜索产品"
+                                  type="search"
                                 />
                               </div>
-                              <input type="submit" hidden="" value="" />
+                              <input hidden="" type="submit" value="" />
                             </form>
                           </div>
                         </div>
@@ -216,20 +208,20 @@
                               ><span class="">商品分类</span
                               ><span class="block flex-grow"
                                 ><span
-                                  class="flex justify-end flex-grow"
                                   id="headlessui-disclosure-button-:r7o:"
                                   aria-expanded="false"
+                                  class="flex justify-end flex-grow"
                                   ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
                                     aria-hidden="true"
                                     class="ml-2 h-4 w-4 text-neutral-500"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
-                                      fill-rule="evenodd"
-                                      d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                       clip-rule="evenodd"
+                                      d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                      fill-rule="evenodd"
                                     ></path></svg></span></span
                             ></a>
                             <div id="headlessui-disclosure-panel-:rao:">
@@ -244,20 +236,20 @@
                                     ><span class="py-2.5">Clothing</span
                                     ><span class="flex items-center flex-grow"
                                       ><span
-                                        class="flex justify-end flex-grow"
                                         id="headlessui-disclosure-button-:rb5:"
                                         aria-expanded="false"
+                                        class="flex justify-end flex-grow"
                                         ><svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
                                           aria-hidden="true"
                                           class="ml-2 h-4 w-4 text-slate-500"
+                                          fill="currentColor"
+                                          viewBox="0 0 24 24"
+                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
-                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                             clip-rule="evenodd"
+                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                            fill-rule="evenodd"
                                           ></path></svg></span></span
                                   ></a>
                                 </li>
@@ -269,20 +261,20 @@
                                     ><span class="py-2.5">Accessories</span
                                     ><span class="flex items-center flex-grow"
                                       ><span
-                                        class="flex justify-end flex-grow"
                                         id="headlessui-disclosure-button-:rb7:"
                                         aria-expanded="false"
+                                        class="flex justify-end flex-grow"
                                         ><svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
                                           aria-hidden="true"
                                           class="ml-2 h-4 w-4 text-slate-500"
+                                          fill="currentColor"
+                                          viewBox="0 0 24 24"
+                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
-                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                             clip-rule="evenodd"
+                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                            fill-rule="evenodd"
                                           ></path></svg></span></span
                                   ></a>
                                 </li>
@@ -294,20 +286,20 @@
                                     ><span class="py-2.5">Shoes</span
                                     ><span class="flex items-center flex-grow"
                                       ><span
-                                        class="flex justify-end flex-grow"
                                         id="headlessui-disclosure-button-:rb9:"
                                         aria-expanded="false"
+                                        class="flex justify-end flex-grow"
                                         ><svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
                                           aria-hidden="true"
                                           class="ml-2 h-4 w-4 text-slate-500"
+                                          fill="currentColor"
+                                          viewBox="0 0 24 24"
+                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
-                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                             clip-rule="evenodd"
+                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                            fill-rule="evenodd"
                                           ></path></svg></span></span
                                   ></a>
                                 </li>
@@ -319,20 +311,20 @@
                                     ><span class="py-2.5">Brands</span
                                     ><span class="flex items-center flex-grow"
                                       ><span
-                                        class="flex justify-end flex-grow"
                                         id="headlessui-disclosure-button-:rbb:"
                                         aria-expanded="false"
+                                        class="flex justify-end flex-grow"
                                         ><svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
                                           aria-hidden="true"
                                           class="ml-2 h-4 w-4 text-slate-500"
+                                          fill="currentColor"
+                                          viewBox="0 0 24 24"
+                                          xmlns="http://www.w3.org/2000/svg"
                                         >
                                           <path
-                                            fill-rule="evenodd"
-                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                             clip-rule="evenodd"
+                                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                            fill-rule="evenodd"
                                           ></path></svg></span></span
                                   ></a>
                                 </li>
@@ -355,15 +347,15 @@
                           </li>
                         </ul>
                         <!-- <div class="flex items-center justify-between py-6 px-5 space-x-2">
-                                            <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl !px-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                                rel="noopener noreferrer" href="/ciseco/">Buy this template</a>
-                                        </div> -->
+                                  <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl !px-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                                      rel="noopener noreferrer" href="/ciseco/">Buy this template</a>
+                              </div> -->
                       </div>
                     </div>
                     <div
-                      class="fixed inset-0 bg-neutral-900/60 opacity-100"
                       id="headlessui-dialog-overlay-:r85:"
                       aria-hidden="true"
+                      class="fixed inset-0 bg-neutral-900/60 opacity-100"
                     ></div>
                   </div>
                 </div>
@@ -373,339 +365,78 @@
                   class="ttnc-logo inline-block text-slate-600 flex-shrink-0"
                   href="index"
                   ><img
+                    alt="Logo"
                     class="block max-h-8 sm:max-h-10 dark:hidden"
-                    src="/assets/images/wshops-logo-icon.png"
-                    alt="Logo" /><img
+                    src="/assets/images/wshops-logo-icon.png" /><img
+                    alt="Logo-Light"
                     class="hidden max-h-8 sm:max-h-10 dark:block"
                     src="/assets/images/wshops-logo-icon.png"
-                    alt="Logo-Light"
                 /></a>
               </div>
               <div class="flex-[2] hidden lg:flex justify-center mx-4">
                 <ul class="nc-Navigation flex items-center">
                   <li
                     class="menu-item flex-shrink-0 menu-megamenu menu-megamenu--large"
-                    @mouseleave="close"
+                    @mouseleave="categoryListShow=!categoryListShow"
                   >
                     <div
                       class="h-20 flex-shrink-0 flex items-center cursor-pointer"
-                      x-on:mouseenter="open"
+                      @mouseenter="categoryListShow=true"
                     >
                       <a
                         class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
                         rel="noopener noreferrer"
-                        >商品分类<svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
+                        >商品分类
+                        <svg
                           aria-hidden="true"
                           class="ml-1 -mr-1 h-4 w-4 text-slate-400"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            fill-rule="evenodd"
-                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                             clip-rule="evenodd"
-                          ></path></svg
-                      ></a>
+                            d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                            fill-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </a>
                     </div>
                     <div
-                      class="sub-menu absolute top-full inset-x-0 transform z-50"
-                      x-show.transition="isOpen"
-                      x-transition:enter="transition ease-out duration-300"
-                      x-transition:enter-start="opacity-0 transform scale-90"
-                      x-transition:enter-end="opacity-100 transform scale-100"
-                      x-transition:leave="transition ease-in duration-300"
-                      x-transition:leave-start="opacity-100 transform scale-100"
-                      x-transition:leave-end="opacity-0 transform scale-90"
+                      class="animate-in zoom-in-95 duration-300 sub-menu absolute top-full inset-x-0 transform z-50"
+                      v-show="categoryListShow"
                     >
-                      <div class="bg-white dark:bg-neutral-900 shadow-lg">
+                      <div
+                        class="max-h-72 overflow-y-auto bg-white dark:bg-neutral-900 shadow-lg"
+                        @scroll="scrollEvent"
+                      >
                         <div class="container">
                           <div
-                            class="flex text-sm border-t border-slate-200 dark:border-slate-700 py-14"
+                            class="flex border-t border-slate-200 dark:border-slate-700 py-14"
                           >
                             <div
-                              class="flex-1 grid grid-cols-4 gap-6 xl:gap-8 pr-6 xl:pr-8"
+                              class="flex-1 grid grid-cols-1 gap-6 xl:gap-8 pr-6 xl:pr-8"
                             >
                               <div>
-                                <p
-                                  class="font-medium text-slate-900 dark:text-neutral-200"
+                                <!-- <p class="font-medium text-slate-900 dark:text-neutral-200">
+                                                          Clothing
+                                                      </p> -->
+                                <ul
+                                  class="flex flex-wrap items-start mb-2 text-gray-400 dark:text-white"
                                 >
-                                  Clothing
-                                </p>
-                                <ul class="grid space-y-4 mt-4">
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/product_category?434353556"
-                                      >Activewear</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Coats &amp; Jackets</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Sleep &amp; Lounge</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Sweatshirts</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Hoodies</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Underwear</a
-                                    >
-                                  </li>
-                                </ul>
-                              </div>
-                              <div>
-                                <p
-                                  class="font-medium text-slate-900 dark:text-neutral-200"
-                                >
-                                  Accessories
-                                </p>
-                                <ul class="grid space-y-4 mt-4">
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Sunglasses</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Gloves</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Scarves</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Wallets</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Watches</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Belts</a
-                                    >
-                                  </li>
-                                </ul>
-                              </div>
-                              <div>
-                                <p
-                                  class="font-medium text-slate-900 dark:text-neutral-200"
-                                >
-                                  Shoes
-                                </p>
-                                <ul class="grid space-y-4 mt-4">
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Boots</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Loafers
-                                    </a>
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Slip-Ons</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Slippers</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Sneakers</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Counterfeit</a
-                                    >
-                                  </li>
-                                </ul>
-                              </div>
-                              <div>
-                                <p
-                                  class="font-medium text-slate-900 dark:text-neutral-200"
-                                >
-                                  Brands
-                                </p>
-                                <ul class="grid space-y-4 mt-4">
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Full Nelson</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Backpacks</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >My Way</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Significant Other</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Re-Arranged</a
-                                    >
-                                  </li>
-                                  <li class="">
-                                    <a
-                                      class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                      rel="noopener noreferrer"
-                                      href="/index#"
-                                      >Counterfeit</a
-                                    >
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="w-[40%] xl:w-[35%]">
-                              <a
-                                class="nc-CardCategory3 block"
-                                data-nc-id="CardCategory3"
-                                href="/index/page-collection"
-                              >
-                                <div
-                                  class="relative w-full aspect-w-16 aspect-h-11 sm:aspect-h-9 h-0 rounded-2xl overflow-hidden group bg-blue-50"
-                                >
-                                  <div>
+                                  <li
+                                    class="w-48 pb-7 text-slate-900 dark:text-neutral-200 cursor-pointer"
+                                    v-for="item in categoryList"
+                                  >
                                     <div
-                                      class="nc-NcImage absolute inset-5 sm:inset-8"
-                                      data-nc-id="NcImage"
+                                      @click="toProductCategory(item)"
+                                      class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-1 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 md:mr-6"
                                     >
-                                      <img
-                                        src="../../../assets/images/wshops-logo-icon.svg"
-                                        class="absolute right-0 w-1/2 max-w-[260px] h-full object-contain drop-shadow-xl"
-                                        alt="nc-imgs"
-                                      />
+                                      ${item.category_name}
                                     </div>
-                                  </div>
-                                  <span
-                                    class="opacity-0 group-hover:opacity-40 absolute inset-0 bg-black/10 transition-opacity"
-                                  ></span>
-                                  <div>
-                                    <div
-                                      class="absolute inset-5 sm:inset-8 flex flex-col"
-                                    >
-                                      <div class="max-w-xs">
-                                        <span
-                                          class="block mb-2 text-sm text-slate-700"
-                                          >Sale collection</span
-                                        >
-                                        <h2
-                                          class="text-xl md:text-2xl text-slate-900 font-semibold"
-                                        >
-                                          Up to <br />
-                                          80% off retail
-                                        </h2>
-                                      </div>
-                                      <div class="mt-auto">
-                                        <button
-                                          class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 nc-shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                        >
-                                          Show me all
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </a>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -716,8 +447,8 @@
                     <div class="h-20 flex-shrink-0 flex items-center">
                       <a
                         class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                        rel="noopener noreferrer"
                         href="/index/#"
+                        rel="noopener noreferrer"
                         >博客</a
                       >
                     </div>
@@ -726,248 +457,19 @@
                     <div class="h-20 flex-shrink-0 flex items-center">
                       <a
                         class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                        rel="noopener noreferrer"
                         href="/index/#"
+                        rel="noopener noreferrer"
                         >关于我们</a
                       >
                     </div>
                   </li>
-                  <!-- <li class="menu-item flex-shrink-0">
-                                    <div class="h-20 flex-shrink-0 flex items-center">
-                                        <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                            rel="noopener noreferrer" href="/index/#">Sport</a>
-                                    </div>
-                                </li>
-                                <li class="menu-item flex-shrink-0 menu-megamenu menu-megamenu--large">
-                                    <div class="h-20 flex-shrink-0 flex items-center">
-                                        <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                            rel="noopener noreferrer" href="/index/#">Templates<svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" aria-hidden="true"
-                                                class="ml-1 -mr-1 h-4 w-4 text-slate-400">
-                                                <path fill-rule="evenodd"
-                                                    d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg></a>
-                                    </div>
-                                    <div class="invisible sub-menu absolute top-full inset-x-0 transform z-50">
-                                        <div class="bg-white dark:bg-neutral-900 shadow-lg">
-                                            <div class="container">
-                                                <div
-                                                    class="flex text-sm border-t border-slate-200 dark:border-slate-700 py-14">
-                                                    <div class="flex-1 grid grid-cols-4 gap-6 xl:gap-8 pr-6 xl:pr-8">
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Home Page
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white active"
-                                                                        rel="noopener noreferrer" href="/index/"
-                                                                        aria-current="page">Home 1</a>
-                                                                </li>
-                                                                <li class="menuIsNew">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/home2">Home 2</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white active"
-                                                                        rel="noopener noreferrer" href="/index/"
-                                                                        aria-current="page">Header 1</a>
-                                                                </li>
-                                                                <li class="menuIsNew">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/home2">Header 2</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white active"
-                                                                        rel="noopener noreferrer" href="/index/"
-                                                                        aria-current="page">Coming Soon</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Shop Pages
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/page-collection">Category Page
-                                                                        1</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/page-collection-2">Category Page
-                                                                        2</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/product-detail">Product Page 1</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/product-detail-2">Product Page
-                                                                        2</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/cart">Cart Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/checkout">Checkout Page</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Other Pages
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/checkout">Checkout Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/page-search">Search Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/cart">Cart Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/account">Accout Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/account-my-order">Order Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/subscription">Subscription</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div>
-                                                            <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                                Blog Page
-                                                            </p>
-                                                            <ul class="grid space-y-4 mt-4">
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/blog">Blog Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/blog-single">Blog Single</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/about">About Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/contact">Contact Page</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/login">Login</a>
-                                                                </li>
-                                                                <li class="">
-                                                                    <a class="font-normal text-slate-600 hover:text-black dark:text-slate-400 dark:hover:text-white"
-                                                                        rel="noopener noreferrer"
-                                                                        href="/index/signup">Signup</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-[40%] xl:w-[35%]">
-                                                        <a class="nc-CardCategory3 block" data-nc-id="CardCategory3"
-                                                            href="/index/page-collection">
-                                                            <div
-                                                                class="relative w-full aspect-w-16 aspect-h-11 sm:aspect-h-9 h-0 rounded-2xl overflow-hidden group bg-blue-50">
-                                                                <div>
-                                                                    <div class="nc-NcImage absolute inset-5 sm:inset-8"
-                                                                        data-nc-id="NcImage">
-                                                                        <img src="./static/media/4.452d9d5088a11b0c0d6a.png"
-                                                                            class="absolute right-0 w-1/2 max-w-[260px] h-full object-contain drop-shadow-xl"
-                                                                            alt="nc-imgs" />
-                                                                    </div>
-                                                                </div>
-                                                                <span
-                                                                    class="opacity-0 group-hover:opacity-40 absolute inset-0 bg-black/10 transition-opacity"></span>
-                                                                <div>
-                                                                    <div
-                                                                        class="absolute inset-5 sm:inset-8 flex flex-col">
-                                                                        <div class="max-w-xs">
-                                                                            <span
-                                                                                class="block mb-2 text-sm text-slate-700">Sale
-                                                                                collection</span>
-                                                                            <h2
-                                                                                class="text-xl md:text-2xl text-slate-900 font-semibold">
-                                                                                Up to <br />
-                                                                                80% off retail
-                                                                            </h2>
-                                                                        </div>
-                                                                        <div class="mt-auto">
-                                                                            <button
-                                                                                class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 nc-shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0">
-                                                                                Show me all
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="menu-item menu-dropdown relative">
-                                    <div class="h-20 flex-shrink-0 flex items-center"
-                                        id="headlessui-popover-button-:r0:" aria-expanded="false">
-                                        <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                                            rel="noopener noreferrer" href="/index#">Explore<svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" aria-hidden="true"
-                                                class="ml-1 -mr-1 h-4 w-4 text-slate-400">
-                                                <path fill-rule="evenodd"
-                                                    d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg></a>
-                                    </div>
-                                </li> -->
                 </ul>
               </div>
               <div
                 class="flex-1 flex items-center justify-end text-slate-700 dark:text-slate-100"
               >
                 <button
-                  x-on:click="toSearch"
+                  @click="toSearch"
                   class="hidden lg:flex w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none items-center justify-center"
                 >
                   <svg
@@ -996,41 +498,41 @@
                 <div class="AvatarDropdown">
                   <div class="relative">
                     <button
-                      x-on:mousedown="droDownOpen"
-                      class="w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
                       id="headlessui-popover-button-:r3:"
-                      type="button"
                       aria-expanded="false"
+                      class="w-10 h-10 sm:w-12 sm:h-12 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none flex items-center justify-center"
+                      type="button"
+                      @click.stop="hiddenClick(),userDroDownShow = !userDroDownShow"
                     >
                       <svg
                         class="w-6 h-6"
-                        viewBox="0 0 24 24"
                         fill="none"
+                        viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
                           d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
                           stroke="currentColor"
-                          stroke-width="1.5"
                           stroke-linecap="round"
                           stroke-linejoin="round"
+                          stroke-width="1.5"
                         ></path>
                         <path
                           d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22"
                           stroke="currentColor"
-                          stroke-width="1.5"
                           stroke-linecap="round"
                           stroke-linejoin="round"
+                          stroke-width="1.5"
                         ></path>
                       </svg>
                     </button>
                   </div>
                   <div
-                    x-show.transition="isDroDownOpen()"
-                    x-on:mousedown.away="droDownClose"
-                    class="absolute z-10 w-screen max-w-[260px] px-4 mt-3.5 right-10 sm:px-0 opacity-100 translate-y-0"
                     id="headlessui-popover-panel-:r4:"
+                    class="absolute z-10 w-screen max-w-[260px] px-4 mt-3.5 right-10 sm:px-0 opacity-100 translate-y-0"
                     tabindex="-1"
+                    v-show="userDroDownShow"
+                    @click.stop=""
                   >
                     <div
                       class="overflow-hidden rounded-3xl shadow-lg ring-1 ring-black ring-opacity-5"
@@ -1043,9 +545,9 @@
                             class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner rounded-full w-12 h-12 ring-1 ring-white dark:ring-neutral-900"
                           >
                             <img
+                              alt="John Doe"
                               class="absolute inset-0 w-full h-full object-cover rounded-full"
                               src="/assets/images/wshops-logo-icon.png"
-                              alt="John Doe"
                             /><span class="wil-avatar__name">J</span>
                           </div>
                           <div class="flex-grow">
@@ -1064,25 +566,25 @@
                             class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
                           >
                             <svg
-                              width="24"
+                              fill="none"
                               height="24"
                               viewBox="0 0 24 24"
-                              fill="none"
+                              width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
                                 d="M12.1601 10.87C12.0601 10.86 11.9401 10.86 11.8301 10.87C9.45006 10.79 7.56006 8.84 7.56006 6.44C7.56006 3.99 9.54006 2 12.0001 2C14.4501 2 16.4401 3.99 16.4401 6.44C16.4301 8.84 14.5401 10.79 12.1601 10.87Z"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M7.15997 14.56C4.73997 16.18 4.73997 18.82 7.15997 20.43C9.90997 22.27 14.42 22.27 17.17 20.43C19.59 18.81 19.59 16.17 17.17 14.56C14.43 12.73 9.91997 12.73 7.15997 14.56Z"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                             </svg>
                           </div>
@@ -1097,47 +599,47 @@
                             class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
                           >
                             <svg
-                              width="24"
+                              fill="none"
                               height="24"
                               viewBox="0 0 24 24"
-                              fill="none"
+                              width="24"
                             >
                               <path
                                 d="M8 12.2H15"
                                 stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M8 16.2H12.38"
                                 stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z"
                                 stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M16 4.02002C19.33 4.20002 21 5.43002 21 10V16C21 20 20 22 15 22H9C4 22 3 20 3 16V10C3 5.44002 4.67 4.20002 8 4.02002"
                                 stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-miterlimit="10"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                                stroke-width="1.5"
                               ></path>
                             </svg>
                           </div>
                           <div class="ml-4">
-                            <p class="text-sm font-medium">My Order</p>
+                            <p class="text-sm font-medium">我的订单</p>
                           </div> </a
                         ><a
                           class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
@@ -1147,86 +649,94 @@
                             class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
                           >
                             <svg
-                              width="24"
+                              fill="none"
                               height="24"
                               viewBox="0 0 24 24"
-                              fill="none"
+                              width="24"
                             >
                               <path
                                 d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                             </svg>
                           </div>
                           <div class="ml-4">
-                            <p class="text-sm font-medium">Wishlist</p>
+                            <p class="text-sm font-medium">我的收藏</p>
                           </div>
                         </a>
                         <div
                           class="w-full border-b border-neutral-200 dark:border-neutral-700"
                         ></div>
-                        <div
-                          class="flex items-center justify-between p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                        >
-                          <div class="flex items-center">
-                            <div
-                              class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
-                            >
-                              <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M12.0001 7.88989L10.9301 9.74989C10.6901 10.1599 10.8901 10.4999 11.3601 10.4999H12.6301C13.1101 10.4999 13.3001 10.8399 13.0601 11.2499L12.0001 13.1099"
-                                  stroke="currentColor"
-                                  stroke-width="1.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                ></path>
-                                <path
-                                  d="M8.30011 18.0399V16.8799C6.00011 15.4899 4.11011 12.7799 4.11011 9.89993C4.11011 4.94993 8.66011 1.06993 13.8001 2.18993C16.0601 2.68993 18.0401 4.18993 19.0701 6.25993C21.1601 10.4599 18.9601 14.9199 15.7301 16.8699V18.0299C15.7301 18.3199 15.8401 18.9899 14.7701 18.9899H9.26011C8.16011 18.9999 8.30011 18.5699 8.30011 18.0399Z"
-                                  stroke="currentColor"
-                                  stroke-width="1.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                ></path>
-                                <path
-                                  d="M8.5 22C10.79 21.35 13.21 21.35 15.5 22"
-                                  stroke="currentColor"
-                                  stroke-width="1.5"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                ></path>
-                              </svg>
-                            </div>
-                            <div class="ml-4">
-                              <p class="text-sm font-medium">Dark theme</p>
-                            </div>
-                          </div>
-                          <div class="inline-flex">
-                            <span class="sr-only">Enable dark mode</span
-                            ><button
-                              class="bg-teal-600 relative inline-flex h-[22px] w-[42px] shrink-0 cursor-pointer rounded-full border-4 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                              id="headlessui-switch-:re3:"
-                              role="switch"
-                              type="button"
-                              tabindex="0"
-                              aria-checked="false"
-                            >
-                              <span class="sr-only">Enable dark mode</span
-                              ><span
-                                aria-hidden="true"
-                                class="translate-x-0 pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                              ></span>
-                            </button>
-                          </div>
-                        </div>
+                        <!-- <div
+                                          class="flex items-center justify-between p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                          <div class="flex items-center">
+                                              <div
+                                                  class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                  <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                      xmlns="http://www.w3.org/2000/svg">
+                                                      <path
+                                                          d="M12.0001 7.88989L10.9301 9.74989C10.6901 10.1599 10.8901 10.4999 11.3601 10.4999H12.6301C13.1101 10.4999 13.3001 10.8399 13.0601 11.2499L12.0001 13.1099"
+                                                          stroke="currentColor" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-width="1.5"></path>
+                                                      <path
+                                                          d="M8.30011 18.0399V16.8799C6.00011 15.4899 4.11011 12.7799 4.11011 9.89993C4.11011 4.94993 8.66011 1.06993 13.8001 2.18993C16.0601 2.68993 18.0401 4.18993 19.0701 6.25993C21.1601 10.4599 18.9601 14.9199 15.7301 16.8699V18.0299C15.7301 18.3199 15.8401 18.9899 14.7701 18.9899H9.26011C8.16011 18.9999 8.30011 18.5699 8.30011 18.0399Z"
+                                                          stroke="currentColor" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-width="1.5"></path>
+                                                      <path d="M8.5 22C10.79 21.35 13.21 21.35 15.5 22"
+                                                          stroke="currentColor" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-width="1.5"></path>
+                                                  </svg>
+                                              </div>
+                                              <div class="ml-4">
+                                                  <p class="text-sm font-medium">Dark theme</p>
+                                              </div>
+                                          </div>
+                                          <div class="inline-flex">
+                                              <span class="sr-only">Enable dark mode</span>
+                                              <button id="headlessui-switch-:re3:" aria-checked="false"
+                                                  class="bg-teal-600 relative inline-flex h-[22px] w-[42px] shrink-0 cursor-pointer rounded-full border-4 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                                  role="switch" tabindex="0" type="button">
+                                                  <span class="sr-only">Enable dark mode</span><span
+                                                      aria-hidden="true"
+                                                      class="translate-x-0 pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"></span>
+                                              </button>
+                                          </div>
+                                      </div> -->
+                        <!-- <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
+                                          href="/ciseco/">
+                                          <div
+                                              class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                              <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                  xmlns="http://www.w3.org/2000/svg">
+                                                  <path
+                                                      d="M11.97 22C17.4928 22 21.97 17.5228 21.97 12C21.97 6.47715 17.4928 2 11.97 2C6.44715 2 1.97 6.47715 1.97 12C1.97 17.5228 6.44715 22 11.97 22Z"
+                                                      stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="1.5"></path>
+                                                  <path
+                                                      d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z"
+                                                      stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="1.5"></path>
+                                                  <path d="M4.89999 4.92993L8.43999 8.45993" stroke="currentColor"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"></path>
+                                                  <path d="M4.89999 19.07L8.43999 15.54" stroke="currentColor"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"></path>
+                                                  <path d="M19.05 19.07L15.51 15.54" stroke="currentColor"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"></path>
+                                                  <path d="M19.05 4.92993L15.51 8.45993" stroke="currentColor"
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="1.5"></path>
+                                              </svg>
+                                          </div>
+                                          <div class="ml-4">
+                                              <p class="text-sm font-medium">Help</p>
+                                          </div>
+                                      </a> -->
                         <a
                           class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                           href="/ciseco/"
@@ -1235,93 +745,32 @@
                             class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
                           >
                             <svg
-                              width="24"
+                              fill="none"
                               height="24"
                               viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M11.97 22C17.4928 22 21.97 17.5228 21.97 12C21.97 6.47715 17.4928 2 11.97 2C6.44715 2 1.97 6.47715 1.97 12C1.97 17.5228 6.44715 22 11.97 22Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M4.89999 4.92993L8.43999 8.45993"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M4.89999 19.07L8.43999 15.54"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M19.05 19.07L15.51 15.54"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                              <path
-                                d="M19.05 4.92993L15.51 8.45993"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              ></path>
-                            </svg>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-sm font-medium">Help</p>
-                          </div> </a
-                        ><a
-                          class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                          href="/ciseco/"
-                        >
-                          <div
-                            class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300"
-                          >
-                            <svg
                               width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
                                 d="M8.90002 7.55999C9.21002 3.95999 11.06 2.48999 15.11 2.48999H15.24C19.71 2.48999 21.5 4.27999 21.5 8.74999V15.27C21.5 19.74 19.71 21.53 15.24 21.53H15.11C11.09 21.53 9.24002 20.08 8.91002 16.54"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M15 12H3.62"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                               <path
                                 d="M5.85 8.6499L2.5 11.9999L5.85 15.3499"
                                 stroke="currentColor"
-                                stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                stroke-width="1.5"
                               ></path>
                             </svg>
                           </div>
@@ -1335,66 +784,67 @@
                 </div>
                 <div class="relative">
                   <button
-                    x-on:mousedown="openShopingCart"
-                    class="text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
                     id="headlessui-popover-button-:r6:"
-                    type="button"
                     aria-expanded="false"
+                    class="cursor-pointer text-opacity-90 group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative"
+                    type="button"
+                    @click.stop="hiddenClick(),cartShow = !cartShow,getShopCarts('top');"
                   >
                     <div
                       class="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium"
                     >
-                      <span class="mt-[1px]">1</span>
+                      <span class="mt-[1px]">${cartsNumber}</span>
                     </div>
                     <svg
                       class="w-6 h-6"
-                      viewBox="0 0 24 24"
                       fill="none"
+                      viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
                         d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-miterlimit="10"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
                       ></path>
                       <path
                         d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-miterlimit="10"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
                       ></path>
                       <path
                         d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-miterlimit="10"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
                       ></path>
                       <path
                         d="M9 8H21"
                         stroke="currentColor"
-                        stroke-width="1.5"
-                        stroke-miterlimit="10"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                      ></path></svg
-                    ><a
+                        stroke-miterlimit="10"
+                        stroke-width="1.5"
+                      ></path>
+                    </svg>
+                    <a
                       class="block md:hidden absolute inset-0"
-                      href="/index/cart"
+                      href="/cart"
                     ></a>
                   </button>
                   <div
-                    x-show.transition="isOpenShopingCart()"
-                    x-on:mousedown.away="closeShopingCart"
-                    class="md:block absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0 opacity-100 translate-y-0"
                     id="headlessui-popover-panel-:r7:"
+                    class="md:block absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0 opacity-100 translate-y-0"
                     tabindex="-1"
+                    v-show="cartShow"
+                    @click.stop=""
                   >
                     <div
                       class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10"
@@ -1405,95 +855,132 @@
                         >
                           <h3 class="text-xl font-semibold">购物车</h3>
                           <div
-                            class="divide-y divide-slate-100 dark:divide-slate-700"
+                            v-if="carLoading"
+                            class="flex items-center justify-center"
+                            role="status"
                           >
-                            <div class="flex py-5 last:pb-0">
-                              <div
-                                class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
-                              >
-                                <img
-                                  src="../../../assets/images/wshops-logo-icon.png"
-                                  alt="Rey Nylon Backpack"
-                                  class="h-full w-full object-contain object-center"
-                                /><a
-                                  class="absolute inset-0"
-                                  href="/ciseco/product-detail"
-                                ></a>
-                              </div>
-                              <div class="ml-4 flex flex-1 flex-col">
-                                <div>
-                                  <div class="flex justify-between">
-                                    <div>
-                                      <h3 class="text-base font-medium">
-                                        <a href="/ciseco/product-detail"
-                                          >Rey Nylon Backpack</a
+                            <svg
+                              aria-hidden="true"
+                              class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                              viewBox="0 0 100 101"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                fill="currentColor"
+                              />
+                              <path
+                                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                fill="currentFill"
+                              />
+                            </svg>
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                          <div v-else>
+                            <div
+                              class="w-full mt-2 h-24 flex items-center justify-center rounded-xl bg-slate-100"
+                              v-if="cartsList.length===0"
+                            >
+                              暂无购物车~~
+                            </div>
+                            <div
+                              v-else
+                              v-for="item in cartsList"
+                              class="divide-y divide-slate-100 dark:divide-slate-700"
+                            >
+                              <div class="flex py-5 last:pb-0">
+                                <div
+                                  class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100"
+                                >
+                                  <img
+                                    alt="Rey Nylon Backpack"
+                                    class="h-full w-full object-contain object-center"
+                                    :src="item.product_thumb_picture_url"
+                                  />
+                                  <div
+                                    class="cursor-pointer absolute inset-0"
+                                    @click="toProductDetail(item)"
+                                  ></div>
+                                </div>
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between">
+                                      <div>
+                                        <h3 class="text-base font-medium">
+                                          <div
+                                            class="cursor-pointer"
+                                            @click="toProductDetail(item)"
+                                          >
+                                            ${item.product_name}
+                                          </div>
+                                        </h3>
+                                        <p
+                                          class="mt-1 text-sm text-slate-500 dark:text-slate-400"
                                         >
-                                      </h3>
-                                      <p
-                                        class="mt-1 text-sm text-slate-500 dark:text-slate-400"
-                                      >
-                                        <span>Natural</span
-                                        ><span
-                                          class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
-                                        ></span
-                                        ><span>XL</span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-0.5">
-                                      <div
-                                        class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
-                                      >
-                                        <span
-                                          class="text-green-500 !leading-none"
-                                          >$74.00</span
+                                          <span>$${item.unit_price}</span
+                                          ><span
+                                            class="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"
+                                          ></span>
+                                          <span> x ${item.quantity}</span>
+                                        </p>
+                                      </div>
+                                      <div class="mt-0.5">
+                                        <div
+                                          class="flex items-center border-2 border-green-500 rounded-lg py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium"
                                         >
+                                          <span
+                                            class="text-green-500 !leading-none"
+                                            >$${item.sub_total}</span
+                                          >
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div
-                                  class="flex flex-1 items-end justify-between text-sm"
-                                >
-                                  <p class="text-gray-500 dark:text-slate-400">
-                                    Qty 1
-                                  </p>
-                                  <div class="flex">
-                                    <button
-                                      type="button"
-                                      class="font-medium text-primary-6000 dark:text-primary-500"
+                                  <div
+                                    class="flex flex-1 items-end justify-between text-sm"
+                                  >
+                                    <p
+                                      class="text-gray-500 dark:text-slate-400"
                                     >
-                                      Remove
-                                    </button>
+                                      ${item.variant_name}
+                                    </p>
+                                    <div class="flex">
+                                      <button
+                                        @click="delShopCarts(item)"
+                                        class="font-medium text-primary-6000 dark:text-primary-500"
+                                        type="button"
+                                      >
+                                        移除
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="bg-neutral-50 dark:bg-slate-900 p-5">
+                        <div
+                          v-if="cartsList.length>0"
+                          class="bg-neutral-50 dark:bg-slate-900 p-5"
+                        >
                           <p
                             class="flex justify-between font-semibold text-slate-900 dark:text-slate-100"
                           >
-                            <span
-                              ><span>Subtotal</span
-                              ><span
-                                class="block text-sm text-slate-500 dark:text-slate-400 font-normal"
-                                >Shipping and taxes calculated at
-                                checkout.</span
-                              ></span
-                            ><span class="">$299.00</span>
+                            <span><span>总价</span></span
+                            ><span class="">$${total_price}</span>
                           </p>
                           <div class="flex space-x-2 mt-5">
                             <a
                               class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 flex-1 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                              rel="noopener noreferrer"
                               href="/cart"
-                              >View cart</a
+                              rel="noopener noreferrer"
+                              >进入购物车 </a
                             ><a
                               class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                              rel="noopener noreferrer"
                               href="/checkout"
-                              >Check out</a
+                              rel="noopener noreferrer"
+                              >立即支付</a
                             >
                           </div>
                         </div>
@@ -1517,92 +1004,133 @@
                 热销产品
               </h2>
             </div>
-            <div class="mt-4 flow-root">
+            <div class="mt-5 flow-root">
               <div
-                @resetting="clearInterval($flag);$flag=setInterval('$next.click()',3000);"
-                class="w-full h-full relative overflow-x-hidden shadow-md rounded-lg"
-                x-data="{ activeSlide: 1 , lunbos: [{ img: '../assets/images/banner4.jpg' },{ img: '../assets/images/banner4.jpg' },{ img: '../assets/images/banner4.jpg' },],last : null}"
-                x-init="last=activeSlide;$next=$refs.next;$flag=setInterval('$next.click()',3000);"
+                id="product_show"
+                class="grid grid-cols-1 md:grid-cols-1 gap-3 lg:gap-6 bg-gray-200 rounded-lg"
               >
-                <!--循环输出图片-->
-                <div
-                  :class="{'transition-transform':last!=activeSlide}"
-                  :style="`transform: translateX(${(activeSlide) * -100}%)`"
-                  @transitionend="if(activeSlide>lunbos.length){activeSlide=1;}if(activeSlide<1){activeSlide=lunbos.length;}"
-                  class="relative min-w-full flex"
-                  x-effect="if(activeSlide==0){last=lunbos.length}if(activeSlide==lunbos.length+1){last=1}if(1<activeSlide&&activeSlide<lunbos.length){last=-1}"
-                >
-                  <template
-                    :key="index"
-                    x-for="(lunbo,index) in [lunbos[lunbos.length -1], ...lunbos, lunbos[0]]"
+                <div class="relative">
+                  <!-- Carousel wrapper -->
+                  <div
+                    class="relative h-56 overflow-hidden rounded-lg sm:h-64 xl:h-80 2xl:h-96"
                   >
-                    <img
-                      :src="lunbo.img"
-                      class="flex-shrink-0 w-full object-center object-cover"
-                    />
-                  </template>
-                </div>
-
-                <div
-                  class="absolute top-0 bottom-0 text-white flex justify-between w-full"
-                >
-                  <!--上一个-->
-                  <button
-                    class="hover:text-sky-500 px-2"
-                    @click="activeSlide = activeSlide === 0 ? lunbos.length+1 : activeSlide - 1;$dispatch('resetting')"
-                  >
-                    <svg
-                      class="h-8 w-8"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <!-- Item 1 -->
+                    <div
+                      id="carousel-item-1"
+                      class="duration-300 flex justify-center animate-out slide-in-from-right-500"
                     >
-                      <path
-                        d="M11 17l-5-5m0 0l5-5m-5 5h12"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </svg>
-                  </button>
-                  <!--下一个-->
-                  <button
-                    class="hover:text-sky-500 px-2"
-                    @click="activeSlide = activeSlide === lunbos.length+1 ? 1 : activeSlide + 1;$dispatch('resetting')"
-                    x-ref="next"
+                      <span
+                        class="absolute flex justify-center items-center top-28 text-2xl font-semibold text-white sm:text-3xl dark:text-gray-800"
+                        ><svg
+                          aria-hidden="true"
+                          class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                          viewBox="0 0 100 101"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="currentColor"
+                          />
+                          <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="currentFill"
+                          /></svg
+                      ></span>
+                      <img
+                        :src="imgArr[index]"
+                        class="absolute block h-full"
+                        alt="..."
+                      />
+                    </div>
+                  </div>
+                  <!-- Slider indicators -->
+                  <div
+                    class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2"
                   >
-                    <svg
-                      class="h-8 w-8"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-
-                <!--循环输出指示标-->
-                <div
-                  class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4"
-                >
-                  <template :key="index" x-for="(lunbo,index) in lunbos">
                     <button
-                      @click="last=-1;activeSlide=index+1 ;$dispatch('resetting')"
-                      :class="{'opacity-60':activeSlide!=index+1 }"
-                      class="w-7 bg-gray-300 bg-clip-content h-1 mx-0.5 box-content border-transparent border-y-8"
+                      id="carousel-indicator-1"
+                      type="button"
+                      class="w-3 h-3 rounded-full"
+                      aria-current="true"
+                      aria-label="Slide 1"
                     ></button>
-                  </template>
+                    <button
+                      id="carousel-indicator-2"
+                      type="button"
+                      class="w-3 h-3 rounded-full"
+                      aria-current="false"
+                      aria-label="Slide 2"
+                    ></button>
+                    <button
+                      id="carousel-indicator-3"
+                      type="button"
+                      class="w-3 h-3 rounded-full"
+                      aria-current="false"
+                      aria-label="Slide 3"
+                    ></button>
+                    <button
+                      id="carousel-indicator-4"
+                      type="button"
+                      class="w-3 h-3 rounded-full"
+                      aria-current="false"
+                      aria-label="Slide 4"
+                    ></button>
+                  </div>
+                  <!-- Slider controls -->
+                  <button
+                    id="data-carousel-prev"
+                    type="button"
+                    @click="prev"
+                    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  >
+                    <span
+                      class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white dark:bg-gray-800/30 group-hover:bg-primary-500 dark:group-hover:bg-gray-800/60 group-focus:bg-primary-500 dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+                    >
+                      <svg
+                        class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 19l-7-7 7-7"
+                        ></path>
+                      </svg>
+                      <span class="hidden">Previous</span>
+                    </span>
+                  </button>
+                  <button
+                    id="data-carousel-next"
+                    type="button"
+                    @click="next"
+                    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                  >
+                    <span
+                      class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white dark:bg-gray-800/30 group-hover:bg-primary-500 dark:group-hover:bg-gray-800/60 group-focus:bg-primary-500 dark:group-focus:ring-gray-800/70 group-focus:outline-none"
+                    >
+                      <svg
+                        class="w-5 h-5 text-black group-hover:text-white group-focus:text-white sm:w-6 sm:h-6 dark:text-gray-800"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        ></path>
+                      </svg>
+                      <span class="hidden">Next</span>
+                    </span>
+                  </button>
                 </div>
-                <!--
-                        <div class="flex flex-col text-white w-full"><span x-text="activeSlide"></span> / <span x-text="last"></span></div>调试用-->
               </div>
             </div>
           </section>
@@ -1617,7 +1145,7 @@
               </h2>
               <a
                 class="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
-                href="#"
+                href="/search"
               >
                 购买
                 <span aria-hidden="true"> &rarr;</span>

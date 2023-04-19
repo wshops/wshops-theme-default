@@ -1,82 +1,84 @@
 // 所有样式都在这个文件，包括引入 tailwindcss
 import "./style.less";
+import WshopUtils from "@wshops/utils";
+import { useNotify } from "../../utils/notify";
+import { useNavMenu } from "../../commons/navmenu";
+import { createApp } from "vue";
+useNotify({
+  position: "top-right",
+});
 
-import Alpine from "alpinejs";
+new WshopUtils({
+  feedbacks: {
+    apiFeedbacks: {
+      onError: (message: string): void => {
+        window.$notify.closable().error(message);
+      },
+      onInfo: (message: string): void => {
+        window.$notify.closable().info(message);
+      },
+      onWarning: (message: string): void => {
+        window.$notify.closable().warn(message);
+      },
+      onUnAuthorized: (): void => {
+        window.location.assign("/auth/register");
+      },
+      onSuccess: (message: string): void => {
+        window.$notify.closable().success(message);
+      },
+    },
+  },
+});
 
-window.Alpine = Alpine;
-declare const window: Window & { topNav: Function };
-type PageState = {
-  test: string;
-};
+useNavMenu();
 
-let state: PageState = {
-  test: "Hello World",
-};
-
-window.topNav = function () {
-  return {
-    droDownshow: false,
-    mobileShow: false,
-    show: false,
-    // 商品类别下拉列表
-    open() {
-      this.show = true;
-    },
-    close() {
-      this.show = false;
-    },
-    isOpen() {
-      return this.show === true;
-    },
-    back() {
-      history.back();
-    },
-    // 个人中心下拉列表
-    droDownOpen() {
-      if (this.droDownshow) {
-        this.droDownshow = false;
+createApp({
+  compilerOptions: {
+    delimiters: ["${", "}"],
+    comments: true,
+  },
+  data: () => ({
+    imgArr: [
+      "/assets/images/banner4.jpg",
+      "/assets/images/login-background.jpg",
+      "/assets/images/pic.png",
+    ],
+    index: 0,
+    timer: null,
+  }),
+  components: {},
+  computed: {},
+  watch: {},
+  methods: {
+    prev() {
+      clearInterval(this.timer);
+      if (this.index === 0) {
+        this.index = this.imgArr.length - 1;
       } else {
-        this.droDownshow = true;
+        this.index--;
       }
+      this.timer = setInterval(() => {
+        this.next();
+      }, 3000);
     },
-    droDownClose() {
-      this.droDownshow = false;
-    },
-    isDroDownOpen() {
-      return this.droDownshow === true;
-    },
-    // 购物车展示弹窗
-    shopingCartshow: false,
-    openShopingCart() {
-      if (this.shopingCartshow) {
-        this.shopingCartshow = false;
+    next() {
+      clearInterval(this.timer);
+      if (this.index === this.imgArr.length - 1) {
+        this.index = 0;
       } else {
-        this.shopingCartshow = true;
+        this.index++;
       }
+      this.timer = setInterval(() => {
+        this.next();
+      }, 3000);
     },
-    closeShopingCart() {
-      this.shopingCartshow = false;
-    },
-    isOpenShopingCart() {
-      return this.shopingCartshow === true;
-    },
-    // 手机端控制
-    mobileOpen() {
-      this.mobileShow = true;
-    },
-    mobileClose() {
-      this.mobileShow = false;
-    },
-    mobileIsOpen() {
-      return this.mobileShow === true;
-    },
-    toSearch() {
-      location.assign("search");
-    },
-  };
-};
-Alpine.store("page-index", state);
-
-//业务逻辑？？？(alpine 用起来跟 VUE 差不多？)
-
-Alpine.start();
+  },
+  mounted() {
+    this.timer = setInterval(() => {
+      this.next();
+    }, 3000);
+  },
+  unmounted() {
+    clearInterval(this.timer);
+  },
+}).mount("#product_show");
