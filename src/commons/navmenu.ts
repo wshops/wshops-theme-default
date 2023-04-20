@@ -166,16 +166,22 @@ export function useNavMenu() {
           .api()
           .get("/api/v1/capi/cart/item")
           .then((res: any) => {
-            if (res !== null && res !== undefined && res.data.data.product_items) {
+            if (
+              res !== null &&
+              res !== undefined &&
+              res.data.data.product_items
+            ) {
               this.cartsNumber = res.data.data.product_items.length;
               this.cartsList =
-                res.data.data.product_items.length > 0 ? res.data.data.product_items : [];
+                res.data.data.product_items.length > 0
+                  ? res.data.data.product_items
+                  : [];
               this.total_price = res.data.data.total_price;
-              localStorage.setItem("cartNum", res.data.data.product_items.length);
+              localStorage.setItem("cartNum", res.data.data.total_quantity);
             } else {
               this.cartsList = [];
               this.total_price = 0;
-              localStorage.setItem("cartNum", this.cartsList.length);
+              localStorage.setItem("cartNum", res.data.data.total_quantity);
             }
             this.loading = false;
             this.carLoading = false;

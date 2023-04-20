@@ -144,7 +144,7 @@ createApp({
         .then((res: any) => {
           if (res !== null && res !== undefined) {
             window.$notify.success("添加购物车成功");
-            localStorage.setItem("cartNum", res.data.data.product_items.length);
+            localStorage.setItem("cartNum", res.data.data.total_quantity);
             variant_no ? this.closeVariantsModel() : "";
           }
         })

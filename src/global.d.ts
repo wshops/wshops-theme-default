@@ -5,7 +5,6 @@ import "@hcaptcha/types";
 
 declare global {
   interface Window {
-    // Alpine: AlpineType;
     $notify: Notify;
     $wshop: WshopUtils;
     refreshAddressList: Function;
