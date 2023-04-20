@@ -63,6 +63,7 @@ export function useNavMenu() {
       loading: false,
       carLoading: false,
       total_price: 0, // 总价
+      showCategory: true,
     }),
     components: {},
     computed: {},
@@ -171,7 +172,7 @@ export function useNavMenu() {
               res !== undefined &&
               res.data.data.product_items
             ) {
-              this.cartsNumber = res.data.data.product_items.length;
+              this.cartsNumber = res.data.data.total_quantity;
               this.cartsList =
                 res.data.data.product_items.length > 0
                   ? res.data.data.product_items
@@ -256,7 +257,7 @@ export function useNavMenu() {
       // });
       window.addEventListener("setItemEvent", (e: any) => {
         if (e.key === "cartNum") {
-          this.cartsNumber = e.newValue;
+          this.cartsNumber = e.newValue ? e.newValue : 0;
         }
       });
     },

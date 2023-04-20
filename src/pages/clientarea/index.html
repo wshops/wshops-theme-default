@@ -42,7 +42,7 @@
                     <div
                       class="overflow-y-auto w-full h-screen py-2 transition transform shadow-lg ring-1 dark:ring-neutral-700 bg-white dark:bg-neutral-900 divide-y-2 divide-neutral-100 dark:divide-neutral-800">
                       <div class="py-6 px-5">
-                        <a class="ttnc-logo inline-block text-slate-600 flex-shrink-0" href="/ciseco/" tabindex="0"><img
+                        <a class="ttnc-logo inline-block text-slate-600 flex-shrink-0" href="/index" tabindex="0"><img
                             alt="Logo" class="block max-h-8 sm:max-h-10 dark:hidden"
                             src="/assets/images/wshops-logo-icon.png" /><img alt="Logo-Light"
                             class="hidden max-h-8 sm:max-h-10 dark:block"
@@ -66,21 +66,34 @@
                                 href="#" rel="noopener noreferrer" target="_blank" title="Telegram"><img alt=""
                                   src="./static/media/telegram.5acad1587076bc12320cadff0f4aa3f3.svg" /></a>
                             </nav>
-                            <span class="block"><button
-                                class="text-2xl md:text-3xl w-12 h-12 rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none flex items-center justify-center bg-neutral-100 dark:bg-neutral-800">
-                                <span class="sr-only">Enable dark mode</span><svg fill="none" height="24"
-                                  viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                    d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="1.5">
-                                  </path>
-                                  <path
-                                    d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2">
-                                  </path>
-                                </svg></button></span>
+                            <!-- <span class="block"
+                                ><button
+                                  class="text-2xl md:text-3xl w-12 h-12 rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none flex items-center justify-center bg-neutral-100 dark:bg-neutral-800"
+                                >
+                                  <span class="sr-only">Enable dark mode</span
+                                  ><svg
+                                    fill="none"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M12 18.5C15.5899 18.5 18.5 15.5899 18.5 12C18.5 8.41015 15.5899 5.5 12 5.5C8.41015 5.5 5.5 8.41015 5.5 12C5.5 15.5899 8.41015 18.5 12 18.5Z"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="1.5"
+                                    ></path>
+                                    <path
+                                      d="M19.14 19.14L19.01 19.01M19.01 4.99L19.14 4.86L19.01 4.99ZM4.86 19.14L4.99 19.01L4.86 19.14ZM12 2.08V2V2.08ZM12 22V21.92V22ZM2.08 12H2H2.08ZM22 12H21.92H22ZM4.99 4.99L4.86 4.86L4.99 4.99Z"
+                                      stroke="currentColor"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                    ></path>
+                                  </svg></button
+                              ></span> -->
                           </div>
                         </div>
                         <span class="absolute right-2 top-2 p-1"><button
@@ -93,7 +106,7 @@
                                 fill-rule="evenodd"></path>
                             </svg></button></span>
                         <div class="mt-5">
-                          <form action="" class="flex-1 text-slate-900 dark:text-slate-200" method="POST">
+                          <form @click="toSearch()" class="flex-1 text-slate-900 dark:text-slate-200">
                             <div
                               class="bg-slate-50 dark:bg-slate-800 flex items-center space-x-1 py-2 px-4 rounded-xl h-full">
                               <svg fill="none" height="22" viewBox="0 0 24 24" width="22"
@@ -101,100 +114,57 @@
                                 <path
                                   d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
                                   stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                  stroke-width="1.5">
-                                </path>
+                                  stroke-width="1.5"></path>
                                 <path d="M22 22L20 20" stroke="currentColor" stroke-linecap="round"
                                   stroke-linejoin="round" stroke-width="1.5"></path>
                               </svg>
                               <input class="border-none bg-transparent focus:outline-none focus:ring-0 w-full text-sm"
                                 placeholder="搜索产品" type="search" />
                             </div>
-                            <input hidden="" type="submit" value="" />
+                            <input hidden="" value="" />
                           </form>
                         </div>
                       </div>
                       <ul class="flex flex-col py-6 px-2 space-y-1">
                         <li class="text-slate-900 dark:text-white">
                           <a class="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                            href="/ciseco/#"><span class="">商品分类</span><span class="block flex-grow"><span
-                                id="headlessui-disclosure-button-:r7o:" aria-expanded="false"
-                                class="flex justify-end flex-grow"><svg aria-hidden="true"
+                            @click="showCategory =!showCategory"><span class="">商品分类</span><span
+                              class="block flex-grow"><span id="headlessui-disclosure-button-:r7o:"
+                                aria-expanded="false" class="flex justify-end flex-grow"><svg aria-hidden="true"
                                   class="ml-2 h-4 w-4 text-neutral-500" fill="currentColor" viewBox="0 0 24 24"
                                   xmlns="http://www.w3.org/2000/svg">
                                   <path clip-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
                                     fill-rule="evenodd"></path>
                                 </svg></span></span></a>
-                          <div id="headlessui-disclosure-panel-:rao:">
+                          <div id="headlessui-disclosure-panel-:rao:" v-if="showCategory">
                             <ul class="nav-mobile-sub-menu pl-6 pb-1 text-base">
-                              <li>
-                                <a aria-current="page"
-                                  class="flex text-sm rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-0.5 pr-4 pl-3 text-neutral-900 dark:text-neutral-200 font-medium text-secondary"
-                                  href="/ciseco/#"><span class="py-2.5">Clothing</span><span
-                                    class="flex items-center flex-grow"><span id="headlessui-disclosure-button-:rb5:"
-                                      aria-expanded="false" class="flex justify-end flex-grow"><svg aria-hidden="true"
-                                        class="ml-2 h-4 w-4 text-slate-500" fill="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path clip-rule="evenodd"
-                                          d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                          fill-rule="evenodd"></path>
-                                      </svg></span></span></a>
-                              </li>
-                              <li>
-                                <a aria-current="page"
-                                  class="flex text-sm rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-0.5 pr-4 pl-3 text-neutral-900 dark:text-neutral-200 font-medium text-secondary"
-                                  href="/ciseco/#"><span class="py-2.5">Accessories</span><span
-                                    class="flex items-center flex-grow"><span id="headlessui-disclosure-button-:rb7:"
-                                      aria-expanded="false" class="flex justify-end flex-grow"><svg aria-hidden="true"
-                                        class="ml-2 h-4 w-4 text-slate-500" fill="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path clip-rule="evenodd"
-                                          d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                          fill-rule="evenodd"></path>
-                                      </svg></span></span></a>
-                              </li>
-                              <li>
-                                <a aria-current="page"
-                                  class="flex text-sm rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-0.5 pr-4 pl-3 text-neutral-900 dark:text-neutral-200 font-medium text-secondary"
-                                  href="/ciseco/#"><span class="py-2.5">Shoes</span><span
-                                    class="flex items-center flex-grow"><span id="headlessui-disclosure-button-:rb9:"
-                                      aria-expanded="false" class="flex justify-end flex-grow"><svg aria-hidden="true"
-                                        class="ml-2 h-4 w-4 text-slate-500" fill="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path clip-rule="evenodd"
-                                          d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                          fill-rule="evenodd"></path>
-                                      </svg></span></span></a>
-                              </li>
-                              <li>
-                                <a aria-current="page"
-                                  class="flex text-sm rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-0.5 pr-4 pl-3 text-neutral-900 dark:text-neutral-200 font-medium text-secondary"
-                                  href="/ciseco/#"><span class="py-2.5">Brands</span><span
-                                    class="flex items-center flex-grow"><span id="headlessui-disclosure-button-:rbb:"
-                                      aria-expanded="false" class="flex justify-end flex-grow"><svg aria-hidden="true"
-                                        class="ml-2 h-4 w-4 text-slate-500" fill="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path clip-rule="evenodd"
-                                          d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                          fill-rule="evenodd"></path>
-                                      </svg></span></span></a>
-                              </li>
+                              <div @scroll="scrollEvent"
+                                class="max-h-96 overflow-y-auto relative flex flex-col px-5 py-6 space-y-5">
+                                <li class="w-48 pb-4 text-slate-900 dark:text-neutral-200 cursor-pointer"
+                                  v-for="item in categoryList">
+                                  <div @click="toProductCategory(item)"
+                                    class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-1 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 md:mr-6">
+                                    ${item.category_name}
+                                  </div>
+                                </li>
+                              </div>
                             </ul>
                           </div>
                         </li>
                         <li class="text-slate-900 dark:text-white">
                           <a class="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                            href="/ciseco/#"><span class="block w-full">关于我们</span></a>
+                            href="/index"><span class="block w-full">关于我们</span></a>
                         </li>
                         <li class="text-slate-900 dark:text-white">
                           <a class="flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-                            href="/ciseco/#"><span class="block w-full">博客</span></a>
+                            href="/index"><span class="block w-full">博客</span></a>
                         </li>
                       </ul>
                       <!-- <div class="flex items-center justify-between py-6 px-5 space-x-2">
-                                  <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl !px-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                                      rel="noopener noreferrer" href="/ciseco/">Buy this template</a>
-                              </div> -->
+                                <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl !px-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
+                                    rel="noopener noreferrer" href="/ciseco/">Buy this template</a>
+                            </div> -->
                     </div>
                   </div>
                   <div id="headlessui-dialog-overlay-:r85:" aria-hidden="true"
@@ -203,7 +173,7 @@
               </div>
             </div>
             <div class="lg:flex-1 flex items-center">
-              <a class="ttnc-logo inline-block text-slate-600 flex-shrink-0" href="index"><img alt="Logo"
+              <a class="ttnc-logo inline-block text-slate-600 flex-shrink-0" href="/index"><img alt="Logo"
                   class="block max-h-8 sm:max-h-10 dark:hidden" src="/assets/images/wshops-logo-icon.png" /><img
                   alt="Logo-Light" class="hidden max-h-8 sm:max-h-10 dark:block"
                   src="/assets/images/wshops-logo-icon.png" /></a>
@@ -223,26 +193,23 @@
                       </svg>
                     </a>
                   </div>
-                  <div class="animate-in zoom-in-95 duration-300 sub-menu
-                                  absolute top-full inset-x-0 transform z-50" v-show="categoryListShow">
-                    <div class="max-h-72 overflow-y-auto  bg-white dark:bg-neutral-900 shadow-lg" @scroll="scrollEvent">
+                  <div class="animate-in zoom-in-95 duration-300 sub-menu absolute top-full inset-x-0 transform z-50"
+                    v-show="categoryListShow">
+                    <div class="max-h-72 overflow-y-auto bg-white dark:bg-neutral-900 shadow-lg" @scroll="scrollEvent">
                       <div class="container">
                         <div class="flex border-t border-slate-200 dark:border-slate-700 py-14">
                           <div class="flex-1 grid grid-cols-1 gap-6 xl:gap-8 pr-6 xl:pr-8">
                             <div>
                               <!-- <p class="font-medium text-slate-900 dark:text-neutral-200">
-                                                          Clothing
-                                                      </p> -->
+                                                        Clothing
+                                                    </p> -->
                               <ul class="flex flex-wrap items-start mb-2 text-gray-400 dark:text-white">
                                 <li class="w-48 pb-7 text-slate-900 dark:text-neutral-200 cursor-pointer"
                                   v-for="item in categoryList">
-                                  <div @click="toProductCategory(item)" class="inline-flex items-center
-                                                                  text-sm lg:text-[15px] font-medium
-                                                                  text-slate-700 dark:text-slate-300 py-1 px-4
-                                                                  xl:px-5 rounded-full hover:text-slate-900
-                                                                  hover:bg-slate-100 dark:hover:bg-slate-800
-                                                                  dark:hover:text-slate-200 md:mr-6">
-                                    ${item.category_name}</div>
+                                  <div @click="toProductCategory(item)"
+                                    class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-1 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 md:mr-6">
+                                    ${item.category_name}
+                                  </div>
                                 </li>
                               </ul>
                             </div>
@@ -252,16 +219,16 @@
                     </div>
                   </div>
                 </li>
-                <li class=" menu-item flex-shrink-0">
+                <li class="menu-item flex-shrink-0">
                   <div class="h-20 flex-shrink-0 flex items-center">
                     <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                      href="/index/#" rel="noopener noreferrer">博客</a>
+                      href="/index" rel="noopener noreferrer">博客</a>
                   </div>
                 </li>
                 <li class="menu-item flex-shrink-0">
                   <div class="h-20 flex-shrink-0 flex items-center">
                     <a class="inline-flex items-center text-sm lg:text-[15px] font-medium text-slate-700 dark:text-slate-300 py-2.5 px-4 xl:px-5 rounded-full hover:text-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200"
-                      href="/index/#" rel="noopener noreferrer">关于我们</a>
+                      href="/index" rel="noopener noreferrer">关于我们</a>
                   </div>
                 </li>
               </ul>
@@ -272,8 +239,7 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  </path>
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                   <path d="M22 22L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                     stroke-linejoin="round"></path>
                 </svg>
@@ -304,14 +270,11 @@
                             src="/assets/images/wshops-logo-icon.png" /><span class="wil-avatar__name">J</span>
                         </div>
                         <div class="flex-grow">
-                          <h4 class="font-semibold">Eden Smith
-                          </h4>
-                          <p class="text-xs mt-0.5">Los
-                            Angeles, CA</p>
+                          <h4 class="font-semibold">Eden Smith</h4>
+                          <p class="text-xs mt-0.5">Los Angeles, CA</p>
                         </div>
                       </div>
-                      <div class="w-full border-b border-neutral-200 dark:border-neutral-700">
-                      </div>
+                      <div class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                       <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
                         href="/clientarea">
                         <div
@@ -329,12 +292,11 @@
                           </svg>
                         </div>
                         <div class="ml-4">
-                          <p class="text-sm font-medium">个人中心
-                          </p>
+                          <p class="text-sm font-medium">个人中心</p>
                         </div>
                       </a><a
                         class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                        href="/ciseco/checkout">
+                        href="/clientarea">
                         <div
                           class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                           <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
@@ -352,12 +314,11 @@
                           </svg>
                         </div>
                         <div class="ml-4">
-                          <p class="text-sm font-medium">我的订单
-                          </p>
+                          <p class="text-sm font-medium">我的订单</p>
                         </div>
                       </a><a
                         class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                        href="/ciseco/account-savelists">
+                        href="/clientarea">
                         <div
                           class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                           <svg fill="none" height="24" viewBox="0 0 24 24" width="24">
@@ -368,81 +329,79 @@
                           </svg>
                         </div>
                         <div class="ml-4">
-                          <p class="text-sm font-medium">我的收藏
-                          </p>
+                          <p class="text-sm font-medium">我的收藏</p>
                         </div>
                       </a>
-                      <div class="w-full border-b border-neutral-200 dark:border-neutral-700">
-                      </div>
+                      <div class="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
                       <!-- <div
-                                          class="flex items-center justify-between p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
-                                          <div class="flex items-center">
-                                              <div
-                                                  class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                                  <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M12.0001 7.88989L10.9301 9.74989C10.6901 10.1599 10.8901 10.4999 11.3601 10.4999H12.6301C13.1101 10.4999 13.3001 10.8399 13.0601 11.2499L12.0001 13.1099"
-                                                          stroke="currentColor" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="1.5"></path>
-                                                      <path
-                                                          d="M8.30011 18.0399V16.8799C6.00011 15.4899 4.11011 12.7799 4.11011 9.89993C4.11011 4.94993 8.66011 1.06993 13.8001 2.18993C16.0601 2.68993 18.0401 4.18993 19.0701 6.25993C21.1601 10.4599 18.9601 14.9199 15.7301 16.8699V18.0299C15.7301 18.3199 15.8401 18.9899 14.7701 18.9899H9.26011C8.16011 18.9999 8.30011 18.5699 8.30011 18.0399Z"
-                                                          stroke="currentColor" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="1.5"></path>
-                                                      <path d="M8.5 22C10.79 21.35 13.21 21.35 15.5 22"
-                                                          stroke="currentColor" stroke-linecap="round"
-                                                          stroke-linejoin="round" stroke-width="1.5"></path>
-                                                  </svg>
-                                              </div>
-                                              <div class="ml-4">
-                                                  <p class="text-sm font-medium">Dark theme</p>
-                                              </div>
-                                          </div>
-                                          <div class="inline-flex">
-                                              <span class="sr-only">Enable dark mode</span>
-                                              <button id="headlessui-switch-:re3:" aria-checked="false"
-                                                  class="bg-teal-600 relative inline-flex h-[22px] w-[42px] shrink-0 cursor-pointer rounded-full border-4 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                                  role="switch" tabindex="0" type="button">
-                                                  <span class="sr-only">Enable dark mode</span><span
-                                                      aria-hidden="true"
-                                                      class="translate-x-0 pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"></span>
-                                              </button>
-                                          </div>
-                                      </div> -->
+                                        class="flex items-center justify-between p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50">
+                                        <div class="flex items-center">
+                                            <div
+                                                class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                                <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12.0001 7.88989L10.9301 9.74989C10.6901 10.1599 10.8901 10.4999 11.3601 10.4999H12.6301C13.1101 10.4999 13.3001 10.8399 13.0601 11.2499L12.0001 13.1099"
+                                                        stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="1.5"></path>
+                                                    <path
+                                                        d="M8.30011 18.0399V16.8799C6.00011 15.4899 4.11011 12.7799 4.11011 9.89993C4.11011 4.94993 8.66011 1.06993 13.8001 2.18993C16.0601 2.68993 18.0401 4.18993 19.0701 6.25993C21.1601 10.4599 18.9601 14.9199 15.7301 16.8699V18.0299C15.7301 18.3199 15.8401 18.9899 14.7701 18.9899H9.26011C8.16011 18.9999 8.30011 18.5699 8.30011 18.0399Z"
+                                                        stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="1.5"></path>
+                                                    <path d="M8.5 22C10.79 21.35 13.21 21.35 15.5 22"
+                                                        stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="1.5"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium">Dark theme</p>
+                                            </div>
+                                        </div>
+                                        <div class="inline-flex">
+                                            <span class="sr-only">Enable dark mode</span>
+                                            <button id="headlessui-switch-:re3:" aria-checked="false"
+                                                class="bg-teal-600 relative inline-flex h-[22px] w-[42px] shrink-0 cursor-pointer rounded-full border-4 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                                role="switch" tabindex="0" type="button">
+                                                <span class="sr-only">Enable dark mode</span><span
+                                                    aria-hidden="true"
+                                                    class="translate-x-0 pointer-events-none inline-block h-[14px] w-[14px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"></span>
+                                            </button>
+                                        </div>
+                                    </div> -->
                       <!-- <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                                          href="/ciseco/">
-                                          <div
-                                              class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                              <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-                                                  xmlns="http://www.w3.org/2000/svg">
-                                                  <path
-                                                      d="M11.97 22C17.4928 22 21.97 17.5228 21.97 12C21.97 6.47715 17.4928 2 11.97 2C6.44715 2 1.97 6.47715 1.97 12C1.97 17.5228 6.44715 22 11.97 22Z"
-                                                      stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="1.5"></path>
-                                                  <path
-                                                      d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z"
-                                                      stroke="currentColor" stroke-linecap="round"
-                                                      stroke-linejoin="round" stroke-width="1.5"></path>
-                                                  <path d="M4.89999 4.92993L8.43999 8.45993" stroke="currentColor"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.5"></path>
-                                                  <path d="M4.89999 19.07L8.43999 15.54" stroke="currentColor"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.5"></path>
-                                                  <path d="M19.05 19.07L15.51 15.54" stroke="currentColor"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.5"></path>
-                                                  <path d="M19.05 4.92993L15.51 8.45993" stroke="currentColor"
-                                                      stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="1.5"></path>
-                                              </svg>
-                                          </div>
-                                          <div class="ml-4">
-                                              <p class="text-sm font-medium">Help</p>
-                                          </div>
-                                      </a> -->
+                                        href="/ciseco/">
+                                        <div
+                                            class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                            <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11.97 22C17.4928 22 21.97 17.5228 21.97 12C21.97 6.47715 17.4928 2 11.97 2C6.44715 2 1.97 6.47715 1.97 12C1.97 17.5228 6.44715 22 11.97 22Z"
+                                                    stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="1.5"></path>
+                                                <path
+                                                    d="M12 16.5C14.4853 16.5 16.5 14.4853 16.5 12C16.5 9.51472 14.4853 7.5 12 7.5C9.51472 7.5 7.5 9.51472 7.5 12C7.5 14.4853 9.51472 16.5 12 16.5Z"
+                                                    stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="1.5"></path>
+                                                <path d="M4.89999 4.92993L8.43999 8.45993" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5"></path>
+                                                <path d="M4.89999 19.07L8.43999 15.54" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5"></path>
+                                                <path d="M19.05 19.07L15.51 15.54" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5"></path>
+                                                <path d="M19.05 4.92993L15.51 8.45993" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <p class="text-sm font-medium">Help</p>
+                                        </div>
+                                    </a> -->
                       <a class="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                        href="/ciseco/">
+                        href="/login">
                         <div
                           class="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                           <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -458,8 +417,7 @@
                           </svg>
                         </div>
                         <div class="ml-4">
-                          <p class="text-sm font-medium">退出
-                          </p>
+                          <p class="text-sm font-medium">退出</p>
                         </div>
                       </a>
                     </div>
@@ -478,21 +436,17 @@
                     <path
                       d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
                       stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                      stroke-width="1.5">
-                    </path>
+                      stroke-width="1.5"></path>
                     <path
                       d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
                       stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                      stroke-width="1.5">
-                    </path>
+                      stroke-width="1.5"></path>
                     <path
                       d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
                       stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
-                      stroke-width="1.5">
-                    </path>
+                      stroke-width="1.5"></path>
                     <path d="M9 8H21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-miterlimit="10" stroke-width="1.5">
-                    </path>
+                      stroke-miterlimit="10" stroke-width="1.5"></path>
                   </svg>
                   <a class="block md:hidden absolute inset-0" href="/cart"></a>
                 </button>
@@ -502,9 +456,8 @@
                   <div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10">
                     <div class="relative bg-white dark:bg-neutral-800">
                       <div class="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
-                        <h3 class="text-xl font-semibold">购物车
-                        </h3>
-                        <div v-if="carLoading" class="flex items-center justify-center " role="status">
+                        <h3 class="text-xl font-semibold">购物车</h3>
+                        <div v-if="carLoading" class="flex items-center justify-center" role="status">
                           <svg aria-hidden="true"
                             class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                             viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -519,7 +472,9 @@
                         </div>
                         <div v-else>
                           <div class="w-full mt-2 h-24 flex items-center justify-center rounded-xl bg-slate-100"
-                            v-if="cartsList.length===0">暂无购物车~~</div>
+                            v-if="cartsList.length===0">
+                            暂无购物车~~
+                          </div>
                           <div v-else v-for="item in cartsList" class="divide-y divide-slate-100 dark:divide-slate-700">
                             <div class="flex py-5 last:pb-0">
                               <div class="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
@@ -533,7 +488,8 @@
                                     <div>
                                       <h3 class="text-base font-medium">
                                         <div class="cursor-pointer" @click="toProductDetail(item)">
-                                          ${item.product_name}</div>
+                                          ${item.product_name}
+                                        </div>
                                       </h3>
                                       <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
                                         <span>$${item.unit_price}</span><span
@@ -571,8 +527,7 @@
                         </p>
                         <div class="flex space-x-2 mt-5">
                           <a class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonSecondary bg-white text-slate-700 dark:bg-slate-900 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 flex-1 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
-                            href="/cart" rel="noopener noreferrer">进入购物车
-                          </a><a
+                            href="/cart" rel="noopener noreferrer">进入购物车 </a><a
                             class="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium py-3 px-4 sm:py-3.5 sm:px-6 ttnc-ButtonPrimary disabled:bg-opacity-90 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 text-slate-50 dark:text-slate-800 shadow-xl flex-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-6000 dark:focus:ring-offset-0"
                             href="/checkout" rel="noopener noreferrer">立即支付</a>
                         </div>
