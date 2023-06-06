@@ -94,7 +94,7 @@ export function useNavMenu() {
             if (
               res !== null &&
               res !== undefined &&
-              res.data.data.data.length > 0
+              res.data.data.data?.length > 0
             ) {
               this.categoryList = res.data.data.data;
               this.total = res.data.data.data_count;
@@ -118,7 +118,7 @@ export function useNavMenu() {
             if (
               res !== null &&
               res !== undefined &&
-              res.data.data.data.length > 0
+              res.data.data.data?.length > 0
             ) {
               let list = this.categoryList;
               res.data.data.data.forEach(function (item: any) {
