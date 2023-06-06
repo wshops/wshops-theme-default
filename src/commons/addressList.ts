@@ -25,7 +25,7 @@ document
   });
 const addressModel = new Modal($modalElement, modalOptions); // 款式弹窗
 
-export function useAddressList(address_c:any) {
+export function useAddressList(address_c: any) {
   createApp({
     compilerOptions: {
       delimiters: ["${", "}"],
@@ -111,7 +111,11 @@ export function useAddressList(address_c:any) {
           .api()
           .get("/api/v1/capi/address", params)
           .then((res: any) => {
-            if (res !== null && res !== undefined) {
+            if (
+              res !== null &&
+              res !== undefined &&
+              res.data.data.data_count > 0
+            ) {
               this.addressList = res.data.data.data;
               this.totalNum = res.data.data.data_count;
             } else {
@@ -136,7 +140,11 @@ export function useAddressList(address_c:any) {
           .api()
           .get("/api/v1/capi/address", params)
           .then((res: any) => {
-            if (res !== null && res !== undefined) {
+            if (
+              res !== null &&
+              res !== undefined &&
+              res.data.data.data_count > 0
+            ) {
               this.addressList = res.data.data.data;
               this.totalNum = res.data.data.data_count;
             } else {
