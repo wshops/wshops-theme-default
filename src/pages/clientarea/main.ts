@@ -268,7 +268,8 @@ const optionsModal: any = {
             }
             formData.type = 1;
             formData.scope = "auth.login";
-            formData.target = formData.mobile;
+            formData.country_code = Number(formData.countries);
+            delete formData.countries;
             wshop
               .api()
               .post("/api/v1/capi/vcode/request", formData)
