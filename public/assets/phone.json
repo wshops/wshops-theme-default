@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Argentina",
+    "name_cn": "阿根廷",
+    "iso2": "AR",
+    "iso3": "ARG",
+    "dial_code_num": 54,
+    "dial_code_str": "+54",
+    "flag_emoji": "🇦🇷"
+  },
+  {
+    "name": "Australia",
+    "name_cn": "澳大利亚",
+    "iso2": "AU",
+    "iso3": "AUS",
+    "dial_code_num": 61,
+    "dial_code_str": "+61",
+    "flag_emoji": "🇦🇺"
+  },
+  {
+    "name": "Austria",
+    "name_cn": "奥地利",
+    "iso2": "AT",
+    "iso3": "AUT",
+    "dial_code_num": 43,
+    "dial_code_str": "+43",
+    "flag_emoji": "🇦🇹"
+  },
+  {
+    "name": "Bangladesh",
+    "name_cn": "孟加拉国",
+    "iso2": "BD",
+    "iso3": "BGD",
+    "dial_code_num": 880,
+    "dial_code_str": "+880",
+    "flag_emoji": "🇧🇩"
+  },
+  {
+    "name": "Belarus",
+    "name_cn": "白俄罗斯",
+    "iso2": "BY",
+    "iso3": "BLR",
+    "dial_code_num": 375,
+    "dial_code_str": "+375",
+    "flag_emoji": "🇧🇾"
+  },
+  {
+    "name": "Belgium",
+    "name_cn": "比利时",
+    "iso2": "BE",
+    "iso3": "BEL",
+    "dial_code_num": 32,
+    "dial_code_str": "+32",
+    "flag_emoji": "🇧🇪"
+  },
+  {
+    "name": "Brazil",
+    "name_cn": "巴西",
+    "iso2": "BR",
+    "iso3": "BRA",
+    "dial_code_num": 55,
+    "dial_code_str": "+55",
+    "flag_emoji": "🇧🇷"
+  },
+  {
+    "name": "British Indian Ocean Territory",
+    "name_cn": "英属印度洋领地",
+    "iso2": "IO",
+    "iso3": "IOT",
+    "dial_code_num": 246,
+    "dial_code_str": "+246",
+    "flag_emoji": "🇮🇴"
+  },
+  {
+    "name": "Canada",
+    "name_cn": "加拿大",
+    "iso2": "CA",
+    "iso3": "CAN",
+    "dial_code_num": 1,
+    "dial_code_str": "+1",
+    "flag_emoji": "🇨🇦"
+  },
+  {
+    "name": "Chile",
+    "name_cn": "智利",
+    "iso2": "CL",
+    "iso3": "CHL",
+    "dial_code_num": 56,
+    "dial_code_str": "+56",
+    "flag_emoji": "🇨🇱"
+  },
+  {
+    "name": "People's Republic of Chinese",
+    "name_cn": "中国；\r\n內地",
+    "iso2": "CN",
+    "iso3": "CHN",
+    "dial_code_num": 86,
+    "dial_code_str": "+86",
+    "flag_emoji": "🇨🇳"
+  },
+  {
+    "name": "Colombia",
+    "name_cn": "哥伦比亚",
+    "iso2": "CO",
+    "iso3": "COL",
+    "dial_code_num": 57,
+    "dial_code_str": "+57",
+    "flag_emoji": "🇨🇴"
+  },
+  {
+    "name": "Czech Republic",
+    "name_cn": "捷克",
+    "iso2": "CZ",
+    "iso3": "CZE",
+    "dial_code_num": 420,
+    "dial_code_str": "+420",
+    "flag_emoji": "🇨🇿"
+  },
+  {
+    "name": "Denmark",
+    "name_cn": "丹麦",
+    "iso2": "DK",
+    "iso3": "DNK",
+    "dial_code_num": 45,
+    "dial_code_str": "+45",
+    "flag_emoji": "🇩🇰"
+  },
+  {
+    "name": "Egypt",
+    "name_cn": "埃及",
+    "iso2": "EG",
+    "iso3": "EGY",
+    "dial_code_num": 20,
+    "dial_code_str": "+20",
+    "flag_emoji": "🇪🇬"
+  },
+  {
+    "name": "Finland",
+    "name_cn": "芬兰",
+    "iso2": "FI",
+    "iso3": "FIN",
+    "dial_code_num": 358,
+    "dial_code_str": "+358",
+    "flag_emoji": "🇫🇮"
+  },
+  {
+    "name": "France",
+    "name_cn": "法国",
+    "iso2": "FR",
+    "iso3": "FRA",
+    "dial_code_num": 33,
+    "dial_code_str": "+33",
+    "flag_emoji": "🇫🇷"
+  },
+  {
+    "name": "Germany",
+    "name_cn": "德国",
+    "iso2": "DE",
+    "iso3": "DEU",
+    "dial_code_num": 49,
+    "dial_code_str": "+49",
+    "flag_emoji": "🇩🇪"
+  },
+  {
+    "name": "Hong Kong",
+    "name_cn": "中国香港",
+    "iso2": "HK",
+    "iso3": "HKG",
+    "dial_code_num": 852,
+    "dial_code_str": "+852",
+    "flag_emoji": "🇭🇰"
+  },
+  {
+    "name": "India",
+    "name_cn": "印度",
+    "iso2": "IN",
+    "iso3": "IND",
+    "dial_code_num": 91,
+    "dial_code_str": "+91",
+    "flag_emoji": "🇮🇳"
+  },
+  {
+    "name": "Iran (Islamic Republic of)",
+    "name_cn": "伊朗",
+    "iso2": "IR",
+    "iso3": "IRN",
+    "dial_code_num": 98,
+    "dial_code_str": "+98",
+    "flag_emoji": "🇮🇷"
+  },
+  {
+    "name": "Ireland",
+    "name_cn": "爱尔兰",
+    "iso2": "IE",
+    "iso3": "IRL",
+    "dial_code_num": 353,
+    "dial_code_str": "+353",
+    "flag_emoji": "🇮🇪"
+  },
+  {
+    "name": "Israel",
+    "name_cn": "以色列",
+    "iso2": "IL",
+    "iso3": "ISR",
+    "dial_code_num": 972,
+    "dial_code_str": "+972",
+    "flag_emoji": "🇮🇱"
+  },
+  {
+    "name": "Italy",
+    "name_cn": "意大利",
+    "iso2": "IT",
+    "iso3": "ITA",
+    "dial_code_num": 39,
+    "dial_code_str": "+39",
+    "flag_emoji": "🇮🇹"
+  },
+  {
+    "name": "Japan",
+    "name_cn": "日本",
+    "iso2": "JP",
+    "iso3": "JPN",
+    "dial_code_num": 81,
+    "dial_code_str": "+81",
+    "flag_emoji": "🇯🇵"
+  },
+  {
+    "name": "Korea (Republic of)",
+    "name_cn": "韩国；\r\n南朝鲜",
+    "iso2": "KR",
+    "iso3": "KOR",
+    "dial_code_num": 82,
+    "dial_code_str": "+82",
+    "flag_emoji": "🇰🇷"
+  },
+  {
+    "name": "Macao",
+    "name_cn": "中国澳门",
+    "iso2": "MO",
+    "iso3": "MAC",
+    "dial_code_num": 853,
+    "dial_code_str": "+853",
+    "flag_emoji": "🇲🇴"
+  },
+  {
+    "name": "Malaysia",
+    "name_cn": "马来西亚",
+    "iso2": "MY",
+    "iso3": "MYS",
+    "dial_code_num": 60,
+    "dial_code_str": "+60",
+    "flag_emoji": "🇲🇾"
+  },
+  {
+    "name": "Mexico",
+    "name_cn": "墨西哥",
+    "iso2": "MX",
+    "iso3": "MEX",
+    "dial_code_num": 52,
+    "dial_code_str": "+52",
+    "flag_emoji": "🇲🇽"
+  },
+  {
+    "name": "Netherlands",
+    "name_cn": "荷兰",
+    "iso2": "NL",
+    "iso3": "NLD",
+    "dial_code_num": 31,
+    "dial_code_str": "+31",
+    "flag_emoji": "🇳🇱"
+  },
+  {
+    "name": "New Zealand",
+    "name_cn": "新西兰",
+    "iso2": "NZ",
+    "iso3": "NZL",
+    "dial_code_num": 64,
+    "dial_code_str": "+64",
+    "flag_emoji": "🇳🇿"
+  },
+  {
+    "name": "Norway",
+    "name_cn": "挪威",
+    "iso2": "NO",
+    "iso3": "NOR",
+    "dial_code_num": 47,
+    "dial_code_str": "+47",
+    "flag_emoji": "🇳🇴"
+  },
+  {
+    "name": "Pakistan",
+    "name_cn": "巴基斯坦",
+    "iso2": "PK",
+    "iso3": "PAK",
+    "dial_code_num": 92,
+    "dial_code_str": "+92",
+    "flag_emoji": "🇵🇰"
+  },
+  {
+    "name": "Philippines",
+    "name_cn": "菲律宾",
+    "iso2": "PH",
+    "iso3": "PHL",
+    "dial_code_num": 63,
+    "dial_code_str": "+63",
+    "flag_emoji": "🇵🇭"
+  },
+  {
+    "name": "Poland",
+    "name_cn": "波兰",
+    "iso2": "PL",
+    "iso3": "POL",
+    "dial_code_num": 48,
+    "dial_code_str": "+48",
+    "flag_emoji": "🇵🇱"
+  },
+  {
+    "name": "Romania",
+    "name_cn": "罗马尼亚",
+    "iso2": "RO",
+    "iso3": "ROU",
+    "dial_code_num": 40,
+    "dial_code_str": "+40",
+    "flag_emoji": "🇷🇴"
+  },
+  {
+    "name": "Russian Federation",
+    "name_cn": "俄罗斯",
+    "iso2": "RU",
+    "iso3": "RUS",
+    "dial_code_num": 7,
+    "dial_code_str": "+7",
+    "flag_emoji": "🇷🇺"
+  },
+  {
+    "name": "Saudi Arabia",
+    "name_cn": "沙特阿拉伯",
+    "iso2": "SA",
+    "iso3": "SAU",
+    "dial_code_num": 966,
+    "dial_code_str": "+966",
+    "flag_emoji": "🇸🇩"
+  },
+  {
+    "name": "Singapore",
+    "name_cn": "新加坡",
+    "iso2": "SG",
+    "iso3": "SGP",
+    "dial_code_num": 65,
+    "dial_code_str": "+65",
+    "flag_emoji": "🇸🇬"
+  },
+  {
+    "name": "South Africa",
+    "name_cn": "南非",
+    "iso2": "ZA",
+    "iso3": "ZAF",
+    "dial_code_num": 27,
+    "dial_code_str": "+27",
+    "flag_emoji": "🇿🇦"
+  },
+  {
+    "name": "Spain",
+    "name_cn": "西班牙",
+    "iso2": "ES",
+    "iso3": "ESP",
+    "dial_code_num": 34,
+    "dial_code_str": "+34",
+    "flag_emoji": "🇪🇸"
+  },
+  {
+    "name": "Sweden",
+    "name_cn": "瑞典",
+    "iso2": "SE",
+    "iso3": "SWE",
+    "dial_code_num": 46,
+    "dial_code_str": "+46",
+    "flag_emoji": "🇸🇪"
+  },
+  {
+    "name": "Switzerland",
+    "name_cn": "瑞士",
+    "iso2": "CH",
+    "iso3": "CHE",
+    "dial_code_num": 41,
+    "dial_code_str": "+41",
+    "flag_emoji": "🇨🇭"
+  },
+  {
+    "name": "Taiwan, Province of Chinese",
+    "name_cn": "中国台湾",
+    "iso2": "TW",
+    "iso3": "TWN",
+    "dial_code_num": 886,
+    "dial_code_str": "+886",
+    "flag_emoji": "🇹🇼"
+  },
+  {
+    "name": "Thailand",
+    "name_cn": "泰国",
+    "iso2": "TH",
+    "iso3": "THA",
+    "dial_code_num": 66,
+    "dial_code_str": "+66",
+    "flag_emoji": "🇹🇭"
+  },
+  {
+    "name": "Turkey",
+    "name_cn": "土耳其",
+    "iso2": "TR",
+    "iso3": "TUR",
+    "dial_code_num": 90,
+    "dial_code_str": "+90",
+    "flag_emoji": "🇹🇷"
+  },
+  {
+    "name": "United Arab Emirates",
+    "name_cn": "阿联酋",
+    "iso2": "AE",
+    "iso3": "ARE",
+    "dial_code_num": 971,
+    "dial_code_str": "+971",
+    "flag_emoji": "🇦🇪"
+  },
+  {
+    "name": "United Kingdom",
+    "name_cn": "英国",
+    "iso2": "GB",
+    "iso3": "GBR",
+    "dial_code_num": 44,
+    "dial_code_str": "+44",
+    "flag_emoji": "🇬🇧"
+  },
+  {
+    "name": "United States",
+    "name_cn": "美国",
+    "iso2": "US",
+    "iso3": "USA",
+    "dial_code_num": 1,
+    "dial_code_str": "+1",
+    "flag_emoji": "🇺🇸"
+  },
+  {
+    "name": "Vietnam",
+    "name_cn": "越南",
+    "iso2": "VN",
+    "iso3": "VNM",
+    "dial_code_num": 84,
+    "dial_code_str": "+84",
+    "flag_emoji": "🇻🇳"
+  }
+]

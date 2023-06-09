@@ -88,6 +88,12 @@ let c = wshop.newFormValidation().init([
         validatorName: "required",
         invalidMessage: "手机号不能为空",
       },
+      {
+        customValidator: (value: string): boolean => {
+          return /^\d{11}$/.test(value);
+        },
+        invalidMessage: "手机号格式不正确",
+      },
     ],
   },
 ]);
@@ -201,7 +207,7 @@ let userInfo_c = wshop.newFormValidation().init([
     ],
   },
 ]);
-
+let isFirst = false;
 const $targetEl = document.getElementById("modalEl");
 const optionsModal: any = {
   placement: "center-center",
@@ -218,6 +224,12 @@ const optionsModal: any = {
             validatorName: "required",
             invalidMessage: "手机号不能为空",
           },
+          {
+            customValidator: (value: string): boolean => {
+              return /^\d{11}$/.test(value);
+            },
+            invalidMessage: "手机号格式不正确",
+          },
         ],
       },
     ]);
@@ -226,57 +238,64 @@ const optionsModal: any = {
     (document.getElementById("mobile") as HTMLInputElement).value = "";
   },
   onShow: () => {
-    setTimeout(() => {
-      // 手机号验证
-      document
-        .getElementById("mobile-form")!
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          if (!c.validate().getResult()) {
-            return;
-          }
+    if (!isFirst) {
+      setTimeout(() => {
+        isFirst = true;
+        // 手机号验证
+        document
+          .getElementById("mobile-form")!
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!c.validate().getResult()) {
+              return;
+            }
 
-          const formData = wshop.formDataToObject("mobile-form");
-          if (
-            formData["h-captcha-response"] !== undefined &&
-            formData["h-captcha-response"] !== null &&
-            formData["h-captcha-response"] !== ""
-          ) {
-            formData["captcha"] = formData["h-captcha-response"];
-            delete formData["h-captcha-response"];
-            delete formData["g-recaptcha-response"];
-          }
-          wshop
-            .api()
-            .patch("/api/v1/capi/user/mobile/verify", formData)
-            .then((res) => {
-              if (res !== null && res !== undefined) {
-                console.log(formData);
-                document.getElementById("mobileContent")!.style.display =
-                  "none";
-                document.getElementById("codeContent")!.style.display = "block";
-                (document.getElementById("code") as HTMLInputElement)
-                  ? (codeCheck = wshop.vd(true).init([
-                      {
-                        element: document.getElementById("code")!,
-                        rules: [
-                          {
-                            validatorName: "required",
-                            invalidMessage: "验证码不能为空",
-                          },
-                        ],
-                      },
-                    ]))
-                  : "";
-              }
-            })
-            .catch((err) => {
-              window.$notify.error(err).then(() => {
-                hcaptcha.reset("hcaptcha-block");
+            const formData = wshop.formDataToObject("mobile-form");
+            if (
+              formData["h-captcha-response"] !== undefined &&
+              formData["h-captcha-response"] !== null &&
+              formData["h-captcha-response"] !== ""
+            ) {
+              formData["captcha"] = formData["h-captcha-response"];
+              delete formData["h-captcha-response"];
+              delete formData["g-recaptcha-response"];
+            }
+            formData.type = 1;
+            formData.scope = "auth.login";
+            formData.target = formData.mobile;
+            wshop
+              .api()
+              .post("/api/v1/capi/vcode/request", formData)
+              .then((res) => {
+                if (res !== null && res !== undefined) {
+                  console.log(formData);
+                  document.getElementById("mobileContent")!.style.display =
+                    "none";
+                  document.getElementById("codeContent")!.style.display =
+                    "block";
+                  (document.getElementById("code") as HTMLInputElement)
+                    ? (codeCheck = wshop.vd(true).init([
+                        {
+                          element: document.getElementById("code")!,
+                          rules: [
+                            {
+                              validatorName: "required",
+                              invalidMessage: "验证码不能为空",
+                            },
+                          ],
+                        },
+                      ]))
+                    : "";
+                }
+              })
+              .catch((err) => {
+                window.$notify.error(err).then(() => {
+                  hcaptcha.reset("hcaptcha-block");
+                });
               });
-            });
-        });
-    }, 300);
+          });
+      }, 300);
+    }
   },
   onToggle: () => {},
 };
@@ -322,7 +341,7 @@ tabs.show("settings");
 
 let codeCheck: any;
 
-// 获取验证码
+// 确认修改手机号
 document.getElementById("code-form")!.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!codeCheck.validate().getResult()) {
@@ -331,7 +350,7 @@ document.getElementById("code-form")!.addEventListener("submit", (e) => {
   const formData = wshop.formDataToObject("code-form");
   wshop
     .api()
-    .post("/api/v1/capi/auth/login", formData)
+    .patch("/api/v1/capi/user/mobile", formData)
     .then((res) => {
       if (res !== null && res !== undefined) {
         console.log(formData);
@@ -345,7 +364,7 @@ document.getElementById("code-form")!.addEventListener("submit", (e) => {
     });
 });
 
-// 确认修改手机号
+// 弹出修改手机号弹窗
 document.getElementById("mobile-bt")!.addEventListener("click", () => {
   document.getElementById("mobileContent")!.style.display = "block";
   document.getElementById("codeContent")!.style.display = "none";
@@ -380,7 +399,6 @@ document.getElementById("imgUpload")!.addEventListener("mouseenter", () => {
 document.getElementById("imgUpload")!.addEventListener("click", () => {
   document.getElementById("isShowImgUpload")!.style.display = "none";
 });
-
 document.getElementById("imgUpload")!.addEventListener("mouseleave", () => {
   document.getElementById("isShowImgUpload")!.style.display = "none";
 });
@@ -392,14 +410,6 @@ document.getElementById("password-form")!.addEventListener("submit", (e) => {
     return;
   }
   const formData = wshop.formDataToObject("password-form");
-  // if (
-  //   formData["h-captcha-response"] !== undefined &&
-  //   formData["g-recaptcha-response"] !== undefined
-  // ) {
-  //   formData["captcha"] = formData["h-captcha-response"];
-  //   delete formData["h-captcha-response"];
-  //   delete formData["g-recaptcha-response"];
-  // }
   formData["old_password"] = wshop.md5(formData["old_password"] as string);
   formData["new_password"] = wshop.md5(formData["new_password"] as string);
   wshop
@@ -528,8 +538,35 @@ function getUserInfo() {
     });
 }
 
+// 获取国家号
+function getCountryCode() {
+  wshop
+    .api()
+    .get("/public/assets/phone.json", {})
+    .then((res) => {
+      if (res !== null && res !== undefined) {
+        let phoneList = res.data;
+        let reg_select = document.getElementById("countries"); //找到select标签
+        let frag = document.createDocumentFragment(); //创建文档片段，文档片段的作用就是让for循环中创建的标签先放到文档片段中，待for循环结束后直接将文档片段插入制定的标签元素内，可以减少dom的操作
+        for (let i = 0; i < phoneList.length; i++) {
+          let option = document.createElement("option"); //创建option标签
+          option.value = phoneList[i].dial_code_num; //设置正在创建的option的value属性
+          option.innerHTML = phoneList[i].dial_code_str;
+          frag.appendChild(option); //将设置好的 option插入文档片段。
+        }
+        reg_select!.appendChild(frag); //循环结束后一次性，将文档片段插入制定的dom中
+      }
+    })
+    .catch((err) => {
+      window.$notify.error(err);
+    });
+}
+
 // 获取用户信息
 getUserInfo();
+
+// 获取国家号
+getCountryCode();
 
 // 收藏列表
 useCollectList();
