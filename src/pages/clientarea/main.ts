@@ -137,6 +137,12 @@ let address_c = wshop.newFormValidation().init([
         validatorName: "required",
         invalidMessage: "手机号码不能为空",
       },
+      {
+        customValidator: (value: string): boolean => {
+          return /^\d{11}$/.test(value);
+        },
+        invalidMessage: "手机号格式不正确",
+      },
     ],
   },
   // {
@@ -542,10 +548,11 @@ function getUserInfo() {
 function getCountryCode() {
   wshop
     .api()
-    .get("/public/assets/phone.json", {})
+    .get("/assets/phone.json", {})
     .then((res) => {
       if (res !== null && res !== undefined) {
         let phoneList = res.data;
+        // 修改手机号模块
         let reg_select = document.getElementById("countries"); //找到select标签
         let frag = document.createDocumentFragment(); //创建文档片段，文档片段的作用就是让for循环中创建的标签先放到文档片段中，待for循环结束后直接将文档片段插入制定的标签元素内，可以减少dom的操作
         for (let i = 0; i < phoneList.length; i++) {
@@ -554,7 +561,18 @@ function getCountryCode() {
           option.innerHTML = phoneList[i].dial_code_str;
           frag.appendChild(option); //将设置好的 option插入文档片段。
         }
-        reg_select!.appendChild(frag); //循环结束后一次性，将文档片段插入制定的dom中
+        reg_select!.appendChild(frag);
+
+        // 地址管理模块
+        let address_countries = document.getElementById("address_countries"); //找到select标签
+        let frag2 = document.createDocumentFragment(); //创建文档片段，文档片段的作用就是让for循环中创建的标签先放到文档片段中，待for循环结束后直接将文档片段插入制定的标签元素内，可以减少dom的操作
+        for (let i = 0; i < phoneList.length; i++) {
+          let option = document.createElement("option"); //创建option标签
+          option.value = phoneList[i].dial_code_num; //设置正在创建的option的value属性
+          option.innerHTML = phoneList[i].dial_code_str;
+          frag2.appendChild(option); //将设置好的 option插入文档片段。
+        }
+        address_countries!.appendChild(frag2);
       }
     })
     .catch((err) => {

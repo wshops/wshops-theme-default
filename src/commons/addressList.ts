@@ -39,7 +39,7 @@ export function useAddressList(address_c: any) {
       loading: false,
       addressItemList: {
         full_name: "",
-        mobile_country_code: "",
+        address_countries: "",
         mobile_number: "",
         country: "",
         full_address: "",
@@ -174,8 +174,8 @@ export function useAddressList(address_c: any) {
               document.getElementById("mobile_number") as HTMLInputElement
             ).value = this.addressItemList.mobile_number;
             (
-              document.getElementById("mobile_country_code") as HTMLInputElement
-            ).value = this.addressItemList.mobile_country_code;
+              document.getElementById("address_countries") as HTMLInputElement
+            ).value = this.addressItemList.address_countries;
             (
               document.getElementById("full_address") as HTMLInputElement
             ).value = this.addressItemList.full_address;
@@ -189,7 +189,7 @@ export function useAddressList(address_c: any) {
         } else {
           this.addressItemList = {
             full_name: "",
-            mobile_country_code: "",
+            address_countries: "",
             mobile_number: "",
             country: "",
             full_address: "",
@@ -205,7 +205,7 @@ export function useAddressList(address_c: any) {
               document.getElementById("mobile_number") as HTMLInputElement
             ).value = "";
             (
-              document.getElementById("mobile_country_code") as HTMLInputElement
+              document.getElementById("address_countries") as HTMLInputElement
             ).value = "";
             (
               document.getElementById("full_address") as HTMLInputElement
