@@ -368,6 +368,9 @@ export function useProductList() {
           .catch((err) => {
             window.$notify.error(err);
             this.loading = false;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       },
       // prevOrNext(n: number) {
@@ -435,10 +438,7 @@ export function useProductList() {
           .then((res: any) => {
             if (res !== null && res !== undefined) {
               window.$notify.success("添加购物车成功");
-              localStorage.setItem(
-                "cartNum",
-                res.data.data.total_quantity
-              );
+              localStorage.setItem("cartNum", res.data.data.total_quantity);
               variant_no ? this.closeVariantsModel() : "";
             }
           })
