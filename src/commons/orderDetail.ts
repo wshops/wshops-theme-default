@@ -1,26 +1,6 @@
 import { createApp } from "vue";
-import { Modal } from "flowbite";
 import { timeFormat } from "../utils/day";
-const $modalElement = document.getElementById("order-modal");
-const modalOptions: any = {
-  placement: "center-center",
-  backdrop: "dynamic",
-  backdropClasses:
-    "bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40",
-  closable: false,
-  onHide: () => {},
-  onShow: () => {},
-  onToggle: () => {},
-};
-
-document
-  .getElementById("orderModalCancel")!
-  .addEventListener("click", function () {
-    orderModel.hide();
-  });
-const orderModel = new Modal($modalElement, modalOptions); // 款式弹窗
-
-export function useOrderList() {
+export function useOrderDetail() {
   createApp({
     compilerOptions: {
       delimiters: ["${", "}"],
@@ -162,26 +142,10 @@ export function useOrderList() {
             window.$notify.error(err);
           });
       },
-      // 展示地址列表弹窗
-      showOrderModal(item: any) {
-        if (item) {
-          this.orderItem = item;
-          orderModel.show();
-          this.orderModel = true;
-          setTimeout(() => {
-            (
-              document.getElementById("order_no") as HTMLInputElement
-            ).innerText = this.orderItem.order_no;
-            (
-              document.getElementById("order-title") as HTMLBaseElement
-            ).innerHTML = "查看订单";
-          }, 10);
-        }
-      },
     },
     mounted() {
       this.init();
     },
     unmounted() {},
-  }).mount("#wshop-orderList");
+  }).mount("#wshop-orderDetail");
 }

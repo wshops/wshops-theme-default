@@ -51,5 +51,8 @@
     "vite-plugin-remove-console": "^2.1.0",
     "vite-plugin-virtual-mpa": "^1.7.0",
     "vue": "^3.2.47"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.8"
   }
 }

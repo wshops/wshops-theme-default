@@ -96,7 +96,7 @@ export function useCollectList() {
             if (
               res !== null &&
               res !== undefined &&
-              res.data.data.data_count > 0
+              res.data.data?.data_count > 0
             ) {
               this.collectList = res.data.data.data;
               this.totalNum = res.data.data.data_count;

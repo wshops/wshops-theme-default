@@ -170,7 +170,7 @@ export function useNavMenu() {
             if (
               res !== null &&
               res !== undefined &&
-              res.data.data.product_items
+              res.data.data?.product_items
             ) {
               this.cartsNumber = res.data.data.total_quantity;
               this.cartsList =

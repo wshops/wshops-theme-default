@@ -6,7 +6,8 @@ import { useNotify } from "../../utils/notify";
 import { useNavMenu } from "../../commons/navmenu";
 import { useCollectList } from "../../commons/collectList";
 import { useAddressList } from "../../commons/addressList";
-
+import { useOrderList } from "../../commons/orderList";
+import { useOrderDetail } from "../../commons/orderDetail";
 useNotify({
   position: "top-right",
 });
@@ -469,6 +470,7 @@ document.getElementById("address-form")!.addEventListener("submit", (e) => {
   }
   const formData = wshop.formDataToObject("address-form");
   console.log(formData);
+  formData.mobile_country_code = Number(formData.mobile_country_code);
   if (
     (document.getElementById("address-title") as HTMLBaseElement).innerHTML ===
     "新增地址"
@@ -589,6 +591,11 @@ getCountryCode();
 
 // 收藏列表
 useCollectList();
+
+// 订单列表
+useOrderList();
+
+useOrderDetail();
 
 // 地址列表
 useAddressList(address_c);
