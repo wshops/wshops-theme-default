@@ -9,5 +9,7 @@ declare global {
     $wshop: WshopUtils;
     refreshAddressList: Function;
     addressId: "";
+    showOrderDetail: Function;
+    orderItem: null;
   }
 }

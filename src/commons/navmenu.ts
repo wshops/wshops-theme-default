@@ -239,6 +239,21 @@ export function useNavMenu() {
             window.$notify.error(err);
           });
       },
+      // 购物车结算
+      checkOut() {
+        window.$wshop
+          .api()
+          .get("/api/v1/capi/order/checkout")
+          .then((res: any) => {
+            if (res !== null && res !== undefined) {
+              // window.$notify.success("更新购物车成功");
+              window.location.assign("/checkout");
+            }
+          })
+          .catch((err: string) => {
+            window.$notify.error(err);
+          });
+      },
       cutCartCount(item: any) {
         item.quantity = item.quantity - 1;
         this.editShopCarts(item);

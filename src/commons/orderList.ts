@@ -166,12 +166,14 @@ export function useOrderList() {
       showOrderModal(item: any) {
         if (item) {
           this.orderItem = item;
+          window.orderItem = item;
           orderModel.show();
+          window.showOrderDetail();
           this.orderModel = true;
           setTimeout(() => {
             (
               document.getElementById("order_no") as HTMLInputElement
-            ).innerText = this.orderItem.order_no;
+            ).innerText = "订单号：" + this.orderItem.order_no;
             (
               document.getElementById("order-title") as HTMLBaseElement
             ).innerHTML = "查看订单";
