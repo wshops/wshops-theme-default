@@ -1809,25 +1809,10 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
-                              ></path></svg
-                            ><span class="ml-1 leading-none">售罄</span>
+                              ></path>
+                            </svg>
+                            <span class="ml-1 leading-none">售罄</span>
                           </div>
-                          <!-- <button v-if="item.favorites>0"
-                                                class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
-                                                    class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                        stroke="#ef4444" fill="#ef4444" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg></button>
-                                            <button v-else
-                                                class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-900 text-neutral-700 dark:text-slate-200 nc-shadow-lg absolute top-3 right-3 z-10"><svg
-                                                    class="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M12.62 20.81C12.28 20.93 11.72 20.93 11.38 20.81C8.48 19.82 2 15.69 2 8.68998C2 5.59998 4.49 3.09998 7.56 3.09998C9.38 3.09998 10.99 3.97998 12 5.33998C13.01 3.97998 14.63 3.09998 16.44 3.09998C19.51 3.09998 22 5.59998 22 8.68998C22 15.69 15.52 19.82 12.62 20.81Z"
-                                                        stroke="currentColor" fill="none" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg></button> -->
                           <div
                             v-if="item.inventory_amount>0"
                             class="absolute bottom-0 group-hover:bottom-4 inset-x-1 flex justify-center opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all"
@@ -1873,8 +1858,9 @@
                                   stroke-linejoin="round"
                                   stroke-miterlimit="10"
                                   stroke-width="1.5"
-                                ></path></svg
-                              ><span class="ml-1">加入购物车</span>
+                                ></path>
+                              </svg>
+                              <span class="ml-1">加入购物车</span>
                             </button>
                           </div>
                         </div>
@@ -1899,63 +1885,6 @@
                               class="text-2xl font-bold text-gray-900 dark:text-white"
                               >￥${(item['sell_price'])}</span
                             >
-                            <!-- <button v-if="item.inventory_amount>0"
-                                                    @click="isShowVariantModal(item)"
-                                                    class="flex items-center mt-2  text-white bg-blue-700 hover:bg-blue-600 hover:shadow-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    <svg class="w-6 h-6 pr-1" fill="none" viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path
-                                                            d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path
-                                                            d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path d="M9 8H21" stroke="currentColor"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-miterlimit="10" stroke-width="1.5">
-                                                        </path>
-                                                    </svg>加入购物车
-                                                </button>
-
-                                                <button v-else type="button"
-                                                    class="flex items-center mt-2  text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                                    disabled> <svg class="w-6 h-6 pr-1" fill="none"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M2 2H3.74001C4.82001 2 5.67 2.93 5.58 4L4.75 13.96C4.61 15.59 5.89999 16.99 7.53999 16.99H18.19C19.63 16.99 20.89 15.81 21 14.38L21.54 6.88C21.66 5.22 20.4 3.87 18.73 3.87H5.82001"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path
-                                                            d="M16.25 22C16.9404 22 17.5 21.4404 17.5 20.75C17.5 20.0596 16.9404 19.5 16.25 19.5C15.5596 19.5 15 20.0596 15 20.75C15 21.4404 15.5596 22 16.25 22Z"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path
-                                                            d="M8.25 22C8.94036 22 9.5 21.4404 9.5 20.75C9.5 20.0596 8.94036 19.5 8.25 19.5C7.55964 19.5 7 20.0596 7 20.75C7 21.4404 7.55964 22 8.25 22Z"
-                                                            stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-miterlimit="10"
-                                                            stroke-width="1.5">
-                                                        </path>
-                                                        <path d="M9 8H21" stroke="currentColor"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-miterlimit="10" stroke-width="1.5">
-                                                        </path>
-                                                    </svg>加入购物车</button> -->
                           </div>
                         </div>
                       </div>
@@ -1970,9 +1899,6 @@
                     class="nc-Pagination inline-flex space-x-1 text-base font-medium"
                   >
                     <ul class="pagesInner">
-                      <!-- <li class="inline-flex" @click="prevOrNext(-1)"><span
-                                                aria-hidden="true">&lt;</span>
-                                        </li> -->
                       <li
                         class="cursor-pointer"
                         v-for="(item, index) in pages"
@@ -1983,13 +1909,6 @@
                         ${item}
                       </li>
                       <span class="ml-2">共${totalNum}条</span>
-                      <!-- <li class="inline-flex" @click="prevOrNext(1)"><span class="fa fa-chevron-right"
-                                                aria-hidden="true">&gt;</span></li> -->
-                      <!-- <span @click.stop="showOption=!showOption"> ${pageSize}条/页</span>
-                                        <ul class="size-option" v-show="showOption">
-                                            <li v-for="(item, index) in pageSizeList" :key="index"
-                                                @click="pageSize=item;showOption=false"> ${item}条/页</li>
-                                        </ul> -->
                     </ul>
                   </nav>
                 </div>
